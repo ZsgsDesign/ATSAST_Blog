@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            #SearchTitle{
+                color: darkgray;
+            }
+            #SearchColumn{
+                width: 525px;
+            }
+            .inner-document{
+                position: absolute;
+                left: 50%;
+                top: 40%;
+                transform: translate(-50%,-60%);
+            }
+            #CaseColumn{
+                width:105px;
+                position: absolute;
+                left: 82.7%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+        <div class="inner-document">
+            <h1 class="text-center">Search</h1>
+            <p class="text-center" id="SearchTitle"><small>You can search anything you want……except the recipe for cats.</small></p>
+        <form class="form-inline" action="/ATSAST_Blog/protected/controller/SearchController.php" method="POST">
+        <div class="form-group">
+            <label class="sr-only" for="SearchText">Search</label>
+            <input type="search" class="form-control" id="SearchColumn" placeholder="Qualis artifex pereo">
+        </div>
+        <button type="submit" class="btn btn-primary" id="ButtonColumn">Search</button>
+        </form>
+        <form class="form-inline">
+        <p class="form-control-static"><a href="<!--此处填写搜索的帮助文档-->" class="href-need">需要帮助？</a></p>
+        <select class="form-control" id="CaseColumn">
+            <option>文章标题</option>
+            <option>文章内容</option>
+            <option>博客作者</option>
+            <!--此处填写模糊搜索方面的支持选项-->
+        </select>
+        </form>
+        </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    </body>
+</html>
