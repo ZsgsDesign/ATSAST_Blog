@@ -9,6 +9,9 @@ For better reference, all materials below would be written in Chinese.
 
 这是ATSAS博客系统的独立源代码，为ATSAST源代码的一部分，本系统代码将会被整合于ATSAST，但将作为单独部分开源并可独立使用。
 
+## 部署地址
+https://blog.winter.mundb.xyz
+
 ## 基本功能
 
 预期实现的基本功能包括但不限于：
