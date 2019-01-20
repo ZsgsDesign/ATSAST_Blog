@@ -10,7 +10,7 @@ $config = array(
 );
 
 $domain = array(
-    "www.sastblog.com" => array( // 调试配置
+    "blog.winter.mundb.xyz" => array( // 调试配置
         'debug' => 1,
         'maintain' => 0,
         'mysql' => array(
