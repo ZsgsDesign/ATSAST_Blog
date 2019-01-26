@@ -12,6 +12,6 @@ class BaseController extends Controller
 
         header("Content-type: text/html; charset=utf-8");
         require(APP_DIR.'/protected/include/functions.php');
-        require(APP_DIR.'/protected/lib/error.php');
+        require(APP_DIR.'/protected/model/error.php');
     }
 }
