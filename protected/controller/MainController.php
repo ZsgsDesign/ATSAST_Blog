@@ -5,4 +5,8 @@ class MainController extends BaseController
     {
         $this->name="SAST Blog";
     }
+    public function actionWWW()
+    {
+        
+    }
 }
