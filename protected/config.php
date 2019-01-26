@@ -18,7 +18,7 @@ $domain = array(
             'MYSQL_PORT' => "3306",
             'MYSQL_USER' => "root",
             'MYSQL_DB'   => "ATSAST_BLOG",
-            'MYSQL_PASS' => "root",
+            'MYSQL_PASS' => "winterofcode",
             'MYSQL_CHARSET' => 'utf8',
         ),
     ),
