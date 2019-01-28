@@ -6,6 +6,7 @@ $config = array(
     'rewrite' => array(
         '<a>'                                                => 'main/<a>',
         '/'                                                  => 'main/index',
+        '/search'                                            => 'search/index'
     ),
 );
 

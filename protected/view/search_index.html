@@ -4,37 +4,62 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+        <title>搜索</title>
         <style>
             #SearchTitle{
-                color: darkgray;
+                color:black;
             }
             #SearchColumn{
                 width: 525px;
-            }
-            .inner-document{
-                position: absolute;
-                left: 50%;
-                top: 40%;
-                transform: translate(-50%,-60%);
             }
             #CaseColumn{
                 width:105px;
                 position: absolute;
                 left: 82.7%;
             }
+            #form-search{
+                text-align: center;
+                position: relative;
+            }
+            #img-bg{
+            height:100%;
+            object-fit: cover;
+            opacity: 0.3;
+            }
+            #BG::before{
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: url("http://api.dujin.org/bing/1920.php") 0 / cover fixed;
+            opacity:0.5;
+            }
         </style>
     </head>
     <body>
-        <div class="container-fluid">
-        <div class="inner-document">
+        <div>
+        <div id="BG">
+        <div class="container-fluid">    
+        <div class = "row">
+        <div class = "col-xs-12">
+            <h3><a href = "https://blog.winter.mundb.xyz">Back</a></h3>
             <h1 class="text-center">Search</h1>
             <p class="text-center" id="SearchTitle"><small>You can search anything you want……except the recipe for cats.</small></p>
-        <form class="form-inline" action="/ATSAST_Blog/protected/controller/SearchController.php" method="POST">
+        <form class="form-inline" id = "form-search" action="/ATSAST_Blog/protected/controller/SearchController.php" method="POST">
         <div class="form-group">
             <label class="sr-only" for="SearchText">Search</label>
             <input type="search" class="form-control" id="SearchColumn" placeholder="Qualis artifex pereo">
         </div>
         <button type="submit" class="btn btn-primary" id="ButtonColumn">Search</button>
+        </form>
+        </div>
+        <div class = "col-md-12"><br></div>
+        <div class = "col-md-4 col-md-offset-4">
         </form>
         <form class="form-inline">
         <p class="form-control-static"><a href="<!--此处填写搜索的帮助文档-->" class="href-need">需要帮助？</a></p>
@@ -42,9 +67,12 @@
             <option>文章标题</option>
             <option>文章内容</option>
             <option>博客作者</option>
-            <!--此处填写模糊搜索方面的支持选项-->
         </select>
         </form>
+        </div>
+        <!--推荐文章的前端代码-->
+        </div>
+        </div>
         </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
