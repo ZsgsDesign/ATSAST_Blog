@@ -1,7 +1,6 @@
 <?php
 class SearchController extends BaseController{
-    public function actionGetword() {
-        $keywords = $_POST["SearchText"];
-        
+    public function actionIndex() {
+        $this->name="搜索";
     }
 }
