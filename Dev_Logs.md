@@ -53,3 +53,10 @@
 4. 调整Sinon分支结构与master统一，合并分支
 5. 补充日志创建前的改动日志
 6. 添加项目开发构想
+
+## 2019/1/29
+### Brethland
+* Add the search and main page.
+* Get a footer.
+* Fix a bug on dealing with search column.
+* Add three tables in database.

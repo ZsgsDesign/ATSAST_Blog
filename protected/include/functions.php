@@ -19,3 +19,16 @@ function getIP()
     }
     return $ip;
 }
+function is_login()
+{
+    $is_login=1;
+    if ($OPENID=arg("OPENID")) {
+        $_SESSION['loginid']=$OPENID;
+        $is_login=validateOPENID($OPENID, "app");
+    } elseif (!@$_SESSION['OPENID']) {
+        $is_login=0;
+    } else {
+        $is_login=validateOPENID($_SESSION['OPENID'], "browser");
+    }
+    return $is_login;
+}
