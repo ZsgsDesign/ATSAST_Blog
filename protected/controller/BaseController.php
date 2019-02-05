@@ -9,6 +9,7 @@ class BaseController extends Controller
         if (!session_id()) {
             session_start();
         }
+        $this->LOGIN_PAGE = $domain + "/login";
 
         header("Content-type: text/html; charset=utf-8");
         require(APP_DIR.'/protected/include/functions.php');
@@ -26,5 +27,10 @@ class BaseController extends Controller
         } else {
             $this->greeting="夜深了";
         }
+    }
+    public function jump($url, $delay = 0)
+    {
+        echo "<html><head><meta http-equiv='refresh' content='{$delay};url={$url}'></head><body></body></html>";
+        exit;
     }
 }

@@ -10,8 +10,32 @@ $config = array(
 );
 
 $domain = array(
-    "blog.winter.mundb.xyz" => array( // 调试配置
+    "127.0.0.1" => array(
         'debug' => 1,
+        'maintain' => 0,
+        'mysql' => array(
+            'MYSQL_HOST' => "localhost",
+            'MYSQL_PORT' => "3306",
+            'MYSQL_USER' => "root",
+            'MYSQL_DB'   => "ATSAST_BLOG",
+            'MYSQL_PASS' => "root",
+            'MYSQL_CHARSET' => 'utf8',
+        ),
+    ),
+    "sastblog.com" => array(
+        'debug' => 1,
+        'maintain' => 0,
+        'mysql' => array(
+            'MYSQL_HOST' => "localhost",
+            'MYSQL_PORT' => "3306",
+            'MYSQL_USER' => "root",
+            'MYSQL_DB'   => "ATSAST_BLOG",
+            'MYSQL_PASS' => "root",
+            'MYSQL_CHARSET' => 'utf8',
+        ),
+    ),
+    "blog.winter.mundb.xyz" => array( // 生产配置
+        'debug' => 0,
         'maintain' => 0,
         'mysql' => array(
             'MYSQL_HOST' => "localhost",
