@@ -9,7 +9,6 @@ class BaseController extends Controller
         if (!session_id()) {
             session_start();
         }
-        $this->LOGIN_PAGE = $domain + "/login";
 
         header("Content-type: text/html; charset=utf-8");
         require(APP_DIR.'/protected/include/functions.php');

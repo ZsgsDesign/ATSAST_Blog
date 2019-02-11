@@ -6,6 +6,7 @@ $config = array(
     'rewrite' => array(
         'search/'                                            => 'search/index',
         '/'                                                  => 'main/index',
+        'admin/'                                             => 'admin/index',  
     ),
 );
 
@@ -22,7 +23,7 @@ $domain = array(
             'MYSQL_CHARSET' => 'utf8',
         ),
     ),
-    "sastblog.com" => array(
+    "www.sastblog.com" => array(
         'debug' => 1,
         'maintain' => 0,
         'mysql' => array(

@@ -1,0 +1,1 @@
+<?php if(!class_exists("View", false)) exit("no direct access allowed");?>

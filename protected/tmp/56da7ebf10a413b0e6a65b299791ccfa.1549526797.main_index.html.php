@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if(!class_exists("View", false)) exit("no direct access allowed");?><!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -41,20 +41,20 @@
             <li class="nav-item">
                 <a class="nav-link" href="https://blog.winter.mundb.xyz/search/">搜索</a>
             </li>
-            <{if $islogin }>
+            <?php if ($islogin) : ?>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><{$greeting}>！</a>
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><?php echo htmlspecialchars($greeting, ENT_QUOTES, "UTF-8"); ?>！</a>
                 <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item" href="#" style>个人主页</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item text-danger" href="https://blog.winter.mundb.xyz/account/logout">登出</a>
             </div>
             </li>
-            <{else}>
+            <?php else : ?>
             <li class="nav-item">
                 <a class="nav-link" href="https://www.sastblog.com/account/">登录 / 注册</a>
             </li>
-            <{/if}>
+            <?php endif; ?>
             </ul>
             </div>
         </nav>

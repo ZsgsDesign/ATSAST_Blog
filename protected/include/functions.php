@@ -32,8 +32,8 @@ function is_login()
     }
     return $is_login;
 }
-function getuserinfo($OPENID)
+function getuserinfo($uid)
 {
     $user_db=new Model("users");
-    return $user_db->find(array("OPENID = :OPENID",":OPENID" => $OPENID));
+    return $user_db->find(array("uid = :uid",":uid" => $uid));
 }
