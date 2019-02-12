@@ -12,7 +12,7 @@ class BaseController extends Controller
 
         header("Content-type: text/html; charset=utf-8");
         require(APP_DIR.'/protected/include/functions.php');
-        require(APP_DIR.'/protected/model/error.php');
+        require(APP_DIR.'/protected/model/ERR.php');
         $this->islogin=is_login();
         $this->MAIN_PAGE = $_SERVER['HTTP_HOST'];
         $current_hour=date("H");
