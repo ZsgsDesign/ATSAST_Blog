@@ -14,6 +14,7 @@ class BaseController extends Controller
         require(APP_DIR.'/protected/include/functions.php');
         require(APP_DIR.'/protected/model/error.php');
         $this->islogin=is_login();
+        $this->MAIN_PAGE = $_SERVER['HTTP_HOST'];
         $current_hour=date("H");
         if ($current_hour<5) {
             $this->greeting="晚安";
