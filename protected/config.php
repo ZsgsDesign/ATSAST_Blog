@@ -1,13 +1,14 @@
 <?php
 
 date_default_timezone_set('PRC');
+//require_once('model/CONFIG.php');
 
 $config = array(
     'rewrite' => array(
         'search/'                                            => 'search/index',
-        '/'                                                  => 'main/index',
-        'admin/'                                             => 'admin/index',  
+        'admin/'                                             => 'admin/index',
         'account/'                                           => 'account/index',
+        '/'                                                  => 'main/index',
     ),
 );
 
