@@ -7,6 +7,7 @@ $config = array(
         'search/'                                            => 'search/index',
         '/'                                                  => 'main/index',
         'admin/'                                             => 'admin/index',  
+        'account/'                                           => 'account/index',
     ),
 );
 
