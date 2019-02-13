@@ -7,6 +7,7 @@ class AjaxController extends BaseController
     public function actionNewArticle() {
         if(!$this->is_login){
             ERR:Catcher(9001);
+            exit;
         }        
         $articles = new model("articles");
         $article_written = arg("article");
