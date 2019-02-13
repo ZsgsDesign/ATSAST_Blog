@@ -15,6 +15,10 @@ class BaseController extends Controller
         require(APP_DIR.'/protected/model/ERR.php');
         $this->islogin=is_login();
         $this->MAIN_PAGE = $_SERVER["HTTP_HOST"];
+        if(isset($_SESSION['UID'])) {
+            $row = getuserinfo($_SESSION["UID"]);
+            $this->user_name = $row["username"];
+        }
         $current_hour=date("H");
         if ($current_hour<5) {
             $this->greeting="晚安";
@@ -30,7 +34,7 @@ class BaseController extends Controller
     }
     public function jump($url, $delay = 0)
     {
-        echo "<html><head><meta http-equiv='refresh' content='{$delay};url={$url}'></head><body></body></html>";
+        echo "<html><head><meta http-equiv='refresh' content='{$delay};url=http://{$url}'></head><body></body></html>";
         exit;
     }
 }

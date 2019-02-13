@@ -1,4 +1,7 @@
 <?php
+/*
+author:Brethland
+*/
 class AjaxController extends BaseController
 {
     public function actionNewArticle() {

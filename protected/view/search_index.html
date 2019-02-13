@@ -31,6 +31,18 @@
             background: url("http://api.dujin.org/bing/1920.php") 0 / cover fixed;
             opacity:0.5;
             }
+            .card{
+                    margin-bottom: 20vh;
+                    overflow: hidden;
+                    display: block;
+                    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 30px;
+                    border-radius: 4px;
+                    transition: .2s ease-out .0s;
+                    color: #7a8e97;
+                    background: #fff;
+                    position: relative;
+                    border: 1px solid rgba(0, 0, 0, 0.15);
+                }
         </style>
     </head>
     <body>
@@ -46,7 +58,7 @@
                             <ul class="navbar-nav">
                             <{if $islogin }>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><{$greeting}>！</a>
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><{$greeting}>！<{$user_name}></a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item" href="http://<{$MAIN_PAGE}>/admin/" style>个人主页</a>
                                 <div class="dropdown-divider"></div>

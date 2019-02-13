@@ -1,4 +1,7 @@
 <?php
+/*
+author:duserqq
+*/
 class Share extends Controller
 {
     public function upAction(){

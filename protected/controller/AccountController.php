@@ -20,15 +20,15 @@ class AccountController extends BaseController
                 $row = $users->find(array("username=:username",":username"=>$name));
                 if($row) {
                     if($pwd !=$row['password']){
-                        echo "<script>alert('密码错误，请重新输入');location='{$this->MAIN_PAGE}/account/'</script>";
+                        echo "<script>alert('密码错误，请重新输入');location='http://{$this->MAIN_PAGE}/account/'</script>";
                         exit;
                     }
                     else{
                         $_SESSION['UID']=$row['uid'];
-                        echo "<script>alert('登录成功');location='{$this->MAIN_PAGE}/'</script>";
+                        echo "<script>alert('登录成功');location='http://{$this->MAIN_PAGE}/'</script>";
                     }
                 }else{
-                    echo "<script>alert('您输入的用户名不存在');location='{$this->MAIN_PAGE}/account/'</script>";
+                    echo "<script>alert('您输入的用户名不存在');location='http://{$this->MAIN_PAGE}/account/'</script>";
                     exit;
                 };
             }
@@ -50,13 +50,18 @@ class AccountController extends BaseController
                 }
                 $row = $users->find(array("username=:username",":username"=>$name));
                 if($row){
-                    echo "<script>alert('您输入的用户名已存在,请登录！');location='{$this->MAIN_PAGE}/account/'</script>";
+                    echo "<script>alert('您输入的用户名已存在,请登录！');location='http://{$this->MAIN_PAGE}/account/'</script>";
                     exit;
                 }else {
                     $nowuid = $users->query("select max(uid) from users");
-                    $users->create(array("uid = :uid",":uid"=>$nowuid+1,"name = :name",":name"=>$name,"password = :pwd",":pwd"=>$pwd));
-                    $_SESSION["UID"] = $nowuid+1;
-                    echo "<script>alert('您已注册成功');location='{$this->MAIN_PAGE}/'</script>";
+                    $new_usr = array(
+                        "uid" => $nowuid[0]['max(uid)']+1,
+                        "username" => $name,
+                        "password" => $pwd
+                    );
+                    $users->create($new_usr);
+                    $_SESSION["UID"] = $nowuid[0]['max(uid)']+1;
+                    echo "<script>alert('您已注册成功');location='http://{$this->MAIN_PAGE}/'</script>";
                     exit;
                 }
             }

@@ -1,11 +1,14 @@
 <?php
+/*
+author:Brethland
+*/
 class AdminController extends BaseController 
 {
     public function actionIndex() {
         if($this->islogin){
             $usr_info = getuserinfo(arg("UID"));
         }else {
-            return $this->jump("{$this->MAIN_PAGE}/account/");
+            $this->jump("{$this->MAIN_PAGE}/account/");
         }
         $this->usr_info = $usr_info;
         $articles = new model("articles");

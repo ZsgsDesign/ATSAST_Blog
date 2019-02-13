@@ -22,7 +22,7 @@ function getIP()
 function is_login()
 {
     $is_login=1;
-    $UID=arg("UID");
+    @$UID=$_SESSION["UID"];
     if (!$UID){
         $is_login = 0;
     }
