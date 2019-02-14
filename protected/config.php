@@ -10,7 +10,6 @@ $config = array(
         'admin'                                              => 'admin/index',
         'admin/<a>'                                          => 'admin/<a>',
         'admin/'                                             => 'admin/index',
-        'account'                                            => 'account/index',
         'account/<a>'                                        => 'account/<a>',
         'account/'                                           => 'account/index',
         '<a>'                                                => 'main/index',

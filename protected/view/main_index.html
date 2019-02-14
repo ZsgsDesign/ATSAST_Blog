@@ -20,6 +20,16 @@
                 text-align: center;
                 color:snow;
             }
+            #gravatar-nav{
+                width:60px;
+                height:60px;
+                border-radius:60px;
+            }
+            .row{
+                display: flex; 
+                justify-content: center; 
+                align-items: center;
+            }
         </style>
     </head>
     <body>
@@ -40,6 +50,13 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><{$greeting}>！<{$user_name}></a>
                 <div class="dropdown-menu dropdown-menu-right">
+                <div class="dropdown-header">
+                <div class="row">
+                    <img src="<{$gravatar}>" class="img-thumbnail" id="gravatar-nav" />
+                    <h6>&nbsp&nbsp&nbsp<{$user_name}></h6>
+                </div>
+                </div>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="http://<{$MAIN_PAGE}>/admin/" style>个人主页</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item text-danger" href="http://<{$MAIN_PAGE}>/account/logout">登出</a>

@@ -1,20 +1,9 @@
 <?php
 /*
-author:duserqq
+author:Brethland
 */
-class Share extends Controller
-{
-    public function upAction(){
-        
-        $art_id=(int)$_GET['art_id'];//获取当前看到文章id
-        //判断是否点过赞了
-        if(!isset($_SESSION["up{$art_id}"])){
-            $model=new \Model\ShareModel();
-            $model->up($art_id);
-            $_SESSION["up{$art_id}"]=1;
-        }
-    }
-    
+class ShareController extends BaseController
+{   
     public function shareArt(){
         
         $user=$_SESSION['name'];

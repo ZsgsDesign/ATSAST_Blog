@@ -36,12 +36,17 @@ class AccountController extends BaseController
                 $name=arg('username');
                 $pwd=arg('password');
                 $pwdconfirm=arg('pwdconfirm');
+                $email = arg('email');
                 if($name==''){
                     echo"<script>alert('你的用户名不能为空，请重新输入');location='".$_SERVER['HTTP_REFERER']. "'</script>";
                     exit;
                 }
                 if($pwd==''){
                     echo"<script>alert('你的密码不能为空，请重新输入');location='".$_SERVER['HTTP_REFERER']. "'</script>";
+                    exit;
+                }
+                if($email==''){
+                    echo"<script>alert('你的邮箱不能为空，请重新输入');location='".$_SERVER['HTTP_REFERER']. "'</script>";
                     exit;
                 }
                 if($pwd != $pwdconfirm){
@@ -57,7 +62,8 @@ class AccountController extends BaseController
                     $new_usr = array(
                         "uid" => $nowuid[0]['max(uid)']+1,
                         "username" => $name,
-                        "password" => $pwd
+                        "password" => $pwd,
+                        "email" => $email,
                     );
                     $users->create($new_usr);
                     $_SESSION["UID"] = $nowuid[0]['max(uid)']+1;

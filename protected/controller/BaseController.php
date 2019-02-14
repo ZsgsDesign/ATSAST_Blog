@@ -18,6 +18,11 @@ class BaseController extends Controller
         if(isset($_SESSION['UID'])) {
             $row = getuserinfo($_SESSION["UID"]);
             $this->user_name = $row["username"];
+            $this->user_info = $row;
+        }
+        if(isset($_SESSION['UID'])){
+            $row = getuserinfo($_SESSION["UID"]);
+            $this->gravatar = getgravatar($row["email"]);
         }
         $current_hour=date("H");
         if ($current_hour<5) {

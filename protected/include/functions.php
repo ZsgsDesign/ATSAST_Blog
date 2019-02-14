@@ -33,3 +33,7 @@ function getuserinfo($uid)
     $user_db=new Model("users");
     return $user_db->find(array("uid = :uid",":uid" => $uid));
 }
+function getgravatar($email) {
+	$url = "http://www.gravatar.com/avatar/" . md5(strtolower(trim($email)));
+	return $url;
+}
