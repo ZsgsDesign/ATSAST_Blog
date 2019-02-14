@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
         <title>搜索</title>
         <style>
+            #scroll::-webkit-scrollbar { width: 0 !important }
             #SearchTitle{
                 color:black;
             }
@@ -43,7 +44,7 @@
                     position: relative;
                     border: 1px solid rgba(0, 0, 0, 0.15);
                 }
-                #show-card{
+            #show-card{
                 opacity: 0.8;
                 width: 24rem;
                 height: 14.8rem;
@@ -62,7 +63,7 @@
                 justify-content: center;
                 align-items: center;
             }
-                #gravatar-nav{
+            #gravatar-nav{
                 width:60px;
                 height:60px;
                 border-radius:60px;
@@ -92,6 +93,18 @@
                 display: flex; 
                 justify-content: center; 
                 align-items: center;
+            }
+            .body{
+                overflow: hidden;
+                height: 100%;
+                width: 100%;
+            }
+            #scroll{
+                height:26.5rem;
+                width:99.9%;
+                -webkit-overflow-scrolling:auto;
+                overflow-y:auto;
+                white-space: nowrap;
             }
         </style>
     </head>
@@ -160,10 +173,10 @@
             </div>
         </div>
             <{else}>
-        <div class="row">
+        <div class="row" id="scroll">
             <{foreach $search_result as $s}>
             <div class="col-md-4">
-                    <div class="card" id="show-card">
+                    <div class="card" id="show-card" href="#">
                         <div class="card-header" >
                             <h3><{$s['title']}></h3>
                         </div>
@@ -175,17 +188,31 @@
             <{/foreach}>
         </div>
         <{/if}>
+        <{if count($users_found) == 0}>
+            <div class="col-md-6 offset-md-3">
+            <div class="card" id="dis-none">
+                <h5 class="text-center text-warning">没有搜到用户呢</h5>
+                <p class="text-center">试试别的名字</p>
+            </div>
+        </div>
+        <{else}>
+        <div class="row" id="scroll">
+            <{foreach $users_found as $u}>
+            <div class="col-md-4">
+                <div class="card" id="show-card" href="#">
+                        <div class="card-header" id="nav-row">
+                                <img src='<{$avatar[$u["username"]]}>' class="img-thumbnail" id="gravatar-nav" />
+                                <h3>&nbsp&nbsp&nbsp<{$u["username"]}></h3>
+                        </div>
+                        <!-- todo-->
+                </div>
+            </div>
+            <{/foreach}>
+        </div>
+        <{/if}>
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
     </body>
 </html>
-<script>
-    function Highlight(str){
-        var key  = $("#keywords").val();
-        var patt=new RegExp(key ,'igm');
-        str=str.replace(patt,"<strong>$1</strong>");
-        document.write(str);
-        }
-</script>

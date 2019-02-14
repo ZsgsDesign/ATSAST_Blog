@@ -7,6 +7,7 @@ class SearchController extends BaseController{
         $keywords = arg("keywords");
     }
     public function actionResult() {
+        require_once(APP_DIR.'/protected/include/functions.php');
         global $keywords;
         $keywords = arg("keywords");
         if (!$keywords) {
@@ -19,6 +20,13 @@ class SearchController extends BaseController{
         $articles=new Model('articles');
         $users_found = $users->query("select username,email from users where username like :username",array(":username"=>'%'.$keywords.'%'));
         $result=$articles->query('select title,text from articles where title like :title or text like :text', array(":title"=>'%'.$keywords.'%',':text'=>'%'.$keywords.'%'));
+        $gravatar=[];
+        if(count($users_found)!=0){
+            foreach ($users_found as $user){
+                $gravatar[$user["username"]] = getgravatar($user['email']);
+            }
+        }
+        $this->avatar = $gravatar;
         $this->search_result = $result;
         $this->users_found = $users_found;
         $this->keywords = $keywords;

@@ -19,6 +19,7 @@ function getIP()
     }
     return $ip;
 }
+
 function is_login()
 {
     $is_login=1;
