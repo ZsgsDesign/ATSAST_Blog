@@ -10,7 +10,7 @@
             #SearchTitle{
                 color:black;
             }
-            #keywords{
+            #SearchColumn{
                 width: 525px;
                 position:relative;
             }
@@ -139,12 +139,12 @@
             <h1 class="text-center">Search</h1>
             <p class="text-center" id="SearchTitle"><small>You can search anything you want……</small></p>
             <div class = "cc">
-        <form class="form-inline" method="get" id = "searchform"action="http://<{$MAIN_PAGE}>/search/result">
+        <form class="form-inline" method="post" id = "searchform" name="SearchWords">
         <div class="form-group">
-            <label class="sr-only" for="keywords">Search</label>
-            <input type="text" class="form-control" id="keywords" placeholder="Qualis artifex pereo" name="keywords">
+            <label class="sr-only" for="SearchText">Search</label>
+            <input type="text" class="form-control" id="SearchColumn" placeholder="<{$keywords}>" name="keywords">
         </div>
-        <button type="submit" class="btn btn-primary">Search</button>
+        <button type="submit" class="btn btn-primary" onclick="window.location.href='http://<{$MAIN_PAGE}>/search/?keywords='+$('#keywords').val()">Search</button>
         </form>
     </div>
             </div>
@@ -152,6 +152,29 @@
         </div>
         </div>
         </div>
+            <{if count($search_result) == 0}>
+            <div class="col-md-6 offset-md-3">
+            <div class="card" id="dis-none">
+                <h5 class="text-center text-warning">没有搜到什么呢</h5>
+                <p class="text-center">试试别的关键词</p>
+            </div>
+        </div>
+            <{else}>
+        <div class="row">
+            <{foreach $search_result as $s}>
+            <div class="col-md-4">
+                    <div class="card" id="show-card">
+                        <div class="card-header" >
+                            <h3><{$s['title']}></h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-long"><{$s['text']}></p>
+                        </div>
+                    </div>
+            </div>
+            <{/foreach}>
+        </div>
+        <{/if}>
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>

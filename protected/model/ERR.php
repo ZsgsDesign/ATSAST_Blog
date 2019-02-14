@@ -20,8 +20,11 @@ class ERR{
         $ERR_DESC=array(
             '1000' => "Unspecified Error",
             '9001' => "您尚未登陆",
+            '9002' => "参数不全",
             '9101' => "您已经赞过这篇文章了",
             '9102' => "您已经赞过这条评论了",
+            '9201' => "非法的搜索关键字",
+            '9202' => "未匹配到结果"
         );
         return isset($ERR_DESC[$ERR_CODE])?$ERR_DESC[$ERR_CODE]:$ERR_DESC['1000'];
     }

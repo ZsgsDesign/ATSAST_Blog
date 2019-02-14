@@ -5,7 +5,7 @@ date_default_timezone_set('PRC');
 
 $config = array(
     'rewrite' => array(
-        'search'                                             => 'search/index',
+        'search/<a>'                                         => 'search/<a>',
         'search/'                                            => 'search/index',
         'admin'                                              => 'admin/index',
         'admin/<a>'                                          => 'admin/<a>',
