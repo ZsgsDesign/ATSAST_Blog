@@ -4,28 +4,45 @@ author:Brethland
 */
 class AjaxController extends BaseController
 {
-    public function actionNewArticle() {
-        if(!$this->is_login){
-            ERR:Catcher(9001);
-            exit;
-        }        
+    public function actionArticleEdit() {    
         $articles = new model("articles");
-        $article_written = arg("article");
-        if(arg("articlestatus") == 1) {
-            $articles->create(array("text = :txt",":txt"=>$article_written,"author = :author",":author"=>$usr_info["name"],"time = :time",":time"=>date('Y-m-d H:i:s',time()),"isdraft = :isdraft",":isdraft"=>1,"uid = :uid",":uid"=>arg("UID")));
-            $ret = array(
-                'id' => 101,
-                'desc' =>  "保存草稿成功"
+        $article_text = arg("article");
+        $article_title = arg("title");
+        $postid = $articles->query("select max(aid) from articles");
+        if(arg("aid")==0){
+            $newid = $postid[0]["max(aid)"]+1;
+            if(arg("articlestatus") == 1) {
+            $new = array(
+                "aid" => $newid,
+                "title" => $article_title,
+                "text" => $article_text,
+                "author" => $this->user_name,
+                "time" => date('Y-m-d H:i:s',time()),
+                "isdraft" => 1,
+                "uid" => $this->user_info["uid"]
             );
-            return json_encode($ret);
-        } else {
-            $articles->create(array("text = :txt",":txt"=>$article_written,"author = :author",":author"=>$usr_info["name"],"time = :time",":time"=>date('Y-m-d H:i:s',time()),"isdraft = :isdraft",":isdraft"=>0,"uid = :uid",":uid"=>arg("UID")));
-            $ret = array(
-                'id' => 100,
-                'desc' =>  "发布成功"
-            );
-            return json_encode($ret);
+            $articles->create($new);
+            } else {
+                $new = array(
+                    "aid" => $newid,
+                    "title" => $article_title,
+                    "text" => $article_text,
+                    "author" => $this->user_name,
+                    "time" => date('Y-m-d H:i:s',time()),
+                    "isdraft" => 0,
+                    "uid" => $this->user_info["uid"]
+                );
+                $articles->create($new);
+            }
         }
+        else {
+            if(arg("articlestatus") == 1) {
+                $articles->update(array("aid=:aid",":aid"=>arg("aid")),array("title"=>$article_title,"text"=>$article_text,"time"=>date('Y-m-d H:i:s',time()),"isdraft"=>1));
+                } else {
+                    $articles->update(array("aid=:aid",":aid"=>arg("aid")),array("title"=>$article_title,"text"=>$article_text,"time"=>date('Y-m-d H:i:s',time()),"isdraft"=>0));
+                }
+        }
+        $this->jump("{$this->MAIN_PAGE}/admin/blog");
     }
     public function actionRateUpArticle(){
         $articles = new model ("articles");
@@ -42,7 +59,7 @@ class AjaxController extends BaseController
                 "uid"=>arg("UID")
             );
             $art_up->create($new_rate_up);
-            $articles->update(array("aid=:aid",":aid"=>arg("AID"),"rate_up=:rt",":rt"=>$this->now_rate+1));
+            $articles->update(array("aid=:aid",":aid"=>arg("AID")),array("rate_up"=>$this->now_rate+1));
         }
     }
     public function actionRateUpComment(){
@@ -60,7 +77,7 @@ class AjaxController extends BaseController
                 "uid"=>arg("UID")
             );
             $com_up->create($new_rate_up);
-            $comments->update(array("cid=:cid",":cid"=>arg("CID"),"rate_up=:rt",":rt"=>$this->now_rate+1));
+            $comments->update(array("cid=:cid",":cid"=>arg("CID")),array("rate_up"=>$this->now_rate+1));
         }
     }
 }

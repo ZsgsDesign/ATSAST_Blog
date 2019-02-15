@@ -5,9 +5,10 @@ date_default_timezone_set('PRC');
 
 $config = array(
     'rewrite' => array(
+        'ajax/<a>'                                           => 'ajax/<a>',
+        'ajax/'                                              => 'main/index',
         'search/<a>'                                         => 'search/<a>',
         'search/'                                            => 'search/index',
-        'admin'                                              => 'admin/index',
         'admin/<a>'                                          => 'admin/<a>',
         'admin/'                                             => 'admin/index',
         'account/<a>'                                        => 'account/<a>',

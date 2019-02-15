@@ -157,9 +157,6 @@
                 line-height: 32px;
                 overflow: hidden;
             }
-            .container .main_box .user_info .other_info .info_self{
-                
-            }
             .container .main_box .user_info .other_info .info_self .common{
                 height: 32px;
                 line-height: 32px;
@@ -173,6 +170,16 @@
                 font-size: 14px;
                 color: #4d4d4d;
                 overflow: hidden;
+            }
+            #gravatar-nav{
+                width:60px;
+                height:60px;
+                border-radius:60px;
+            }
+            #row-nav{
+                display: flex; 
+                justify-content: center; 
+                align-items: center;
             }
         </style>
     </head>
@@ -196,8 +203,12 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><{$greeting}>！<{$user_name}></a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="http://<{$MAIN_PAGE}>/admin/" style>个人主页</a>
-                                <div class="dropdown-divider"></div>
+                                    <div class="dropdown-header">
+                                            <div class="row" id="row-nav">
+                                                <img src="<{$gravatar}>" class="img-thumbnail" id="gravatar-nav" />
+                                                <h6>&nbsp&nbsp&nbsp<{$user_name}></h6>
+                                            </div>
+                                            </div>
                                 <a class="dropdown-item text-danger" href="http://<{$MAIN_PAGE}>/account/logout">登出</a>
                             </div>
                         </li>
@@ -218,19 +229,16 @@
                     <li class="router-link-active">
                         <a class="font" href="http://<{$MAIN_PAGE}>/admin/">个人资料</a>
                     </li>
-                    <li>
-                        <a class="font">关注</a>
+                    <li class="router-link">
+                        <a class="font">关注 / 粉丝</a>
                     </li>
-                    <li>
-                        <a class="font">粉丝</a>
-                    </li>
-                    <li>
+                    <li class="router-link">
                         <a class="font">收藏</a>
                     </li>
                 </ul>
                 <ul class="aside">
-                    <li>
-                        <a class="font">我的博客</a>
+                    <li class="router-link">
+                        <a class="font" href="http://<{$MAIN_PAGE}>/admin/blog">我的博客</a>
                     </li>
                 </ul>
             </div>
@@ -239,12 +247,11 @@
                 <div class="user_info">
                     <div class="header">
                         <img src="<{$gravatar}>" class="head">
-                        <p style="color:#27bcf7;font-size: 14px;margin: 0;">修改头像</p>
                     </div>
 
                     <div class="other_info">
                         <div class="info_link">
-                            <a class="font" href="http://<{$MAIN_PAGE}>/admin/">Ta的主页</a>
+                            <a class="font" href="http://<{$MAIN_PAGE}>/admin/">我的博客</a>
                         </div>
 
                         <div class="info_hot">
@@ -262,10 +269,7 @@
                             <span style="color:#27bcf7;font-size: 14px;float:right;">修改</span>
                         </div>
                         <ul class="info_self">
-                            <li class="common">姓名：</li>
                             <li class="common">性别：</li>
-                            <li class="common">生日：</li>
-                            <li class="common last">籍贯：</li>
                             <li class="intro">
                                 <span style="float:left;">简介：</span>
                                 <span style="float:left;width: 70%"></span>
