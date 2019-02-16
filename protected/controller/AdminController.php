@@ -34,7 +34,7 @@ class AdminController extends BaseController
         }
         if(arg("aid")==0){
             $article_title = "silence is golden.";
-            $article_text = "";
+            $article_text = "Practise makes perfect.";
         }
         else {
             $articles = new model("articles");
