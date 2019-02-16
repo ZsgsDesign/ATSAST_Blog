@@ -86,51 +86,23 @@
     </div>
     <div class="container-fluid">
         <div class="row">
+            <{foreach $art_shown as $art}>
             <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title"><{$art_shown[0]["title"]}></h3>
+                    <h3 class="card-title"><{$art["title"]}></h3>
                     <blockquote class="blockquote text-right">
-                        <p class="mb-0"><{$art_shown[0]["author"]}></p>
-                        <footer class="blockquote-footer">发表于<cite title="Source Title"><{$art_shown[0]["time"]}></cite></footer>
+                        <p class="mb-0"><{$art["author"]}></p>
+                        <footer class="blockquote-footer">发表于<cite title="Source Title"><{$art["time"]}></cite></footer>
                       </blockquote>
                   </div>
                   <div class="card-body">
-                      <p class="text-long"><{$art_shown[0]["text"]}></p>
-                      <a href="" style="text-align: center;">阅读更多</a>
+                      <p class="text-long"><{$art["text"]}></p>
+                      <a href="http://<{$MAIN_PAGE}>/page/article?aid=<{$art['aid']}>&uid=<{$art['uid']}>" style="text-align:center;">阅读更多</a>
                   </div>
             </div>
             </div>
-            <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title"><{$art_shown[1]["title"]}></h3>
-                    <blockquote class="blockquote text-right">
-                        <p class="mb-0"><{$art_shown[1]["author"]}></p>
-                        <footer class="blockquote-footer">发表于<cite title="Source Title"><{$art_shown[1]["time"]}></cite></footer>
-                      </blockquote>
-                  </div>
-                  <div class="card-body">
-                      <p class="text-long"><{$art_shown[1]["text"]}></p>
-                      <a href="" style="text-align: center;">阅读更多</a>
-                  </div>
-            </div>
-            </div>
-            <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title"><{$art_shown[2]["title"]}></h3>
-                    <blockquote class="blockquote text-right">
-                        <p class="mb-0"><{$art_shown[2]["author"]}></p>
-                        <footer class="blockquote-footer">发表于<cite title="Source Title"><{$art_shown[2]["time"]}></cite></footer>
-                      </blockquote>
-                  </div>
-                  <div class="card-body">
-                      <p class="text-long"><{$art_shown[2]["text"]}></p>
-                      <a href="" style="text-align: center;">阅读更多</a>
-                  </div>
-            </div>
-        </div>
+           <{/foreach}> 
         </div>
     </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
