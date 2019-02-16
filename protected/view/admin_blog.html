@@ -189,13 +189,13 @@
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs nav-justified nav-tabs-material" id="actTab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="article-tab" data-toggle="tab" href="#article" role="tab" aria-controls="login" aria-selected="true">文章</a>
+                            <a class="nav-link active" id="article-tab" data-toggle="tab" href="#article" role="tab" aria-controls="article" aria-selected="true">文章</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="catagory-tab" data-toggle="tab" href="#catagory" role="tab" aria-controls="register" aria-selected="false">分类</a>
+                            <a class="nav-link" id="catagory-tab" data-toggle="tab" href="#catagory" role="tab" aria-controls="catagory" aria-selected="false">分类</a>
                         </li>
                         <li class="nav-item">
-                                <a class="nav-link" id="comment-tab" data-toggle="tab" href="#comment" role="tab" aria-controls="register" aria-selected="false">评论</a>
+                                <a class="nav-link" id="comment-tab" data-toggle="tab" href="#comment" role="tab" aria-controls="comment" aria-selected="false">评论</a>
                         </li>
                         </ul>
                     </div>
@@ -207,7 +207,7 @@
                                         <{else}>
                                         <ul class="list-group" id="scroll">
                                             <{foreach $art_this_blog as $art}>
-                                            <a class="list-group-item" href='http://<{$MAIN_PAGE}>/page/?aid=<{$art["aid"]}>&?uid=<{$user_info["uid"]}>'>
+                                            <a class="list-group-item" href='http://<{$MAIN_PAGE}>/page/article?aid=<{$art["aid"]}>&?uid=<{$user_info["uid"]}>'>
                                                 <div class="bmd-list-group-col">
                                                 <h4 class="list-group-item-heading"><{$art["title"]}></h4>
                                                 <p class="list-group-item-text"><{$art["text"]}></p>

@@ -216,12 +216,6 @@
                 </div>
             </nav>            
         </div>
-        <!--
-        <input type = "text" name = "article">
-        <radio name = "articlestatus" value = "1">保存为草稿</radio>
-        <radio name = "articlestatus" value = "0">发布文章</radio>
-        
-        -->
         <div class="container-fluid"></div>
         <div class="container">
             <div class="left_box">
@@ -230,10 +224,10 @@
                         <a class="font" href="http://<{$MAIN_PAGE}>/admin/">个人资料</a>
                     </li>
                     <li class="router-link">
-                        <a class="font">关注 / 粉丝</a>
+                        <a class="font">关注</a>
                     </li>
                     <li class="router-link">
-                        <a class="font">收藏</a>
+                        <a class="font">收藏文章</a>
                     </li>
                 </ul>
                 <ul class="aside">
@@ -248,22 +242,17 @@
                     <div class="header">
                         <img src="<{$gravatar}>" class="head">
                     </div>
-
                     <div class="other_info">
                         <div class="info_link">
-                            <a class="font" href="http://<{$MAIN_PAGE}>/admin/">我的博客</a>
+                            <a class="font" href="http://<{$MAIN_PAGE}>/page/blog?uid=<{$user_info['uid']}>">我的博客</a>
                         </div>
-
                         <div class="info_hot">
                             <span style="color:#4d4d4d;font-size: 14px;margin-right: 16px;">关注 0</span>
-                            <span style="color:#4d4d4d;font-size: 14px;margin-right: 16px;">粉丝 0</span>
                             <span style="color:#ccc;margin-right: 16px;"></span>
                             <span style="color:#4d4d4d;font-size: 14px;margin-right: 8px;">zl币 0</span>
                             <span style="color:#27bcf7;font-size: 14px;margin: 0;">充值</span>
                         </div>
-
                         <div class="line"></div>
-
                         <div class="info_nick">
                             <span style="color:#4d4d4d;font-size: 14px;float:left;">昵称： <{$user_info["username"]}></span>
                             <span style="color:#27bcf7;font-size: 14px;float:right;">修改</span>

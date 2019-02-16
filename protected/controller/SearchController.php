@@ -18,8 +18,8 @@ class SearchController extends BaseController{
         }
         $users= new model("users");
         $articles=new Model('articles');
-        $users_found = $users->query("select username,email from users where username like :username",array(":username"=>'%'.$keywords.'%'));
-        $result=$articles->query('select title,text from articles where title like :title or text like :text', array(":title"=>'%'.$keywords.'%',':text'=>'%'.$keywords.'%'));
+        $users_found = $users->query("select * from users where username like :username",array(":username"=>'%'.$keywords.'%'));
+        $result=$articles->query('select * from articles where title like :title or text like :text', array(":title"=>'%'.$keywords.'%',':text'=>'%'.$keywords.'%'));
         $gravatar=[];
         if(count($users_found)!=0){
             foreach ($users_found as $user){

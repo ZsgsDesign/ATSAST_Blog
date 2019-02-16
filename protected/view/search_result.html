@@ -150,7 +150,7 @@
         <div class = "card" style="opacity:0.5;">
             <div class = "card-body">
             <h1 class="text-center">Search</h1>
-            <p class="text-center" id="SearchTitle"><small>You can search anything you want……</small></p>
+            <p class="text-center" id="SearchTitle"><small>Seems you have found some.</small></p>
             <div class = "cc">
         <form class="form-inline" method="post" id = "searchform" name="SearchWords">
         <div class="form-group">
@@ -176,9 +176,9 @@
         <div class="row" id="scroll">
             <{foreach $search_result as $s}>
             <div class="col-md-4">
-                    <div class="card" id="show-card" href="#">
+                    <div class="card" id="show-card">
                         <div class="card-header" >
-                            <h3><{$s['title']}></h3>
+                            <a href="http://<{$MAIN_PAGE}>/page/article?aid=<{$s['aid']}>&uid=<{$s['uid']}>"><h3><{$s['title']}></h3></a>
                         </div>
                         <div class="card-body">
                             <p class="text-long"><{$s['text']}></p>
@@ -199,10 +199,10 @@
         <div class="row" id="scroll">
             <{foreach $users_found as $u}>
             <div class="col-md-4">
-                <div class="card" id="show-card" href="#">
+                <div class="card" id="show-card">
                         <div class="card-header" id="nav-row">
                                 <img src='<{$avatar[$u["username"]]}>' class="img-thumbnail" id="gravatar-nav" />
-                                <h3>&nbsp&nbsp&nbsp<{$u["username"]}></h3>
+                                <a href="http://<{$MAIN_PAGE}>/page/blog?uid=<{$u['uid']}>"><h3>&nbsp&nbsp&nbsp<{$u["username"]}></h3></a>
                         </div>
                         <!-- todo-->
                 </div>

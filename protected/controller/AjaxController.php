@@ -80,4 +80,16 @@ class AjaxController extends BaseController
             $comments->update(array("cid=:cid",":cid"=>arg("CID")),array("rate_up"=>$this->now_rate+1));
         }
     }
+    public function actionPostart(){
+        $articles = new model("articles");
+        $changeid = arg("aid");
+        $articles->update(array("aid=:aid",":aid"=>$changeid),array("isdraft"=>0));
+        $this->jump("{$this->MAIN_PAGE}/admin/blog");
+    }
+    public function actionDeletearticle() {
+        $articles = new model ("articles");
+        $deleteid = arg("aid");
+        $articles->delete(array("aid=:aid",":aid"=>$deleteid));
+        $this->jump("{$this->MAIN_PAGE}/admin/blog");
+    }
 }
