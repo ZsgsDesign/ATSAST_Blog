@@ -136,6 +136,13 @@
                 justify-content: center; 
                 align-items: center;
             }
+            .text-long{
+                display: -webkit-box; 
+                -webkit-line-clamp: 4; 
+                -webkit-box-orient: vertical; 
+                overflow: hidden;
+                white-space: pre-line;
+            }
         </style>
     </head>
     <body>
@@ -205,15 +212,12 @@
                                         <{if count($art_this_blog)==0}>
                                         <h3><br>您还没有写过一篇文章哦</h3>
                                         <{else}>
-                                        <ul class="list-group" id="scroll">
+                                        <div class="container" id="scroll">
                                             <{foreach $art_this_blog as $art}>
-                                            <a class="list-group-item" href='http://<{$MAIN_PAGE}>/page/article?aid=<{$art["aid"]}>&?uid=<{$user_info["uid"]}>'>
-                                                <div class="bmd-list-group-col">
-                                                <h4 class="list-group-item-heading"><{$art["title"]}></h4>
-                                                <p class="list-group-item-text"><{$art["text"]}></p>
-                                                <p class="list-group-item-text text-right"><small>修改于<{$art["time"]}> / <{if $art["isdraft"] == 0}> 已发表 <{else}> 草稿 <{/if}></small></p>
-                                                </div>
-                                                </a>
+                                            <div style="margin-left:10px;margin-top: 16px;">
+                                                <h3 class="text-left"><a href='http://<{$MAIN_PAGE}>/page/article?aid=<{$art["aid"]}>&?uid=<{$user_info["uid"]}>' style="color:#FB7299;"><{$art["title"]}></a></h3>
+                                                <p class="text-long"><{$art["text"]}></p>
+                                                <p class="text-right"><small>修改于<{$art["time"]}> / <{if $art["isdraft"] == 0}> 已发表 <{else}> 草稿 <{/if}></small></p>
                                                 <div class="row" id="edit-row">
                                                 <a class="btn btn-primary" href='http://<{$MAIN_PAGE}>/admin/edit?aid=<{$art["aid"]}>'>修改</a>
                                                 <a class="btn btn-danger" href='http://<{$MAIN_PAGE}>/admin/delete?aid=<{$art["aid"]}>&main_page=<{$MAIN_PAGE}>' onclick="deletearticle()">删除</a>
@@ -221,8 +225,9 @@
                                                 <a class="btn btn-secondary" href='http://<{$MAIN_PAGE}>/ajax/postart?aid=<{$art["aid"]}>'>发布</a>
                                                 <{/if}>
                                             </div>
+                                        </div>
                                             <{/foreach}>
-                                        </ul>
+                                        </div>
                                         <{/if}>
                                         <a class="btn btn-outline-primary" href='http://<{$MAIN_PAGE}>/admin/edit?aid=0' id="new-button">撰写新文章</a>
                                     </div>
