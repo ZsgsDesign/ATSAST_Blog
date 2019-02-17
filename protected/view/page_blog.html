@@ -63,11 +63,11 @@
                                     <a class="nav-link active" id="index-tab" data-toggle="tab" href="#index" role="tab" aria-controls="index" aria-selected="true">首页</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="catagory-tab" data-toggle="tab" href="#catagory" role="tab" aria-controls="catagory" aria-selected="false">
+                                    <a class="nav-link" id="category-tab" data-toggle="tab" href="#category" role="tab" aria-controls="category" aria-selected="false">
                                         分类
                                         <button class="btn dropdown-toggle bmd-btn-icon" type="button" id="buttonMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons">more_vert</i></button>
                                         <div class="dropdown-menu" aria-labelledby="buttonMenu1">
-                                            <{foreach $catagory_thisusr as $cata}> 
+                                            <{foreach $category_thisusr as $cata}> 
                                             <button class="dropdown-item" type="button" onclick="window.location.href='blog?uid=<{$blog_uid}>&cata=<{$cata}>'"><{$cata}></button>
                                             <{/foreach}>
                                         </div>
@@ -89,7 +89,7 @@
                                     <h1 class="text-center" style="margin-top: 12px;">Hello,world!</h1>
                                     <img src="http://www.brethland.com/yui01.jpg" style="width:5cm;margin-bottom: 10px;">
                                 </div>
-                                <div class="tab-pane" id="catagory" role="tabpanel" aria-labelledby="catagory-tab">
+                                <div class="tab-pane" id="category" role="tabpanel" aria-labelledby="category-tab">
                                 </div>
                                 <div class="tab-pane" id="all" role="tabpanel" aria-labelledby="all-tab">
                                     <{if count($art_show)==0}>
