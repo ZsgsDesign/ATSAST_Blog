@@ -216,7 +216,7 @@
                                                 </a>
                                                 <div class="row" id="edit-row">
                                                 <a class="btn btn-primary" href='http://<{$MAIN_PAGE}>/admin/edit?aid=<{$art["aid"]}>'>修改</a>
-                                                <a class="btn btn-danger" href='http://<{$MAIN_PAGE}>/ajax/deletearticle?aid=<{$art["aid"]}>'>删除</a>
+                                                <a class="btn btn-danger" href='http://<{$MAIN_PAGE}>/admin/delete?aid=<{$art["aid"]}>&main_page=<{$MAIN_PAGE}>' onclick="deletearticle()">删除</a>
                                                 <{if $art["isdraft"]==1}>
                                                 <a class="btn btn-secondary" href='http://<{$MAIN_PAGE}>/ajax/postart?aid=<{$art["aid"]}>'>发布</a>
                                                 <{/if}>

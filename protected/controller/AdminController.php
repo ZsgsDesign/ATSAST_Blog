@@ -46,4 +46,7 @@ class AdminController extends BaseController
         $this->article_text = $article_text;
         $this->aid=arg('aid');
     }
+    public function actionDelete() {
+        
+    }
 }

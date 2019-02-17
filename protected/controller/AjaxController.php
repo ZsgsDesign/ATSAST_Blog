@@ -83,13 +83,17 @@ class AjaxController extends BaseController
     public function actionPostart(){
         $articles = new model("articles");
         $changeid = arg("aid");
+        if($changeid!=null){
         $articles->update(array("aid=:aid",":aid"=>$changeid),array("isdraft"=>0));
         $this->jump("{$this->MAIN_PAGE}/admin/blog");
+        }
     }
     public function actionDeletearticle() {
         $articles = new model ("articles");
         $deleteid = arg("aid");
+        if($deleteid!=null){
         $articles->delete(array("aid=:aid",":aid"=>$deleteid));
         $this->jump("{$this->MAIN_PAGE}/admin/blog");
+        }
     }
 }
