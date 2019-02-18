@@ -17,7 +17,20 @@ class AdminController extends BaseController
         }else {
             $this->jump("{$this->MAIN_PAGE}/account/");
         }
+        $category = new model ("category");
         $articles = new model("articles");
+        $row = $category->query("select * from category where category.uid = :uid",array(":uid"=>$usr_info["uid"]));
+        $s = $row[0]["category"];
+        $cate_this_usr = explode(",",$s);
+        $this->cate_this_usr = $cate_this_usr;
+        $article_incate = array();
+        $article_count=array();
+        foreach ($cate_this_usr as $cate){
+            $article_incate[$cate] = $articles->query("select * from articles where articles.category=:category and articles.uid=:uid",array(":category"=>$cate,":uid"=>$usr_info["uid"]));
+            $article_count[$cate] = count($article_incate[$cate]);
+        }
+        $this->article_incate = $article_incate;
+        $this->article_count = $article_count;
         $art_this_blog = $articles->query("select * from articles where articles.uid = :uid order by articles.time desc",array(":uid"=>$usr_info['uid']));
         $this->art_this_blog = $art_this_blog;
         $comment = new model("comment");

@@ -65,6 +65,11 @@ class AccountController extends BaseController
                         "password" => $pwd,
                         "email" => $email,
                     );
+                    $cate = array(
+                        "uid"=>$new_usr["uid"]
+                    );
+                    $category = new model ("category");
+                    $category->create($cate);
                     $users->create($new_usr);
                     $_SESSION["UID"] = $nowuid[0]['max(uid)']+1;
                     echo "<script>alert('您已注册成功');location='http://{$this->MAIN_PAGE}/'</script>";
