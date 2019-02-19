@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <title>个人资料</title>
         <style type="text/css"></style>
         <style>
@@ -220,7 +221,7 @@
                                                 <p class="text-right"><small>修改于<{$art["time"]}> / <{if $art["isdraft"] == 0}> 已发表 <{else}> 草稿 <{/if}></small></p>
                                                 <div class="row" id="edit-row">
                                                 <a class="btn btn-primary" href='http://<{$MAIN_PAGE}>/admin/edit?aid=<{$art["aid"]}>'>修改</a>
-                                                <a class="btn btn-danger" href='http://<{$MAIN_PAGE}>/admin/delete?aid=<{$art["aid"]}>&main_page=<{$MAIN_PAGE}>' onclick="deletearticle()">删除</a>
+                                                <button class="btn btn-danger" id="deleteart" value="<{$art['aid']}>" onclick="delart()">删除</button>
                                                 <{if $art["isdraft"]==1}>
                                                 <a class="btn btn-secondary" href='http://<{$MAIN_PAGE}>/ajax/postart?aid=<{$art["aid"]}>'>发布</a>
                                                 <{/if}>
@@ -312,20 +313,34 @@
                             </div>   
                     </div>
             </div>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
     </body>
-
+    <script type="text/javascript">
+        function delart(){
+            var con = confirm("你确定要删除这篇文章？该操作不可逆！");
+            if(con==true){
+            $.post("http://<{$MAIN_PAGE}>/ajax/deletearticle",{
+                aid:$("#deleteart").val()
+            },function(result){
+                location.reload();
+            });
+            }
+        }
+        function neocate(){
+            $.post("http://<{$MAIN_PAGE}>/ajax/NeoCate",{
+                cate:$("#catenew").val()
+            },function(result){
+                result = JSON.parse(JSON.stringify(result));
+                alert("添加成功");
+                location.reload();
+            });
+        }
+        function changecate(){
+    
+        }
+        function delcate(){
+    
+        }
+    </script>
 </html>
-<script>
-    function neocate(){
-
-    }
-    function changecate(){
-
-    }
-    function delcate(){
-
-    }
-</script>

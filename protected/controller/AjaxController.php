@@ -4,7 +4,10 @@ author:Brethland
 */
 class AjaxController extends BaseController
 {
-    public function actionArticleEdit() {    
+    public function actionArticleEdit() {
+        if(!$this->islogin){
+            $this->jump("{$this->MAIN_PAGE}/account/");
+        }    
         $articles = new model("articles");
         $article_text = arg("article");
         $article_title = arg("title");
@@ -81,19 +84,43 @@ class AjaxController extends BaseController
         }
     }
     public function actionPostart(){
+        if(!$this->islogin){
+            $this->jump("{$this->MAIN_PAGE}/account/");
+        }
         $articles = new model("articles");
         $changeid = arg("aid");
         if($changeid!=null){
+        $row = $articles->find(array("aid=:aid",":aid"=>$changeid));
+        if($_SESSION["UID"]!=$row["uid"]){
+            exit;
+        }
         $articles->update(array("aid=:aid",":aid"=>$changeid),array("isdraft"=>0));
         $this->jump("{$this->MAIN_PAGE}/admin/blog");
         }
     }
     public function actionDeletearticle() {
+        if(!$this->islogin){
+            $this->jump("{$this->MAIN_PAGE}/account/");
+        }
         $articles = new model ("articles");
         $deleteid = arg("aid");
         if($deleteid!=null){
+            $row= $articles->find(array("aid=:aid",":aid"=>$deleteid));
+            if($_SESSION["UID"]!=$row["uid"]){
+                exit;
+            }
         $articles->delete(array("aid=:aid",":aid"=>$deleteid));
-        $this->jump("{$this->MAIN_PAGE}/admin/blog");
         }
+    }
+    public function actionNeoCate() {
+        if(!$this->islogin){
+            $this->jump("{$this->MAIN_PAGE}/account/");
+        }
+        $category = new model("category");
+        $add_cate = arg("cate");
+        $row = $category->query("select * from category where category.uid=:uid",array(":uid"=>$this->user_info["uid"]));
+        $neo = $row[0]["category"].','.$add_cate;
+        $category->update(array("uid=:uid",":uid"=>$this->user_info["uid"]),array("category"=>$neo));
+        exit();
     }
 }
