@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <title>个人资料</title>
         <style type="text/css"></style>
         <style>
@@ -136,6 +137,13 @@
                 justify-content: center; 
                 align-items: center;
             }
+            .text-long{
+                display: -webkit-box; 
+                -webkit-line-clamp: 4; 
+                -webkit-box-orient: vertical; 
+                overflow: hidden;
+                white-space: pre-line;
+            }
         </style>
     </head>
     <body>
@@ -205,32 +213,67 @@
                                         <{if count($art_this_blog)==0}>
                                         <h3><br>您还没有写过一篇文章哦</h3>
                                         <{else}>
-                                        <ul class="list-group" id="scroll">
+                                        <div class="container" id="scroll">
                                             <{foreach $art_this_blog as $art}>
-                                            <a class="list-group-item" href='http://<{$MAIN_PAGE}>/page/article?aid=<{$art["aid"]}>&?uid=<{$user_info["uid"]}>'>
-                                                <div class="bmd-list-group-col">
-                                                <h4 class="list-group-item-heading"><{$art["title"]}></h4>
-                                                <p class="list-group-item-text"><{$art["text"]}></p>
-                                                <p class="list-group-item-text text-right"><small>修改于<{$art["time"]}> / <{if $art["isdraft"] == 0}> 已发表 <{else}> 草稿 <{/if}></small></p>
-                                                </div>
-                                                </a>
+                                            <div style="margin-left:10px;margin-top: 16px;">
+                                                <h3 class="text-left"><a href='http://<{$MAIN_PAGE}>/page/article?aid=<{$art["aid"]}>&?uid=<{$user_info["uid"]}>' style="color:#FB7299;"><{$art["title"]}></a></h3>
+                                                <p class="text-long"><{$art["text"]}></p>
+                                                <p class="text-right"><small>修改于<{$art["time"]}> / <{if $art["isdraft"] == 0}> 已发表 <{else}> 草稿 <{/if}></small></p>
                                                 <div class="row" id="edit-row">
                                                 <a class="btn btn-primary" href='http://<{$MAIN_PAGE}>/admin/edit?aid=<{$art["aid"]}>'>修改</a>
-                                                <a class="btn btn-danger" href='http://<{$MAIN_PAGE}>/admin/delete?aid=<{$art["aid"]}>&main_page=<{$MAIN_PAGE}>' onclick="deletearticle()">删除</a>
+                                                <button class="btn btn-danger" id="deleteart" value="<{$art['aid']}>" onclick="delart()">删除</button>
                                                 <{if $art["isdraft"]==1}>
                                                 <a class="btn btn-secondary" href='http://<{$MAIN_PAGE}>/ajax/postart?aid=<{$art["aid"]}>'>发布</a>
                                                 <{/if}>
                                             </div>
+                                        </div>
                                             <{/foreach}>
-                                        </ul>
+                                        </div>
                                         <{/if}>
                                         <a class="btn btn-outline-primary" href='http://<{$MAIN_PAGE}>/admin/edit?aid=0' id="new-button">撰写新文章</a>
                                     </div>
                                     <div class="tab-pane" id="category" role="tabpanel" aria-labelledby="category-tab">
-                                        
+                                        <h3 class="text-right" style="color:gray;"><strong>你已添加的类别</strong></h3>
+                                        <div id="scroll">
+                                        <{foreach $cate_this_usr as $cate}>
+                                        <button class="btn btn-primary" for="category" data-toggle="collapse" data-target="#collapse-category<{$cate}>" aria-expanded="false" aria-controls="collapse-search" style="color:#FB7299"><{$cate}>(<{$article_count[$cate]}>)</button>
+                                        <span id="collapse-category<{$cate}>" class="collapse">
+                                            <{if $article_count[$cate] == 0}>
+                                            <div class="card" style="height:3rem;width:40rem;margin-top:10px;margin-bottom:10px;"><p class="text-center" style="color:gray;margin-top:1rem;">该分类还没有文章</p></div>
+                                            <{else}>
+                                                <div class="card" id="scroll" style="width:40rem;height:20rem;">
+                                                    <{foreach $article_incate[$cate] as $atc}>
+                                                    <div style="margin-left:10px;margin-top: 16px;margin-right:16px;">
+                                                            <h3 class="text-left"><a href='http://<{$MAIN_PAGE}>/page/article?aid=<{$atc["aid"]}>&?uid=<{$user_info["uid"]}>' style="color:#FB7299;"><{$atc["title"]}></a></h3>
+                                                            <p class="text-long"><{$atc["text"]}></p>
+                                                            <p class="text-right"><small>修改于<{$atc["time"]}> / <{if $atc["isdraft"] == 0}> 已发表 <{else}> 草稿 <{/if}></small></p>
+                                                            <button class="btn btn-primary" onclick="changecate()" style="float:right;">更改分类</button>
+                                                        </div>
+                                                        <{/foreach}>
+                                                    </div>
+                                                    <{/if}>
+                                        </span>
+                                        <{/foreach}></div>
+                                        <div class="button-group" role="group">
+                                                <button class="btn btn-outline-danger" for="del" data-toggle="collapse" data-target="#input-del" style="float:left;margin-bottom:10px;" aria-expanded="false">删除分类</button>
+                                                <span id="input-del" class="collapse">
+                                                    <div class="form-inline" method="post" >
+                                                        <label for="catedel" >输入分类：</label>
+                                                        <input class="form-control" id="catedel" name="catedel" style="width:18rem;">
+                                                        <button type="submit" cllass="form-control" onclick="delcate()" class="btn btn-primary">提交</button>
+                                                    </div>
+                                                </span>
+                                        <button class="btn btn-outline-primary" for="new" data-toggle="collapse" data-target="#input-cate" id="new-button" aria-expanded="false">添加新分类</button>
+                                        <span id="input-cate" class="collapse">
+                                            <div class="form-inline" method="post">
+                                                <input class="form-control" id="catenew" name="catenew" style="width:18rem;">
+                                                <button type="submit" cllass="form-control" onclick="neocate()" class="btn btn-primary">提交</button>
+                                            </div>
+                                        </span>
+                                    </div>
                                     </div>
                                     <div class="tab-pane" id="comment" role="tabpanel" aria-labelledby="comment-tab">
-                                            <h3 class="text-left"><strong>待审核评论</strong></h3>
+                                            <h3 class="text-right"><strong>待审核评论</strong></h3>
                                             <{if count($com_this_user)==0}>
                                             <p class="text-center"><br>很棒！你已经处理完所有评论了。</p>
                                             <{else}>
@@ -250,7 +293,7 @@
                                                 <{/foreach}>
                                             </ul>
                                             <{/if}>
-                                            <h3 class="text-left"><strong>已通过评论</strong></h3>
+                                            <h3 class="text-right"><strong>已通过评论</strong></h3>
                                             <{if count($com_user_added)==0}>
                                             <p class="text-center"><br>啊哦，似乎还没有人给你留言呢……</p>
                                             <{else}>
@@ -270,9 +313,34 @@
                             </div>   
                     </div>
             </div>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
     </body>
-
+    <script type="text/javascript">
+        function delart(){
+            var con = confirm("你确定要删除这篇文章？该操作不可逆！");
+            if(con==true){
+            $.post("http://<{$MAIN_PAGE}>/ajax/deletearticle",{
+                aid:$("#deleteart").val()
+            },function(result){
+                location.reload();
+            });
+            }
+        }
+        function neocate(){
+            $.post("http://<{$MAIN_PAGE}>/ajax/NeoCate",{
+                cate:$("#catenew").val()
+            },function(result){
+                result = JSON.parse(JSON.stringify(result));
+                alert("添加成功");
+                location.reload();
+            });
+        }
+        function changecate(){
+    
+        }
+        function delcate(){
+    
+        }
+    </script>
 </html>

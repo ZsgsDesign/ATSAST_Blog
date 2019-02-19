@@ -11,6 +11,7 @@
                 width:71%;
                 margin:0 auto;
                 margin-top:16px;
+                background-color:rgba(251, 114, 153, 0.9);
             }
             #side-nav{
                 width:10rem;
@@ -45,9 +46,9 @@
         <div class="container-fluid">
         <div class="col-md-12">
             <div class="card" id="blog-nav">
-                <a class="navbar-brand" href="http://<{$MAIN_PAGE}>" style="margin-left:16px;margin-top:16px;"><h1>ATSAST BLOG</h1></a>
+                <a class="navbar-brand" href="http://<{$MAIN_PAGE}>" style="margin-left:16px;margin-top:16px;color:whitesmoke;"><h1>ATSAST BLOG</h1></a>
                 <div>
-                <h5 style="margin-left:16px;margin-bottom: 16px;margin-top:6px;float:left;"><{$blog_user["username"]}>的博客</h5>
+                <h5 style="margin-left:16px;margin-bottom: 16px;margin-top:6px;float:left;color:whitesmoke;"><{$blog_user["username"]}>的博客</h5>
                 <{if $blog_user["uid"]!=$_SESSION["UID"]}>
                 <button class="btn btn-outline-secondary" style="float:right;margin-right: 16px;margin-bottom:16px;">关注</button>
                 </div>
