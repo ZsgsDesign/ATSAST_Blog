@@ -11,10 +11,12 @@ class SearchController extends BaseController{
         global $keywords;
         $keywords = arg("keywords");
         if (!$keywords) {
-        ERR::Catcher(9002);
+        echo "<script>alert('请输入关键词');history.go(-1);</script>";
+        exit;
         }
         if(!self::are_keywords_legal($keywords)){
-            ERR::Catcher(9201);
+            echo "<script>alert('关键词不合法');history.go(-1);</script>";
+            exit;
         }
         $users= new model("users");
         $articles=new Model('articles');

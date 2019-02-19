@@ -223,7 +223,7 @@
                                                 <a class="btn btn-primary" href='http://<{$MAIN_PAGE}>/admin/edit?aid=<{$art["aid"]}>'>修改</a>
                                                 <button class="btn btn-danger" id="deleteart" value="<{$art['aid']}>" onclick="delart()">删除</button>
                                                 <{if $art["isdraft"]==1}>
-                                                <a class="btn btn-secondary" href='http://<{$MAIN_PAGE}>/ajax/postart?aid=<{$art["aid"]}>'>发布</a>
+                                                <button class="btn btn-secondary" onclick="posart()" id="pst" value="<{$art['aid']}>">发布</button>
                                                 <{/if}>
                                             </div>
                                         </div>
@@ -326,6 +326,14 @@
                 location.reload();
             });
             }
+        }
+        function posart(){
+            $.post("http://<{$MAIN_PAGE}>/ajax/postart",{
+                aid:$("#pst").val()
+            },function(result){
+                alert("发布成功");
+                location.reload();
+            })
         }
         function neocate(){
             $.post("http://<{$MAIN_PAGE}>/ajax/NeoCate",{
