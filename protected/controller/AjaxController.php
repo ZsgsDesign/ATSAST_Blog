@@ -45,7 +45,7 @@ class AjaxController extends BaseController
                     $articles->update(array("aid=:aid",":aid"=>arg("aid")),array("title"=>$article_title,"text"=>$article_text,"time"=>date('Y-m-d H:i:s',time()),"isdraft"=>0));
                 }
         }
-        $this->jump("{$this->MAIN_PAGE}/admin/blog");
+        //$this->jump("{$this->MAIN_PAGE}/admin/blog");
     }
     public function actionRateUpArticle(){
         $articles = new model ("articles");

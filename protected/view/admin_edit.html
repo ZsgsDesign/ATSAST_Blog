@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
         <link rel="stylesheet" href="https://lab.lepture.com/editor/editor.css" />
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <title>个人资料</title>
         <style>
             #scroll::-webkit-scrollbar { width: 0 !important }
@@ -163,17 +164,16 @@
         </div>
         <div class="card" id="show-info">
             <a class="btn btn-outline-primary" href="http://<{$MAIN_PAGE}>/admin/blog" style="margin-top: 10px;margin-left: 10px;">返回</a>
-                <form method="post" action="http://<{$MAIN_PAGE}>/ajax/articleedit?aid=<{$aid}>" id="form-edit">
+                <form id="form-edit">
                         <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="title" value="<{$article_title}>" id="title-input">
                     <br>
                         <textarea name="article" style="display: none;width:30rem;" id="editor"><{$article_text}></textarea>
                         <div class="checkbox" style="float:right;">
-                        <input type="checkbox" name="articlestatus"style="margin-top:15%;" value=1>保存为草稿
+                        <input type="checkbox" id="check" name="articlestatus"style="margin-top:15%;">保存为草稿
                         </div>
-                    <button type="submit" class="btn btn-outline-primary" style="float:right;margin-right:10px;">发布</button>
+                    <button id="pst" value="<{$aid}>" class="btn btn-outline-primary" onclick="postart()" style="float:right;margin-right:10px;">发布</button>
                 </form>
         </div>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://lab.lepture.com/editor/editor.js"></script>
@@ -183,5 +183,18 @@
                 editor.render();
         </script>
         </body>
+        <script>
+             function postart(){
+                 $.post("http://<{$MAIN_PAGE}>/ajax/articleedit",{
+                    title:$("#title-input").val(),
+                    article:editor.codemirror.getValue(),
+                    articlestatus:document.getElementById("check").checked?1:0,
+                    aid:$("#pst").val()
+                 },function(reslut){
+                     alert("发布成功");
+                     window.location.href="http://<{$MAIN_PAGE}>/admin/blog";
+                 });
+             }
+        </script>
 
 </html>
