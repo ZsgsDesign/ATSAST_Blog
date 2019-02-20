@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if(!class_exists("View", false)) exit("no direct access allowed");?><!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -46,13 +46,13 @@
         <div class="container-fluid">
         <div class="col-md-12">
             <div class="card" id="blog-nav">
-                <a class="navbar-brand" href="http://<{$MAIN_PAGE}>" style="margin-left:16px;margin-top:16px;color:#fff;"><h1>ATSAST BLOG</h1></a>
+                <a class="navbar-brand" href="http://<?php echo htmlspecialchars($MAIN_PAGE, ENT_QUOTES, "UTF-8"); ?>" style="margin-left:16px;margin-top:16px;color:#fff;"><h1>ATSAST BLOG</h1></a>
                 <div>
-                <h5 style="margin-left:16px;margin-bottom: 16px;margin-top:6px;float:left;color:#fff;"><{$blog_user["username"]}>的博客</h5>
-                <{if $blog_user["uid"]!=$_SESSION["UID"]}>
+                <h5 style="margin-left:16px;margin-bottom: 16px;margin-top:6px;float:left;color:#fff;"><?php echo htmlspecialchars($blog_user["username"], ENT_QUOTES, "UTF-8"); ?>的博客</h5>
+                <?php if ($blog_user["uid"]!=$_SESSION["UID"]) : ?>
                 <button class="btn btn-outline-secondary" style="float:right;margin-right: 16px;margin-bottom:16px;">关注</button>
                 </div>
-                <{/if}>
+                <?php endif; ?>
             </div>
         </div>
         <div class="container">
@@ -68,9 +68,9 @@
                                         分类
                                         <button class="btn dropdown-toggle bmd-btn-icon" style="float:right;" type="button" id="buttonMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons">more_vert</i></button>
                                         <div class="dropdown-menu" aria-labelledby="buttonMenu1">
-                                            <{foreach $category_thisusr as $cata}> 
-                                            <button class="dropdown-item" type="button" onclick="window.location.href='blog?uid=<{$blog_uid}>&cata=<{$cata}>'"><{$cata}></button>
-                                            <{/foreach}>
+                                            <?php if(!empty($category_thisusr)){ $_foreach_cata_counter = 0; $_foreach_cata_total = count($category_thisusr);?><?php foreach( $category_thisusr as $cata ) : ?><?php $_foreach_cata_index = $_foreach_cata_counter;$_foreach_cata_iteration = $_foreach_cata_counter + 1;$_foreach_cata_first = ($_foreach_cata_counter == 0);$_foreach_cata_last = ($_foreach_cata_counter == $_foreach_cata_total - 1);$_foreach_cata_counter++;?> 
+                                            <button class="dropdown-item" type="button" onclick="window.location.href='blog?uid=<?php echo htmlspecialchars($blog_uid, ENT_QUOTES, "UTF-8"); ?>&cata=<?php echo htmlspecialchars($cata, ENT_QUOTES, "UTF-8"); ?>'"><?php echo htmlspecialchars($cata, ENT_QUOTES, "UTF-8"); ?></button>
+                                            <?php endforeach; }?>
                                         </div>
                                     </a>
                                 </li>
@@ -93,18 +93,18 @@
                                 <div class="tab-pane" id="category" role="tabpanel" aria-labelledby="category-tab">
                                 </div>
                                 <div class="tab-pane" id="all" role="tabpanel" aria-labelledby="all-tab">
-                                    <{if count($art_show)==0}>
+                                    <?php if (count($art_show)==0) : ?>
                                     <h2 class="text-center" style="color:grey;margin-top:20px;">这位用户还没发表过文章呢……</h2>
-                                    <{else}>
-                                    <{foreach $art_show as $art}>
+                                    <?php else : ?>
+                                    <?php if(!empty($art_show)){ $_foreach_art_counter = 0; $_foreach_art_total = count($art_show);?><?php foreach( $art_show as $art ) : ?><?php $_foreach_art_index = $_foreach_art_counter;$_foreach_art_iteration = $_foreach_art_counter + 1;$_foreach_art_first = ($_foreach_art_counter == 0);$_foreach_art_last = ($_foreach_art_counter == $_foreach_art_total - 1);$_foreach_art_counter++;?>
                                     <div class="container" id="text-show">
-                                    <h3><strong><{$art["title"]}></strong></h3>
+                                    <h3><strong><?php echo htmlspecialchars($art["title"], ENT_QUOTES, "UTF-8"); ?></strong></h3>
                                     <br>
-                                    <p id="cutdown"><{$art["text"]}></p>
-                                    <p class="text-right"><small><{$art["time"]}> / <a href="http://<{$MAIN_PAGE}>/page/article?aid=<{$art['aid']}>&uid=<{$blog_uid}>">阅读</a></small></p>
+                                    <p id="cutdown"><?php echo htmlspecialchars($art["text"], ENT_QUOTES, "UTF-8"); ?></p>
+                                    <p class="text-right"><small><?php echo htmlspecialchars($art["time"], ENT_QUOTES, "UTF-8"); ?> / <a href="http://<?php echo htmlspecialchars($MAIN_PAGE, ENT_QUOTES, "UTF-8"); ?>/page/article?aid=<?php echo htmlspecialchars($art['aid'], ENT_QUOTES, "UTF-8"); ?>&uid=<?php echo htmlspecialchars($blog_uid, ENT_QUOTES, "UTF-8"); ?>">阅读</a></small></p>
                                     </div>
-                                    <{/foreach}>
-                                    <{/if}>
+                                    <?php endforeach; }?>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="tab-pane" id="introduction" role="tabpanel" aria-labelledby="introduction-tab">
                                 </div>

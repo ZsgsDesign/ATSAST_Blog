@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if(!class_exists("View", false)) exit("no direct access allowed");?><!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -64,7 +64,7 @@
                 width: 150px;
                 position: relative;
                 float:left;
-                box-shadow: -1 4px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+                box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.05);
             }
             .container .left_box .aside li{
                 height: 35px;
@@ -96,7 +96,7 @@
                 background-color: #fff;
                 min-height: 95%;
                 padding: 0 32px 30px;
-                box-shadow: -1 4px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+                box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.05);
                 min-height: 500px;
             }
             .container .main_box .title{
@@ -193,7 +193,7 @@
     <body>
         <div style="background-color: black; color:white;">
             <nav class="navbar navbar-expand-lg bg-dark navbar-dark" style="background-color:black;opacity: 0.6;">
-                <a class="navbar-brand" href="http://<{$MAIN_PAGE}>">ATSAST BLOG</a>
+                <a class="navbar-brand" href="http://<?php echo htmlspecialchars($MAIN_PAGE, ENT_QUOTES, "UTF-8"); ?>">ATSAST BLOG</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -202,21 +202,21 @@
                     <ul class="navbar-nav mr-auto"></ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <form action="http://<{$MAIN_PAGE}>/search/result" method="get" class="form-inline my-2 my-lg-0 mundb-inline">
+                            <form action="http://<?php echo htmlspecialchars($MAIN_PAGE, ENT_QUOTES, "UTF-8"); ?>/search/result" method="get" class="form-inline my-2 my-lg-0 mundb-inline">
                                 <input class="form-control mr-sm-2 atsast-searchBox" name="keywords" type="search" placeholder="搜索" aria-label="搜索">
                             </form>
                         </li>
                     
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><{$greeting}>！<{$user_name}></a>
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><?php echo htmlspecialchars($greeting, ENT_QUOTES, "UTF-8"); ?>！<?php echo htmlspecialchars($user_name, ENT_QUOTES, "UTF-8"); ?></a>
                             <div class="dropdown-menu dropdown-menu-right">
                                     <div class="dropdown-header">
                                             <div class="row" id="row-nav">
-                                                <img src="<{$gravatar}>" class="img-thumbnail" id="gravatar-nav" />
-                                                <h6>&nbsp&nbsp&nbsp<{$user_name}></h6>
+                                                <img src="<?php echo htmlspecialchars($gravatar, ENT_QUOTES, "UTF-8"); ?>" class="img-thumbnail" id="gravatar-nav" />
+                                                <h6>&nbsp&nbsp&nbsp<?php echo htmlspecialchars($user_name, ENT_QUOTES, "UTF-8"); ?></h6>
                                             </div>
                                             </div>
-                                <a class="dropdown-item text-danger" href="http://<{$MAIN_PAGE}>/account/logout">登出</a>
+                                <a class="dropdown-item text-danger" href="http://<?php echo htmlspecialchars($MAIN_PAGE, ENT_QUOTES, "UTF-8"); ?>/account/logout">登出</a>
                             </div>
                         </li>
                     </ul>
@@ -239,7 +239,7 @@
                 </ul>
                 <ul class="aside">
                     <li class="router-link">
-                        <a class="font" href="http://<{$MAIN_PAGE}>/admin/blog">博客管理</a>
+                        <a class="font" href="http://<?php echo htmlspecialchars($MAIN_PAGE, ENT_QUOTES, "UTF-8"); ?>/admin/blog">博客管理</a>
                     </li>
                 </ul>
             </div>
@@ -248,11 +248,11 @@
                     <h3 class="title">个人资料</h3>
                     <div class="user_info">
                         <div class="header">
-                            <img src="<{$gravatar}>" class="head">
+                            <img src="<?php echo htmlspecialchars($gravatar, ENT_QUOTES, "UTF-8"); ?>" class="head">
                         </div>
                         <div class="other_info">
                             <div class="info_link">
-                                <a class="font" href="http://<{$MAIN_PAGE}>/page/blog?uid=<{$user_info['uid']}>">我的博客</a>
+                                <a class="font" href="http://<?php echo htmlspecialchars($MAIN_PAGE, ENT_QUOTES, "UTF-8"); ?>/page/blog?uid=<?php echo htmlspecialchars($user_info['uid'], ENT_QUOTES, "UTF-8"); ?>">我的博客</a>
                             </div>
                             <div class="info_hot">
                                 <span style="color:#4d4d4d;font-size: 14px;margin-right: 16px;">关注 0</span>
@@ -262,7 +262,7 @@
                             </div>
                             <div class="line"></div>
                             <div class="info_nick">
-                                <span style="color:#4d4d4d;font-size: 14px;float:left;">昵称： <{$user_info["username"]}></span>
+                                <span style="color:#4d4d4d;font-size: 14px;float:left;">昵称： <?php echo htmlspecialchars($user_info["username"], ENT_QUOTES, "UTF-8"); ?></span>
                                 <span style="color:#27bcf7;font-size: 14px;float:right;">修改</span>
                             </div>
                             <ul class="info_self">

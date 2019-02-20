@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if(!class_exists("View", false)) exit("no direct access allowed");?><!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -44,7 +44,7 @@
                 margin-left: auto;
             }
             .container-f .card{
-                box-shadow: -1 4px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+                box-shadow: 0 4px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
             }
             .container{
                 width: 1200px;
@@ -57,14 +57,14 @@
                 max-width: 16.66667%;
                 position: relative;
                 float:left;
-                box-shadow: -1 4px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+                box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.05);
             }
         </style>
     </head>
     <body>
         <div class="container-f">
             <div class="card" id="blog-nav">
-                    <a class="navbar-brand" href="http://<{$MAIN_PAGE}>" style="margin-left:110px;margin-top:16px;color:#fff;"><h1>ATSAST BLOG</h1></a>
+                    <a class="navbar-brand" href="http://<?php echo htmlspecialchars($MAIN_PAGE, ENT_QUOTES, "UTF-8"); ?>" style="margin-left:110px;margin-top:16px;color:#fff;"><h1>ATSAST BLOG</h1></a>
             </div>
             <div class="col-md-12">
                 <div class="container">
