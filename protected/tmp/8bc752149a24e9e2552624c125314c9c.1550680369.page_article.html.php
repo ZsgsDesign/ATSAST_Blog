@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if(!class_exists("View", false)) exit("no direct access allowed");?><!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -165,7 +165,7 @@
     <body>
         <div class="container-f">
             <div class="card" id="blog-nav">
-                    <a class="navbar-brand" href="http://<{$MAIN_PAGE}>" style="margin-left:110px;margin-top:4px;margin-bottom: 4px;font-size: 40px;color:#fff;">ATSAST BLOG</a>
+                    <a class="navbar-brand" href="http://<?php echo htmlspecialchars($MAIN_PAGE, ENT_QUOTES, "UTF-8"); ?>" style="margin-left:110px;margin-top:4px;margin-bottom: 4px;font-size: 40px;color:#fff;">ATSAST BLOG</a>
             </div>
             <div class="container">
                 <div class="left_box">

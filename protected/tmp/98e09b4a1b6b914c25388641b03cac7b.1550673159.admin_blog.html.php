@@ -81,7 +81,7 @@
             #show-info{
                 overflow: hidden;
                 display: block;
-                box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 30px;
+                box-shadow: -1px 4px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
                 border-radius: 4px;
                 transition: .2s ease-out .0s;
                 color: #7a8e97;
@@ -91,15 +91,15 @@
                 width:750px;
                 margin:0 auto;
                 margin-top:16px;
-
+                margin-bottom: 60px;
             }
             #nav-info{
+                box-shadow: -1px 4px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
                 margin-left:150px;
                 width:150px;
                 margin-top:16px;
                 overflow: hidden;
                 display: block;
-                box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 30px;
                 border-radius: 4px;
                 transition: .2s ease-out .0s;
                 color: #7a8e97;
@@ -179,6 +179,7 @@
                 </div>
             </nav>            
         </div>
+            <div class="left_box">
                 <ul class="aside"id="nav-info">
                     <li class="router-link">
                         <a class="font" href="http://<?php echo htmlspecialchars($MAIN_PAGE, ENT_QUOTES, "UTF-8"); ?>/admin/">个人资料</a>
@@ -193,6 +194,7 @@
                             <a class="font" href="http://<?php echo htmlspecialchars($MAIN_PAGE, ENT_QUOTES, "UTF-8"); ?>/admin/blog">博客管理</a>
                     </li>
                 </ul>
+            </div>
             <div class="card" id="show-info">
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs nav-justified nav-tabs-material" id="actTab" role="tablist">
@@ -223,7 +225,7 @@
                                                 <a class="btn btn-primary" href='http://<?php echo htmlspecialchars($MAIN_PAGE, ENT_QUOTES, "UTF-8"); ?>/admin/edit?aid=<?php echo htmlspecialchars($art["aid"], ENT_QUOTES, "UTF-8"); ?>'>修改</a>
                                                 <button class="btn btn-danger" id="deleteart" value="<?php echo htmlspecialchars($art['aid'], ENT_QUOTES, "UTF-8"); ?>" onclick="delart()">删除</button>
                                                 <?php if ($art["isdraft"]==1) : ?>
-                                                <a class="btn btn-secondary" href='http://<?php echo htmlspecialchars($MAIN_PAGE, ENT_QUOTES, "UTF-8"); ?>/ajax/postart?aid=<?php echo htmlspecialchars($art["aid"], ENT_QUOTES, "UTF-8"); ?>'>发布</a>
+                                                <button class="btn btn-secondary" onclick="posart()" id="pst" value="<?php echo htmlspecialchars($art['aid'], ENT_QUOTES, "UTF-8"); ?>">发布</button>
                                                 <?php endif; ?>
                                             </div>
                                         </div>
@@ -326,6 +328,14 @@
                 location.reload();
             });
             }
+        }
+        function posart(){
+            $.post("http://<?php echo htmlspecialchars($MAIN_PAGE, ENT_QUOTES, "UTF-8"); ?>/ajax/postart",{
+                aid:$("#pst").val()
+            },function(result){
+                alert("发布成功");
+                location.reload();
+            })
         }
         function neocate(){
             $.post("http://<?php echo htmlspecialchars($MAIN_PAGE, ENT_QUOTES, "UTF-8"); ?>/ajax/NeoCate",{

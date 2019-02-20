@@ -81,7 +81,7 @@
             #show-info{
                 overflow: hidden;
                 display: block;
-                box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 30px;
+                box-shadow: -1px 4px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
                 border-radius: 4px;
                 transition: .2s ease-out .0s;
                 color: #7a8e97;
@@ -91,15 +91,15 @@
                 width:750px;
                 margin:0 auto;
                 margin-top:16px;
-
+                margin-bottom: 60px;
             }
             #nav-info{
+                box-shadow: -1px 4px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
                 margin-left:150px;
                 width:150px;
                 margin-top:16px;
                 overflow: hidden;
                 display: block;
-                box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 30px;
                 border-radius: 4px;
                 transition: .2s ease-out .0s;
                 color: #7a8e97;
@@ -179,6 +179,7 @@
                 </div>
             </nav>            
         </div>
+            <div class="left_box">
                 <ul class="aside"id="nav-info">
                     <li class="router-link">
                         <a class="font" href="http://<{$MAIN_PAGE}>/admin/">个人资料</a>
@@ -193,6 +194,7 @@
                             <a class="font" href="http://<{$MAIN_PAGE}>/admin/blog">博客管理</a>
                     </li>
                 </ul>
+            </div>
             <div class="card" id="show-info">
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs nav-justified nav-tabs-material" id="actTab" role="tablist">
