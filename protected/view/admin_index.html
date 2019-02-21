@@ -76,18 +76,21 @@
                 line-height: 40px;
                 font-size: 14px;
                 color: #4d4d4d;
-                padding-left: 16px;
                 box-sizing: border-box;
                 margin-bottom: 1px;
             }
             .container .left_box .aside li.router-link-active{
-                background: #27bcf7;
+                background: rgba(251, 114, 153, 0.9);
                 color: #fff;
+            }
+            .container .left_box .aside li.router-link:hover{
+                background: rgba(255, 202, 217, 0.9);
             }
             .container .left_box .aside li.router-link-active .font{
                 color: #fff;
             }
             .container .left_box .aside li .font{
+                padding-left: 16px;
                 color: #4d4d4d;
             }
             .container .main_box{

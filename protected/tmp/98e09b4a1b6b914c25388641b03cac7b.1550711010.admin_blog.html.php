@@ -65,8 +65,11 @@
                 border-bottom: 1px solid #e9eaeb;
             }
             .aside li.router-link-active{
-                background: #27bcf7;
+                background: rgba(251, 114, 153, 0.9);
                 color: #fff;
+            }
+            .left_box .aside li.router-link:hover{
+                background: rgba(255, 202, 217, 0.9);
             }
             .aside li.router-link-active .font{
                 color: #fff;
