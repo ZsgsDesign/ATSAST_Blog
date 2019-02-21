@@ -168,8 +168,10 @@
                         <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="title" value="<{$article_title}>" id="title-input">
                     <br>
                         <textarea name="article" style="display: none;width:30rem;" id="editor"><{$article_text}></textarea>
-                        <div class="checkbox" style="float:right;">
-                        <input type="checkbox" id="check" name="articlestatus"style="margin-top:15%;">保存为草稿
+                        <div class="btn-group-toggle" style="float:right;" data-toggle="buttons">
+                            <label class="btn btn-primary">
+                        <input type="checkbox" id="check" name="articlestatus">保存为草稿
+                        </label>
                         </div>
                     <button id="pst" value="<{$aid}>" class="btn btn-outline-primary" onclick="postart()" style="float:right;margin-right:10px;">发布</button>
                 </form>
@@ -191,8 +193,8 @@
                     articlestatus:document.getElementById("check").checked?1:0,
                     aid:$("#pst").val()
                  },function(reslut){
-                     alert("发布成功");
-                     window.location.href="http://<{$MAIN_PAGE}>/admin/blog";
+                    alert("发布成功");
+                    window.location.href='http://<{$MAIN_PAGE}>/admin/blog';
                  });
              }
         </script>
