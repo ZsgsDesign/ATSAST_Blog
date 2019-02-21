@@ -202,13 +202,13 @@
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs nav-justified nav-tabs-material" id="actTab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="article-tab" data-toggle="tab" href="#article" role="tab" aria-controls="article" aria-selected="true">文章</a>
+                            <a class="nav-link active" id="article-tab" data-toggle="tab" href="#article" role="tab" aria-controls="article" aria-selected="true">文章&nbsp&nbsp<span class="badge badge-secondary badge-pill"><{if count($art_this_blog)!=0}><{count($art_this_blog)}><{/if}></span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="category-tab" data-toggle="tab" href="#category" role="tab" aria-controls="category" aria-selected="false">分类</a>
+                            <a class="nav-link" id="category-tab" data-toggle="tab" href="#category" role="tab" aria-controls="category" aria-selected="false">分类&nbsp&nbsp<span class="badge badge-secondary badge-pill"><{if count($cate_this_usr)!=0}><{count($cate_this_usr)}><{/if}></span></a>
                         </li>
                         <li class="nav-item">
-                                <a class="nav-link" id="comment-tab" data-toggle="tab" href="#comment" role="tab" aria-controls="comment" aria-selected="false">评论</a>
+                                <a class="nav-link" id="comment-tab" data-toggle="tab" href="#comment" role="tab" aria-controls="comment" aria-selected="false">评论&nbsp&nbsp<span class="badge badge-primary badge-pill"><{if count($com_this_user)!=0}><{count($com_this_user)}><{/if}></span></a>
                         </li>
                         </ul>
                     </div>
@@ -226,7 +226,23 @@
                                                 <p class="text-right"><small>修改于<{$art["time"]}> / <{if $art["isdraft"] == 0}> 已发表 <{else}> 草稿 <{/if}></small></p>
                                                 <div class="row" id="edit-row">
                                                 <a class="btn btn-primary" href='http://<{$MAIN_PAGE}>/admin/edit?aid=<{$art["aid"]}>'>修改</a>
-                                                <button class="btn btn-danger" id="deleteart" value="<{$art['aid']}>" onclick="delart()">删除</button>
+                                                <button class="btn btn-danger" type="button" id="deleteart" data-toggle="modal" data-target="#deletewarn">删除</button>
+                                                <div class="modal fade" id="deletewarn" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="deleteart">
+                                                    <div class="modal-dialog" role="document">
+                                                      <div class="modal-content">
+                                                        <div class="modal-header">
+                                                          <h5 class="modal-title" id="exampleModalLabel">警告</h5>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            你确定要删除这篇文章？该操作不可逆！
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                                                          <button type="button" value="<{$art['aid']}>" class="btn btn-danger" onclick="delart()" id="delartcon">确定</button>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                            </div>
                                                 <{if $art["isdraft"]==1}>
                                                 <button class="btn btn-secondary" onclick="posart()" id="pst" value="<{$art['aid']}>">发布</button>
                                                 <{/if}>
@@ -318,26 +334,52 @@
                             </div>   
                     </div>
             </div>
+            <div class="modal fade" id="successpost" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">提示</h5>
+                    </div>
+                    <div class="modal-body">
+                      发布成功！
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="refresh()">确定</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="successadd" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">提示</h5>
+                    </div>
+                    <div class="modal-body">
+                      添加成功！
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="refresh()">确定</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
         <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
     </body>
     <script type="text/javascript">
         function delart(){
-            var con = confirm("你确定要删除这篇文章？该操作不可逆！");
-            if(con==true){
             $.post("http://<{$MAIN_PAGE}>/ajax/deletearticle",{
-                aid:$("#deleteart").val()
+                aid:$("#delartcon").val()
             },function(result){
                 location.reload();
             });
-            }
         }
         function posart(){
             $.post("http://<{$MAIN_PAGE}>/ajax/postart",{
                 aid:$("#pst").val()
             },function(result){
-                alert("发布成功");
-                location.reload();
+                $('#successpost').modal('show');
             })
         }
         function neocate(){
@@ -345,8 +387,7 @@
                 cate:$("#catenew").val()
             },function(result){
                 result = JSON.parse(JSON.stringify(result));
-                alert("添加成功");
-                location.reload();
+                $('#successadd').modal('show');
             });
         }
         function changecate(){
@@ -354,6 +395,9 @@
         }
         function delcate(){
     
+        }
+        function refresh(){
+            location.reload();
         }
     </script>
 </html>
