@@ -30,7 +30,7 @@
             *{
                 box-sizing: border-box;
             }
-            ul{
+            ul,div{
                 list-style-type: none;
                 padding: 0;
             }
@@ -97,18 +97,30 @@
             }
             .container .left_box{
                 width: 160px;
-                position: relative;
+                position: absolute;
                 float:left;
+                background: #fff;
+                border: 1px solid rgba(0, 0, 0, 0.15);
                 box-shadow: -1px 4px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
             }
             .container .left_box .aside{
-                background: #fff;
                 border-bottom: 1px solid #e9eaeb;
-                height: 64px;
                 width: 100%;
-                line-height: 65px;
-                box-sizing: border-box;
-                margin-bottom: 1px;
+            }
+            .container .left_box .aside .font{
+                font-size: 20px;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                padding-left: 20px;
+                color: rgba(0,0,0,.87);
+            }
+            .container .left_box .aside .font_s{
+                font-size: 15px;
+                padding-top: 10px;
+                color: rgba(0,0,0,.87);
+            }
+            .container .left_box .aside:hover{
+                background: rgba(255, 202, 217, 0.9);
             }
             .container .left_box input[type='radio'] {
                 display: none;
@@ -122,15 +134,18 @@
                 background: #fff;
                 border-bottom: 1px solid #e9eaeb;
                 box-shadow: -1px 4px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
-                width: 160px;
-                line-height: 65px;
+                max-width: 160px;
+                text-align: center;
+                line-height: 30px;
                 box-sizing: border-box;
-                padding-left: 20px;
-                margin-bottom: 1px;
+                padding-bottom: 20px;
+                padding-top: 20px;
+                position: relative;
             }
             .container .left_box .aside label {
                 position: relative;
                 cursor: pointer;
+                width: 100%;
                 -webkit-transition: background 0.3s ease-in-out;
                 -moz-transition: background 0.3s ease-in-out;
                 -ms-transition: background 0.3s ease-in-out;
@@ -141,11 +156,6 @@
                 -o-user-select: none;
                 user-select: none;
             }
-            .container .left_box .aside .font{
-                font-size: 20px;
-                padding-left: 20px;
-                color: rgba(0,0,0,.87);
-            }
             .container .left_box .aside .content {
                 max-height: 0;
                 -webkit-transition: all 0.4s;
@@ -155,6 +165,26 @@
                 opacity: 0;
                 position: relative;
                 overflow-y: hidden;
+            }
+            .container .main_box{
+                min-height: 95%;
+                padding: 0 32px 30px;
+                margin-left: 161px;
+                width: 800px;
+                position: absolute;
+                float:left;
+                background-color: #fff;
+                border: 1px solid rgba(0, 0, 0, 0.15);
+                box-shadow: -1px 4px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+            }
+            .container .main_box .title{
+                font-size: 20px;
+                color: #3d3d3d;
+                font-weight: 900;
+                padding-left: 100px;
+                height: 80px;
+                line-height: 80px;
+                border-bottom: 1px solid #e0e0e0;
             }
             *, *:before, *:after {
                 -moz-box-sizing: border-box;
@@ -172,17 +202,28 @@
                 <div class="left_box">
                     <div class="aside">
                         <input type="radio" name="accordion-1" id="author" />
-                        <label for="author"><span class="font">Rp12138<!----></span></label>
+                        <label for="author" class="font"><span><{$art_sp['author']}></span></label>
                         <div class="content">
                             <ul>
-                                <li><img src="/src/image/science.jpg" width="120px" height="180px"></li>
+                                <li>
+                                    <img src="/src/image/K_Anna.jpg" width="120px" height="120px">
+                                </li>
+                                <li>
+                                    <a class="font_s">关注 0 | 粉丝 0</a>
+                                </li>
+                                <li>
+                                    <a class="font_s">关注/取关</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="aside">
-                        
+                            <input type="radio" name="accordion-1" id="sth" />
+                            <label for="sth" class="font"><span>rua!<!----></span></label>
                     </div>
-                    
+                </div>
+                <div class="main_box">
+                    <h3 class="title">题目</h3>
                 </div>
             </div>
         </div>

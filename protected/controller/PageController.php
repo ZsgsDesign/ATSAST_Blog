@@ -42,8 +42,8 @@ class PageController extends BaseController
         $this->blog_user = $row;
         $this->blog_uid = $row["uid"];
         $articles = new model ("articles");
-        $art_sp = $articles->query("select * from articles where articles.uid=:uid and articles.isdraft = 0 and articles.aid=:aid order by articles.time desc",array(":uid"=>$row["uid"],":aid"=>arg("aid")));
-        $this->art_sp = $art_sp;
+        $art_s = $articles->query("select * from articles where articles.uid=:uid and articles.isdraft = 0 and articles.aid=:aid order by articles.time desc",array(":uid"=>$row["uid"],":aid"=>arg("aid")));
+        $this->art_sp = $art_s[0];
         $comments = new model ("comments");
         $com_sp = $comments->query("select * from comments where comments.ret_article=:aid and comments.status = 1 order by comments.rate_up desc",array(":aid"=>arg("aid")));
         $this->com_sp = $com_sp;
