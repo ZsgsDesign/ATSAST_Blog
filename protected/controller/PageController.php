@@ -36,7 +36,7 @@ class PageController extends BaseController
     public function actionArticle() {
         require_once(APP_DIR.'/protected/include/functions.php');
         if(arg("uid")==null || arg("aid")==null){
-            $this->jump("<{$MAIN_PAGE}>");
+            $this->jump("<{$this->MAIN_PAGE}>");
         }
         $row = getuserinfo(arg("uid"));
         $this->blog_user = $row;
