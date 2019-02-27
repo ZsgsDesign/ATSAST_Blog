@@ -235,7 +235,7 @@
                                         <div class="container" id="scroll">
                                             <{foreach $art_this_blog as $art}>
                                             <div style="margin-left:10px;margin-top: 16px;">
-                                                <h3 class="text-left"><a href='http://<{$MAIN_PAGE}>/page/article?aid=<{$art["aid"]}>&?uid=<{$user_info["uid"]}>' style="color:#FB7299;"><{$art["title"]}></a></h3>
+                                                <h3 class="text-left"><a href='http://<{$MAIN_PAGE}>/page/article?aid=<{$art["aid"]}>&uid=<{$user_info["uid"]}>' style="color:#FB7299;"><{$art["title"]}></a></h3>
                                                 <p class="text-long"><{$art["text"]}></p>
                                                 <p class="text-right"><small>修改于<{$art["time"]}> / <{if $art["isdraft"] == 0}> 已发表 <{else}> 草稿 <{/if}></small></p>
                                                 <div class="row" id="edit-row">
@@ -378,6 +378,21 @@
                   </div>
                 </div>
               </div>
+              <div class="modal fade" id="successdel" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-sm" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">提示</h5>
+                        </div>
+                        <div class="modal-body">
+                            删除成功！
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="refresh()">确定</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
         <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
     </body>
@@ -408,7 +423,12 @@
     
         }
         function delcate(){
-    
+            $.post("http://<{$MAIN_PAGE}>/ajax/DelCate",{
+                cate:$('#catedel').val()
+            },function(result){
+                result = JSON.parse(JSON.stringify(result));
+                $('#successdel').modal('show');
+            });
         }
         function refresh(){
             location.reload();

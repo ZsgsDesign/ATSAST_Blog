@@ -123,4 +123,35 @@ class AjaxController extends BaseController
         $category->update(array("uid=:uid",":uid"=>$this->user_info["uid"]),array("category"=>$neo));
         exit();
     }
+    public function actionDelCate(){
+        if(!$this->islogin){
+            $this->jump("{$this->MAIN_PAGE}/account/");
+        }
+        $category = new model("category");
+        $del_cate = arg("cate");
+        $row = $category->query("select * from category where category.uid=:uid",array(":uid"=>$this->user_info["uid"]));
+        $arr = explode(",",$row[0]["category"]);
+        var_dump($arr);
+        $candel = 0;
+        for($i = 0;$i<count($arr);$i++){
+            if($arr[$i] == strtolower($del_cate)){
+                unset($arr[$i]);
+                $candel = 1;
+                break;
+            }
+        }
+        $neo = join(",",$arr);
+        $category->update(array("uid=:uid",":uid"=>$this->user_info["uid"]),array("category"=>$neo));
+        if(!$candel){
+            $output=array(
+                "ret"=>200,
+                "des"=>"未找到你的分类！"
+            );
+            exit(json_encode($output));
+        }
+        exit();
+    }
+    public function actionChangeCate(){
+
+    }
 }
