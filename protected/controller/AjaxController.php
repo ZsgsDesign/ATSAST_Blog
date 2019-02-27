@@ -152,6 +152,7 @@ class AjaxController extends BaseController
         exit();
     }
     public function actionChangeCate(){
-
+        $articles = new model ("articles");
+        $change_id = arg("aid");
     }
 }

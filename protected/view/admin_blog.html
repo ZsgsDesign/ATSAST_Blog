@@ -148,6 +148,10 @@
                 overflow: hidden;
                 white-space: pre-line;
             }
+            #mainbox{
+                display:flex;
+                align-items:initial;
+            }
         </style>
     </head>
     <body>
@@ -184,6 +188,7 @@
                 </div>
             </nav>            
         </div>
+        <div class="container" id="mainbox">
             <div class="left_box">
                 <ul class="aside"id="nav-info">
                     <li class="router-link"><i class="material-icons" style="margin-top:10px;">
@@ -282,7 +287,7 @@
                                                             <h3 class="text-left"><a href='http://<{$MAIN_PAGE}>/page/article?aid=<{$atc["aid"]}>&?uid=<{$user_info["uid"]}>' style="color:#FB7299;"><{$atc["title"]}></a></h3>
                                                             <p class="text-long"><{$atc["text"]}></p>
                                                             <p class="text-right"><small>修改于<{$atc["time"]}> / <{if $atc["isdraft"] == 0}> 已发表 <{else}> 草稿 <{/if}></small></p>
-                                                            <button class="btn btn-primary" onclick="changecate()" style="float:right;">更改分类</button>
+                                                            <button class="btn btn-primary dropdown-toggle" id="drop" style="float:right;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">更改分类</button>
                                                         </div>
                                                         <{/foreach}>
                                                     </div>
@@ -393,6 +398,7 @@
                       </div>
                     </div>
                   </div>
+                  </div>
         <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
     </body>
@@ -420,7 +426,7 @@
             });
         }
         function changecate(){
-    
+            $.post("http://<{$MAIN_PAGE}>/ajax/")
         }
         function delcate(){
             $.post("http://<{$MAIN_PAGE}>/ajax/DelCate",{
