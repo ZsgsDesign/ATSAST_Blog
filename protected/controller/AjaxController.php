@@ -47,24 +47,30 @@ class AjaxController extends BaseController
         }
         //$this->jump("{$this->MAIN_PAGE}/admin/blog");
     }
-    public function actionRateUpArticle(){
+
+    public function actionRateUpArticle()
+    {
         $articles = new model ("articles");
-        $row = $articles->find(array("aid=:aid",":aid"=>arg("AID")));
+        $row = $articles->find(array("aid=:aid",":aid"=>arg("aid")));
         $this->now_rate = $row["rate_up"];
         $art_up = new model ("art_up");
-        $ret = $art_up->query("select * from art_up where aid=:aid and uid=:uid",array(":aid"=>arg("AID")),array(":uid"=>arg("UID")));
-        if($ret){
-            ERR::Catcher(9101);
-            exit;
-        }else{
-            $new_rate_up = array(
-                "aid"=>arg("AID"),
-                "uid"=>arg("UID")
-            );
+        $ret = $art_up->query("select * from art_up where aid=:aid and uid=:uid",array(":aid"=>arg("aid"),":uid"=>$_SESSION["UID"]));
+        if ($ret[0]["aid"]) {
+            $output = [
+                "ret" => 200,
+                "des" => "你已经点过赞了",
+            ];
+            exit(json_encode($output));
+        } else {
+            $new_rate_up = [
+                "aid" => arg("aid"),
+                "uid" => $_SESSION["UID"],
+            ];
             $art_up->create($new_rate_up);
-            $articles->update(array("aid=:aid",":aid"=>arg("AID")),array("rate_up"=>$this->now_rate+1));
+            $articles->update(array("aid=:aid", ":aid" => arg("aid")),array("rate_up" => $this->now_rate+1));
         }
     }
+
     public function actionFollow(){
         
     }
@@ -162,5 +168,26 @@ class AjaxController extends BaseController
         $change_id = arg("aid");
         $changecate = arg("changecate");
         $articles->update(array("aid=:aid",":aid"=>$change_id),array("category"=>$changecate));
+    }
+    public function actionCommentAdd() 
+    {
+        $comments = new model ("comments");
+        $postid = $comments->query("select max(cid) from comments");
+        $new_comment = [
+            "cid" => $postid + 1,
+            "author" => $this->user_name,
+            "text" => arg("text"),
+            "ret_user" => arg("uid"),
+            "time" => date('Y-m-d H:i:s',time()),
+            "status" => 0,
+            "ret_article" => arg("aid"),
+            "rate_up" => 0,
+            "isreply" => arg("reply"),
+        ];
+        $comments->create($new_comment);  
+    }
+    public function actionCommentEdit()
+    {
+        
     }
 }
