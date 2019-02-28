@@ -618,7 +618,7 @@ function drawLink(editor) {
 	var cm = editor.codemirror;
 	var stat = getState(cm);
 	var options = editor.options;
-	var url = "http://";
+	var url = "//";
 	if(options.promptURLs) {
 		url = prompt(options.promptTexts.link);
 		if(!url) {
@@ -635,7 +635,7 @@ function drawImage(editor) {
 	var cm = editor.codemirror;
 	var stat = getState(cm);
 	var options = editor.options;
-	var url = "http://";
+	var url = "//";
 	if(options.promptURLs) {
 		url = prompt(options.promptTexts.image);
 		if(!url) {
@@ -649,7 +649,7 @@ function drawImage(editor) {
  * Action for insert an img.
  */
 function insertImageLink(editor, imgUrl, alt) {
-	var url = imgUrl || "http://";
+	var url = imgUrl || "//";
 	var cm = editor.codemirror;
 	var stat = getState(cm);
 	var options = editor.options;

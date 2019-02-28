@@ -155,7 +155,12 @@ class AjaxController extends BaseController
         exit();
     }
     public function actionChangeCate(){
+        if(!$this->islogin){
+            $this->jump("{$this->MAIN_PAGE}/account/");
+        }
         $articles = new model ("articles");
         $change_id = arg("aid");
+        $changecate = arg("changecate");
+        $articles->update(array("aid=:aid",":aid"=>$change_id),array("category"=>$changecate));
     }
 }

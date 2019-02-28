@@ -29,7 +29,7 @@
             right: 0;
             bottom: 0;
             left: 0;
-            background: url("http://api.dujin.org/bing/1920.php") 0 / cover fixed;
+            background: url("//api.dujin.org/bing/1920.php") 0 / cover fixed;
             opacity:0.5;
             }
             .card{
@@ -113,7 +113,7 @@
         <div style="background-color: black; color:white;">
                         <nav class="navbar navbar-expand-lg bg-dark navbar-dark" style="background-color:black;opacity:0.6;">
                             <i class="material-icons">account_balance</i>
-                            <a class="navbar-brand" href="http://<{$MAIN_PAGE}>">&nbspATSAST BLOG</a>
+                            <a class="navbar-brand" href="//<{$MAIN_PAGE}>">&nbspATSAST BLOG</a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                             </button>
@@ -130,16 +130,16 @@
                                     <h6>&nbsp&nbsp&nbsp<{$user_name}></h6>
                                 </div>
                                 </div>
-                                <a class="dropdown-item" href="http://<{$MAIN_PAGE}>/admin/" style><i class="material-icons md-dark" style="margin-right:10px;">
+                                <a class="dropdown-item" href="//<{$MAIN_PAGE}>/admin/" style><i class="material-icons md-dark" style="margin-right:10px;">
                                         account_circle
                                         </i>个人主页</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="http://<{$MAIN_PAGE}>/account/logout">登出</a>
+                                <a class="dropdown-item text-danger" href="//<{$MAIN_PAGE}>/account/logout">登出</a>
                             </div>
                             </li>
                             <{else}>
                             <li class="nav-item">
-                                <a class="nav-link" href="http://<{$MAIN_PAGE}>/account/">登录 / 注册</a>
+                                <a class="nav-link" href="//<{$MAIN_PAGE}>/account/">登录 / 注册</a>
                             </li>
                             <{/if}>
                             </ul>
@@ -160,7 +160,7 @@
             <label class="sr-only" for="keywords">Search</label>
             <input type="text" class="form-control" id="keywords" placeholder="<{$keywords}>" name="keywords">
         </div>
-        <button type="submit" class="btn btn-primary" onclick="window.location.href='http://<{$MAIN_PAGE}>/search/?keywords='+$('#keywords').val()"><i class="material-icons md-dark">
+        <button type="submit" class="btn btn-primary" onclick="window.location.href='//<{$MAIN_PAGE}>/search/?keywords='+$('#keywords').val()"><i class="material-icons md-dark">
                 search
                 </i></button>
         </form>
@@ -183,7 +183,7 @@
             <div class="col-md-4">
                     <div class="card" id="show-card">
                         <div class="card-header" >
-                            <a href="http://<{$MAIN_PAGE}>/page/article?aid=<{$s['aid']}>&uid=<{$s['uid']}>"><h3><{$s['title']}></h3></a>
+                            <a href="//<{$MAIN_PAGE}>/page/article?aid=<{$s['aid']}>&uid=<{$s['uid']}>"><h3><{$s['title']}></h3></a>
                         </div>
                         <div class="card-body">
                             <p class="text-long"><{$s['text']}></p>
@@ -207,7 +207,7 @@
                 <div class="card" id="show-card">
                         <div class="card-header" id="nav-row">
                                 <img src='<{$avatar[$u["username"]]}>' class="img-thumbnail" id="gravatar-nav" />&nbsp&nbsp&nbsp
-                                <a href="http://<{$MAIN_PAGE}>/page/blog?uid=<{$u['uid']}>"><h3><{$u["username"]}></h3></a>
+                                <a href="//<{$MAIN_PAGE}>/page/blog?uid=<{$u['uid']}>"><h3><{$u["username"]}></h3></a>
                         </div>
                         <!-- todo-->
                 </div>
