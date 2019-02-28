@@ -324,8 +324,14 @@
                 box-sizing: border-box;
             }
         </style>
+        <script>
+            function mdecho(){
+                var hd = $("#md-text").attr("value");
+                document.getElementById("md-text").innerHTML=hd;
+            }
+        </script>
     </head>
-    <body>
+    <body onload="mdecho()">
         <div class="ccontainer-f">
             <div class="card" id="blog-nav">
                 <a class="navbar-brand" href="//<{$MAIN_PAGE}>" style="margin-left:110px;margin-top:4px;margin-bottom: 4px;font-size: 40px;color:#fff;">ATSAST BLOG</a>
@@ -339,20 +345,13 @@
                         <div class="content">
                             <ul>
                                 <li>
-                                    <img src="/src/image/K_Anna.jpg" width="120px" height="120px">
+                                    <img src="<{$gravatar_sp}>" width="120px" height="120px">
                                 </li>
                                 <li>
-                                    <a class="font_s">关注 0 | 粉丝 0</a>
-                                </li>
-                                <li>
-                                    <a class="font_s">关注/取关</a>
+                                    <a href="//<{$MAIN_PAGE}>/page/blog?uid=<{$blog_uid}>" style="color:rgba(251, 114, 153, 0.9);margin-top:10px;">Ta 的 主 页</a>
                                 </li>
                             </ul>
                         </div>
-                    </div>
-                    <div class="aside">
-                            <input type="radio" name="accordion-1" id="sth" />
-                            <label for="sth" class="font"><span>rua!<!----></span></label>
                     </div>
                 </div>
                 <div class="main_box">
@@ -362,7 +361,7 @@
                             <a class="font_ss"><{$art_sp['time']}></a>
                         </div>
                         <div class="box_text">
-                            <a class="font_text"><{$art_sp['text']}></a>
+                            <div class="font_text page-header" id="md-text" value="<{$art_sp['text']}>"></div>
                         </div>
                         <div class="box_function" id="aid" value="<{$art_sp['aid']}>">
                             <div class="function" id="fun_p">
@@ -386,7 +385,7 @@
                         <div class="box_function">
                             <div class="function" id="fun_f_art">
                                 <input type="radio" id="fabu_art" onclick="fabu_art()"/>
-                                <label for="fabu_art" class="font" id="fb_art" value="<{$art_sp['author']}>"><span>发布</span></label>
+                                <label for="fabu_art" class="font" id="fb_art" value="<{$art_sp['uid']}>"><span>发布</span></label>
                             </div>
                         </div>
                         
@@ -395,7 +394,6 @@
                         <{if count($com_sp)==0}>
                         <h3>来发表第一篇评论吧！</h3>
                         <{else}>
-                        
                         <{/if}>
                         
                     </div>
@@ -410,12 +408,26 @@
             
             </div>
         </div>
-        
+        <div class="modal fade" id="failrate" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">提示</h5>
+                    </div>
+                    <div class="modal-body">
+                        你已经点过赞了！
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="refresh()">确定</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
         <script src="//unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
         <script src="//unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
     </body>
     <script>
-        function dianzan(){
+        /*function dianzan(){
             $.post("//<{$MAIN_PAGE}>/ajax/RateUpArticle",{
                 AID:$("#aid").val(),
 
@@ -432,6 +444,22 @@
                     document.getElementById("dz").value="1";
                 }
             });
+        }*/
+        function dianzan(){
+            $.post("http://<{$MAIN_PAGE}>/ajax/RateUpArticle",{
+                aid:$("#aid").attr("value"),
+            },function(data) {
+                if (data) {
+                    $("#failrate").modal("show");
+                    return;
+                }
+                dianzan=Number($("#dianzan").attr("value"))+1;
+                document.getElementById("dz").innerHTML="点赞 "+String(dianzan);
+                document.getElementById("fun_d").style="background: rgba(251, 114, 153, 0.9);color: #fff;border: 1px solid rgba(0, 0, 0, 0.15);";
+            });
+        }
+        function refresh() {
+            location.reload();
         }
         function huifu(){
             $.post("//<$MAIN_PAGE}>/ajax/AddComment",{
@@ -447,11 +475,11 @@
             document.getElementById("pinglun_b").className="pinglun_box_";
         }
         function fabu_art(){
-            $.post("",{
-                CID:0,
-                AID:$("#aid").val(),
-                UID:$("#fb_art").val(),
-                article:document.getElementById("input_p").innerHTML
+            $.post("//<{$MAIN_PAGE}>/ajax/commentadd",{
+                aid:$("#aid").attr("value"),
+                uid:$("#fb_art").attr("value"),
+                text:document.getElementById("input_p").innerHTML,
+                reply:0,
             },function(reslut){
                 alert("发布成功");
                 document.getElementById("input_p").innerHTML="";
