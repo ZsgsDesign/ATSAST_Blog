@@ -1,4 +1,6 @@
 <?php
+require_once(APP_DIR.'/protected/model/PHPMarkdown/Markdown.inc.php');
+use Michelf\Markdown;
 class MainController extends BaseController
 {
     public function actionIndex()

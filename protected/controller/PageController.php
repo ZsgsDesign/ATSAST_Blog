@@ -2,6 +2,8 @@
 /*
 author:Brethland
 */
+require_once(APP_DIR.'/protected/model/PHPMarkdown/Markdown.inc.php');
+use Michelf\Markdown;
 class PageController extends BaseController
 {
     public function actionBlog() {
@@ -39,10 +41,12 @@ class PageController extends BaseController
             $this->jump("<{$this->MAIN_PAGE}>");
         }
         $row = getuserinfo(arg("uid"));
+        $this->gravatar_sp=getgravatar($row["email"]);
         $this->blog_user = $row;
         $this->blog_uid = $row["uid"];
         $articles = new model ("articles");
         $art_s = $articles->query("select * from articles where articles.uid=:uid and articles.isdraft = 0 and articles.aid=:aid order by articles.time desc",array(":uid"=>$row["uid"],":aid"=>arg("aid")));
+        $art_s[0]["text"] = Markdown::defaultTransform($art_s[0]["text"]);
         $this->art_sp = $art_s[0];
         $comments = new model ("comments");
         $com_sp = $comments->query("select * from comments where comments.ret_article=:aid and comments.status = 1 order by comments.rate_up desc",array(":aid"=>arg("aid")));
