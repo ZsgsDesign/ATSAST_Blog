@@ -45,7 +45,7 @@ class AdminController extends BaseController
         }else {
             $this->jump("{$this->MAIN_PAGE}/account/");
         }
-        if(arg("aid")==0){
+        if(arg("aid")==0) {
             $article_title = "silence is golden.";
             $article_text = "Practise makes perfect.";
         }
