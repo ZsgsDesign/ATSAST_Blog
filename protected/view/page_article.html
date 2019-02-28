@@ -3,9 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
-        <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+        <link rel="stylesheet" href="//unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+        <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
         <style>
             article, aside, audio, body, canvas, caption, details, div, figure, footer, header, hgroup, html, iframe, img, mark, menu, nav, object, section, span, summary, table, tbody, td, tfoot, thead, tr, video{
                 border: 0;
@@ -217,26 +217,74 @@
                 float: right;
                 margin-left: 5px;
                 padding: 10px 10px;
-                border: 1px solid rgba(0, 0, 0, 0.15);
-                box-shadow: 0px 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+                border: 1px solid rgba(251, 114, 153, 0.9);
+                box-shadow: 0px 2px 2px 0 rgba(251, 114, 153, 0.9),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
             }
             .ccontainer .main_box .article_box .box_function .function input[type='radio'] {
                 display: none;
             }
             .ccontainer .main_box .article_box .box_function .function:hover{
                 background: rgba(251, 114, 153, 0.9);
+                border: 1px solid rgba(0, 0, 0, 0.15);
                 color: #fff;
             }
             .ccontainer .main_box .article_box .box_function .function .font{
                 font-weight: 200;
             }
             .ccontainer .main_box .pinglun_box{
-                max-height: 0px;
                 opacity: 0;
+                max-height: 0;
                 width: 800px;
                 background-color: #fff;
                 border: 1px solid rgba(0, 0, 0, 0.15);
+                box-shadow: -1px 4px 2px 0 rgba(0,0,0,.14);
+            }
+            .ccontainer .main_box .pinglun_box_{
+                opacity: 1;
+                max-height: 300px;
+                -webkit-transition: all 0.4s;
+                -moz-transition: all 0.4s;
+                -ms-transition: all 0.4s;
+                transition: all 0.4s;
+                margin-top: 20px;
+                padding: 20px 32px 30px;
+                width: 800px;
+                overflow: hidden;
+                background-color: #fff;
+                border: 1px solid rgba(0, 0, 0, 0.15);
                 box-shadow: -1px 4px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+            }
+            .ccontainer .main_box .pinglun_box_ .font_p{
+                font-size: 20px;
+                color: #3d3d3d;
+                font-weight: 400;
+                margin-left: 20px;
+            }
+            .ccontainer .main_box .pinglun_box_ .box_function{
+                padding-top: 5px;
+            }
+            .ccontainer .main_box .pinglun_box_ .box_function .function{
+                float: right;
+                margin-left: 5px;
+                padding: 10px 10px;
+                border: 1px solid rgba(251, 114, 153, 0.9);
+                box-shadow: 0px 2px 2px 0 rgba(251, 114, 153, 0.9);
+            }
+            .ccontainer .main_box .pinglun_box_ .box_function .function input[type='radio'] {
+                display: none;
+            }
+            .ccontainer .main_box .pinglun_box_ .box_function .function:hover{
+                background: rgba(251, 114, 153, 0.9);
+                border: 1px solid rgba(0, 0, 0, 0.15);
+                color: #fff;
+            }
+            .ccontainer .main_box .pinglun_box_ .box_function .function .font{
+                font-weight: 200;
+            }
+            .ccontainer .main_box .pinglun_box_ .box_input{
+                width: 100%;
+                min-height: 150px;
+                border: 1px solid rgba(0, 0, 0, 0.15);
             }
             .ccontainer .main_box .comment_box{
                 margin-top: 20px;
@@ -269,6 +317,7 @@
                 font-weight: 100;
                 color: rgba(0,0,0,.87);
             }
+            
             *, *:before, *:after {
                 -moz-box-sizing: border-box;
                 -webkit-box-sizing: border-box;
@@ -316,7 +365,7 @@
                             <a class="font_text"><{$art_sp['text']}></a>
                         </div>
                         <div class="box_function" id="aid" value="<{$art_sp['aid']}>">
-                            <div class="function">
+                            <div class="function" id="fun_p">
                                 <input type="radio" id="pinglun" onclick="pinglun()">
                                 <label for="pinglun" class="font" id="pl" value="0"><span>评论</span></label>
                             </div>
@@ -325,14 +374,22 @@
                                 <label for="shouchang" class="font" id="shc"><span>收藏</span></label>
                             </div>
                             <div class="function" id="fun_d">
-                                <input type="radio" id="dianzan" onclick="dianzan()"/>
-                                <label for="dianzan" class="font" id="dz" value="<{$art_sp['rate_up']}>"><span>点赞 <{$art_sp['rate_up']}></span></label>
+                                <input type="radio" id="dianzan" onclick="dianzan()" value="<{$art_sp['rate_up']}>"/>
+                                <label for="dianzan" class="font" id="dz" value="0"><span>点赞 <{$art_sp['rate_up']}></span></label>
                             </div>
                         </div>
 
                     </div>
                     <div class="pinglun_box" id="pinglun_b">
-
+                        <h2 class="font_p">有什么想说的呢：</h2>
+                        <textarea class="box_input" id="input_p"></textarea>
+                        <div class="box_function">
+                            <div class="function" id="fun_f_art">
+                                <input type="radio" id="fabu_art" onclick="fabu_art()"/>
+                                <label for="fabu_art" class="font" id="fb_art" value="<{$art_sp['author']}>"><span>发布</span></label>
+                            </div>
+                        </div>
+                        
                     </div>
                     <div class="comment_box">
                         <{if count($com_sp)==0}>
@@ -354,22 +411,30 @@
             </div>
         </div>
         
-        <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
-        <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+        <script src="//unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+        <script src="//unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
     </body>
     <script>
         function dianzan(){
-            $.post("http://<{$MAIN_PAGE}>/ajax/RateUpArticle",{
+            $.post("//<{$MAIN_PAGE}>/ajax/RateUpArticle",{
                 AID:$("#aid").val(),
 
             },function(reslut){
-                dianzan=Number($("#dz").attr("value"))+1;
-                document.getElementById("dz").innerHTML="点赞 "+String(dianzan);
-                document.getElementById("fun_d").style="background: rgba(251, 114, 153, 0.9);color: #fff;";
+                if(Number($("#dz").attr("value"))){
+                    document.getElementById("dz").innerHTML="点赞 "+$("#dianzan").attr("value");
+                    document.getElementById("fun_d").style="background: auto;color: auto;border: 1px solid rgba(251, 114, 153, 0.9);";
+                    document.getElementById("dz").value="0";
+                }
+                else{
+                    dianzan=Number($("#dianzan").attr("value"))+1;
+                    document.getElementById("dz").innerHTML="点赞 "+String(dianzan);
+                    document.getElementById("fun_d").style="background: rgba(251, 114, 153, 0.9);color: #fff;border: 1px solid rgba(0, 0, 0, 0.15);";
+                    document.getElementById("dz").value="1";
+                }
             });
         }
-        function pinglun(){
-            $.post("http://<$MAIN_PAGE}>/ajax/AddComment",{
+        function huifu(){
+            $.post("//<$MAIN_PAGE}>/ajax/AddComment",{
                 CID:0,
                 AID:$("#aid").val(),
                 
@@ -378,12 +443,18 @@
             })
         }
         function pinglun(){
+            document.getElementById("fun_p").style="background: rgba(251, 114, 153, 0.9);color: #fff;border: 1px solid rgba(0, 0, 0, 0.15);";
+            document.getElementById("pinglun_b").className="pinglun_box_";
+        }
+        function fabu_art(){
             $.post("",{
                 CID:0,
                 AID:$("#aid").val(),
-                
+                UID:$("#fb_art").val(),
+                article:document.getElementById("input_p").innerHTML
             },function(reslut){
-                
+                alert("发布成功");
+                document.getElementById("input_p").innerHTML="";
             })
         }
     </script>
