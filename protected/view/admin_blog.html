@@ -71,6 +71,7 @@
             }
             .left_box .aside li.router-link:hover{
                 background: rgba(255, 202, 217, 0.9);
+                color: #fff;
             }
             .aside li.router-link-active .font{
                 color: #fff;
@@ -235,7 +236,7 @@
                                         <div class="container" id="scroll">
                                             <{foreach $art_this_blog as $art}>
                                             <div style="margin-left:10px;margin-top: 16px;">
-                                                <h3 class="text-left"><a href='http://<{$MAIN_PAGE}>/page/article?aid=<{$art["aid"]}>&?uid=<{$user_info["uid"]}>' style="color:#FB7299;"><{$art["title"]}></a></h3>
+                                                <h3 class="text-left"><a href='http://<{$MAIN_PAGE}>/page/article?aid=<{$art["aid"]}>&uid=<{$user_info["uid"]}>' style="color:#FB7299;"><{$art["title"]}></a></h3>
                                                 <p class="text-long"><{$art["text"]}></p>
                                                 <p class="text-right"><small>修改于<{$art["time"]}> / <{if $art["isdraft"] == 0}> 已发表 <{else}> 草稿 <{/if}></small></p>
                                                 <div class="row" id="edit-row">
