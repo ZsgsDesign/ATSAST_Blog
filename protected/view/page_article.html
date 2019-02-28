@@ -230,6 +230,14 @@
             .ccontainer .main_box .article_box .box_function .function .font{
                 font-weight: 200;
             }
+            .ccontainer .main_box .pinglun_box{
+                max-height: 0px;
+                opacity: 0;
+                width: 800px;
+                background-color: #fff;
+                border: 1px solid rgba(0, 0, 0, 0.15);
+                box-shadow: -1px 4px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+            }
             .ccontainer .main_box .comment_box{
                 margin-top: 20px;
                 padding: 20px 32px 30px;
@@ -322,6 +330,9 @@
                         </div>
 
                     </div>
+                    <div class="pinglun_box" id="pinglun_b">
+
+                    </div>
                     <div class="comment_box">
                         <{if count($com_sp)==0}>
                         <h3>来发表第一篇评论吧！</h3>
@@ -374,6 +385,14 @@
         }
         function refresh() {
             location.reload();
+        function pinglun(){
+            $.post("http://<$MAIN_PAGE}>/ajax/AddComment",{
+                CID:0,
+                AID:$("#aid").val(),
+                
+            },function(reslut){
+                
+            })
         }
     </script>
 </html>
