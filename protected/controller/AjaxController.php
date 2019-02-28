@@ -65,6 +65,9 @@ class AjaxController extends BaseController
             $articles->update(array("aid=:aid",":aid"=>arg("AID")),array("rate_up"=>$this->now_rate+1));
         }
     }
+    public function actionFollow(){
+        
+    }
     public function actionRateUpComment(){
         $comments = new model ("comments");
         $row = $comments->find(array("cid=:cid",":cid"=>arg("CID")));
