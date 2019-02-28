@@ -39,7 +39,7 @@ class BaseController extends Controller
     }
     public function jump($url, $delay = 0)
     {
-        echo "<html><head><meta http-equiv='refresh' content='{$delay};url=http://{$url}'></head><body></body></html>";
+        echo "<html><head><meta http-equiv='refresh' content='{$delay};url=//{$url}'></head><body></body></html>";
         exit;
     }
 }

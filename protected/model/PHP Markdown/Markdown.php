@@ -1609,7 +1609,7 @@ class Markdown implements MarkdownInterface {
 			$text = str_replace('&', '&amp;', $text);
 		} else {
 			// Ampersand-encoding based entirely on Nat Irons's Amputator
-			// MT plugin: <http://bumppo.net/projects/amputator/>
+			// MT plugin: <//bumppo.net/projects/amputator/>
 			$text = preg_replace('/&(?!#?[xX]?(?:[0-9a-fA-F]+|\w+);)/',
 								'&amp;', $text);
 		}

@@ -158,7 +158,7 @@
         <div style="background-color: black; color:white;">
             <nav class="navbar navbar-expand-lg bg-dark navbar-dark" style="background-color:black;opacity: 0.6;">
                 <i class="material-icons">account_balance</i>
-                <a class="navbar-brand" href="http://<{$MAIN_PAGE}>">&nbspATSAST BLOG</a>
+                <a class="navbar-brand" href="//<{$MAIN_PAGE}>">&nbspATSAST BLOG</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -167,7 +167,7 @@
                     <ul class="navbar-nav mr-auto"></ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <form action="http://<{$MAIN_PAGE}>/search/result" method="get" class="form-inline my-2 my-lg-0 mundb-inline">
+                            <form action="//<{$MAIN_PAGE}>/search/result" method="get" class="form-inline my-2 my-lg-0 mundb-inline">
                                 <input class="form-control mr-sm-2 atsast-searchBox" name="keywords" type="search" placeholder="搜索" aria-label="搜索">
                             </form>
                         </li>
@@ -181,7 +181,7 @@
                                                 <h6>&nbsp&nbsp&nbsp<{$user_name}></h6>
                                             </div>
                                             </div>
-                                <a class="dropdown-item text-danger" href="http://<{$MAIN_PAGE}>/account/logout">登出</a>
+                                <a class="dropdown-item text-danger" href="//<{$MAIN_PAGE}>/account/logout">登出</a>
                             </div>
                         </li>
                     </ul>
@@ -194,7 +194,7 @@
                     <li class="router-link"><i class="material-icons" style="margin-top:10px;">
                             person
                             </i>&nbsp&nbsp
-                        <a class="font" href="http://<{$MAIN_PAGE}>/admin/">
+                        <a class="font" href="//<{$MAIN_PAGE}>/admin/">
                                     个人资料</a>
                     </li>
                     <li class="router-link">
@@ -213,7 +213,7 @@
                             <i class="material-icons" style="margin-top:10px;">
                                     settings
                                     </i>&nbsp&nbsp
-                            <a class="font" href="http://<{$MAIN_PAGE}>/admin/blog">博客管理</a>
+                            <a class="font" href="//<{$MAIN_PAGE}>/admin/blog">博客管理</a>
                     </li>
                 </ul>
             </div>
@@ -240,11 +240,11 @@
                                         <div class="container" id="scroll">
                                             <{foreach $art_this_blog as $art}>
                                             <div style="margin-left:10px;margin-top: 16px;">
-                                                <h3 class="text-left"><a href='http://<{$MAIN_PAGE}>/page/article?aid=<{$art["aid"]}>&uid=<{$user_info["uid"]}>' style="color:#FB7299;"><{$art["title"]}></a></h3>
+                                                <h3 class="text-left"><a href='//<{$MAIN_PAGE}>/page/article?aid=<{$art["aid"]}>&uid=<{$user_info["uid"]}>' style="color:#FB7299;"><{$art["title"]}></a></h3>
                                                 <p class="text-long"><{$art["text"]}></p>
                                                 <p class="text-right"><small>修改于<{$art["time"]}> / <{if $art["isdraft"] == 0}> 已发表 <{else}> 草稿 <{/if}></small></p>
                                                 <div class="row" id="edit-row">
-                                                <a class="btn btn-primary" href='http://<{$MAIN_PAGE}>/admin/edit?aid=<{$art["aid"]}>'>修改</a>
+                                                <a class="btn btn-primary" href='//<{$MAIN_PAGE}>/admin/edit?aid=<{$art["aid"]}>'>修改</a>
                                                 <button class="btn btn-danger" type="button" id="deleteart" data-toggle="modal" data-target="#deletewarn">删除</button>
                                                 <div class="modal fade" id="deletewarn" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="deleteart">
                                                     <div class="modal-dialog" role="document">
@@ -270,7 +270,7 @@
                                             <{/foreach}>
                                         </div>
                                         <{/if}>
-                                        <a class="btn btn-outline-primary" href='http://<{$MAIN_PAGE}>/admin/edit?aid=0' id="new-button">撰写新文章</a>
+                                        <a class="btn btn-outline-primary" href='//<{$MAIN_PAGE}>/admin/edit?aid=0' id="new-button">撰写新文章</a>
                                     </div>
                                     <div class="tab-pane" id="category" role="tabpanel" aria-labelledby="category-tab">
                                         <h3 class="text-right" style="color:gray;"><strong>你已添加的类别</strong></h3>
@@ -283,11 +283,16 @@
                                             <{else}>
                                                 <div class="card" id="scroll" style="width:40rem;height:20rem;">
                                                     <{foreach $article_incate[$cate] as $atc}>
-                                                    <div style="margin-left:10px;margin-top: 16px;margin-right:16px;">
-                                                            <h3 class="text-left"><a href='http://<{$MAIN_PAGE}>/page/article?aid=<{$atc["aid"]}>&?uid=<{$user_info["uid"]}>' style="color:#FB7299;"><{$atc["title"]}></a></h3>
+                                                    <div style="margin-left:10px;margin-top: 16px;margin-right:16px;" id="atc" value="<{$atc['aid']}>" >
+                                                            <h3 class="text-left"><a href='//<{$MAIN_PAGE}>/page/article?aid=<{$atc["aid"]}>&?uid=<{$user_info["uid"]}>' style="color:#FB7299;"><{$atc["title"]}></a></h3>
                                                             <p class="text-long"><{$atc["text"]}></p>
                                                             <p class="text-right"><small>修改于<{$atc["time"]}> / <{if $atc["isdraft"] == 0}> 已发表 <{else}> 草稿 <{/if}></small></p>
                                                             <button class="btn btn-primary dropdown-toggle" id="drop" style="float:right;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">更改分类</button>
+                                                            <div class="dropdown-menu" aria-labelledby="drop">
+                                                                <{foreach $cate_this_usr as $ccc}> 
+                                                                <button id="cc" class="dropdown-item" type="button" onclick="changecate()" value="<{$ccc}>"><{$ccc}></button>
+                                                                <{/foreach}>
+                                                            </div>
                                                         </div>
                                                         <{/foreach}>
                                                     </div>
@@ -327,8 +332,8 @@
                                                     </div>
                                                     </a>
                                                     <div class="row" id="edit-row">
-                                                    <a class="btn btn-primary" href='http://<{$MAIN_PAGE}>/ajax/comment?cid=<{$com["cid"]}>&action=post'>通过</a>
-                                                    <a class="btn btn-danger" href='http://<{$MAIN_PAGE}>/ajax/comment?cid=<{$com["cid"]}>&action=delete'>删除</a>
+                                                    <a class="btn btn-primary" href='//<{$MAIN_PAGE}>/ajax/comment?cid=<{$com["cid"]}>&action=post'>通过</a>
+                                                    <a class="btn btn-danger" href='//<{$MAIN_PAGE}>/ajax/comment?cid=<{$com["cid"]}>&action=delete'>删除</a>
                                                 </div>
                                                 <{/foreach}>
                                             </ul>
@@ -339,7 +344,7 @@
                                             <{else}>
                                             <ul class="list-group" id="scroll-small">
                                                 <{foreach $com_user_added as $coma}>
-                                                <a class="list-group-item" href='http://<{$MAIN_PAGE}>/page/?aid=<{$coma["ret_article"]}>&?uid=<{$user_info["uid"]}>'>
+                                                <a class="list-group-item" href='//<{$MAIN_PAGE}>/page/?aid=<{$coma["ret_article"]}>&?uid=<{$user_info["uid"]}>'>
                                                     <div class="bmd-list-group-col">
                                                     <h4 class="list-group-item-heading"><{$coma["author"]}></h4>
                                                     <p class="list-group-item-text"><{$coma["text"]}></p>
@@ -398,27 +403,42 @@
                       </div>
                     </div>
                   </div>
+                  <div class="modal fade" id="successcatec" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-sm" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">提示</h5>
+                        </div>
+                        <div class="modal-body">
+                            更改成功！
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="refresh()">确定</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   </div>
         <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
     </body>
     <script type="text/javascript">
         function delart(){
-            $.post("http://<{$MAIN_PAGE}>/ajax/deletearticle",{
+            $.post("//<{$MAIN_PAGE}>/ajax/deletearticle",{
                 aid:$("#delartcon").val()
             },function(result){
                 location.reload();
             });
         }
         function posart(){
-            $.post("http://<{$MAIN_PAGE}>/ajax/postart",{
+            $.post("//<{$MAIN_PAGE}>/ajax/postart",{
                 aid:$("#pst").val()
             },function(result){
                 $('#successpost').modal('show');
             })
         }
         function neocate(){
-            $.post("http://<{$MAIN_PAGE}>/ajax/NeoCate",{
+            $.post("//<{$MAIN_PAGE}>/ajax/NeoCate",{
                 cate:$("#catenew").val()
             },function(result){
                 result = JSON.parse(JSON.stringify(result));
@@ -426,10 +446,16 @@
             });
         }
         function changecate(){
-            $.post("http://<{$MAIN_PAGE}>/ajax/")
+            alert(document.getElementById("cc").value);
+            $.post("//<{$MAIN_PAGE}>/ajax/changecate",{
+                aid:$("#atc").attr("value"),
+                changecate:$("#cc").attr("value"),
+            },function(result){
+                $("#successcatec").modal("show");
+            });
         }
         function delcate(){
-            $.post("http://<{$MAIN_PAGE}>/ajax/DelCate",{
+            $.post("//<{$MAIN_PAGE}>/ajax/DelCate",{
                 cate:$('#catedel').val()
             },function(result){
                 result = JSON.parse(JSON.stringify(result));

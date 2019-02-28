@@ -28,7 +28,7 @@
             right: 0;
             bottom: 0;
             left: 0;
-            background: url("http://api.dujin.org/bing/1920.php") 0 / cover fixed;
+            background: url("//api.dujin.org/bing/1920.php") 0 / cover fixed;
             opacity:0.5;
             }
             .card{
@@ -100,7 +100,7 @@
         <div style="background-color: black; color:white;">
                         <nav class="navbar navbar-expand-lg bg-dark navbar-dark" style="background-color:black;opacity:0.6;">
                             <i class="material-icons">account_balance</i>
-                            <a class="navbar-brand" href="http://<{$MAIN_PAGE}>">&nbspATSAST BLOG</a>
+                            <a class="navbar-brand" href="//<{$MAIN_PAGE}>">&nbspATSAST BLOG</a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                             </button>
@@ -117,16 +117,16 @@
                                     <h6>&nbsp&nbsp&nbsp<{$user_name}></h6>
                                 </div>
                                 </div>
-                                <a class="dropdown-item" href="http://<{$MAIN_PAGE}>/admin/" style><i class="material-icons md-dark" style="margin-right:10px;">
+                                <a class="dropdown-item" href="//<{$MAIN_PAGE}>/admin/" style><i class="material-icons md-dark" style="margin-right:10px;">
                                         account_circle
                                         </i>个人主页</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="http://<{$MAIN_PAGE}>/account/logout">登出</a>
+                                <a class="dropdown-item text-danger" href="//<{$MAIN_PAGE}>/account/logout">登出</a>
                             </div>
                             </li>
                             <{else}>
                             <li class="nav-item">
-                                <a class="nav-link" href="http://<{$MAIN_PAGE}>/account/">登录 / 注册</a>
+                                <a class="nav-link" href="//<{$MAIN_PAGE}>/account/">登录 / 注册</a>
                             </li>
                             <{/if}>
                             </ul>
@@ -142,7 +142,7 @@
             <h1 class="text-center">Search</h1>
             <p class="text-center" id="SearchTitle"><small>You can search anything you want……</small></p>
             <div class="col-md-6 offset-md-3">
-        <form class="form-inline" method="get" id ="searchform" action="http://<{$MAIN_PAGE}>/search/result">
+        <form class="form-inline" method="get" id ="searchform" action="//<{$MAIN_PAGE}>/search/result">
         <div class="form-group">
             <label class="sr-only" for="keywords">Search</label>
             <input type="text" class="form-control" id="keywords" placeholder="Qualis artifex pereo" name="keywords">

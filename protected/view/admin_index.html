@@ -47,7 +47,7 @@
                 height: 100%;
                 bottom: 0%;
                 position: absolute;
-                background: url("http://api.dujin.org/bing/1920.php") 0 / cover fixed;
+                background: url("//api.dujin.org/bing/1920.php") 0 / cover fixed;
             }
             .Showletters{
                 top:30%;
@@ -198,7 +198,7 @@
         <div style="background-color: black; color:white;">
             <nav class="navbar navbar-expand-lg bg-dark navbar-dark" style="background-color:black;opacity: 0.6;">
                 <i class="material-icons">account_balance</i>
-                <a class="navbar-brand" href="http://<{$MAIN_PAGE}>">&nbspATSAST BLOG</a>
+                <a class="navbar-brand" href="//<{$MAIN_PAGE}>">&nbspATSAST BLOG</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -207,7 +207,7 @@
                     <ul class="navbar-nav mr-auto"></ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <form action="http://<{$MAIN_PAGE}>/search/result" method="get" class="form-inline my-2 my-lg-0 mundb-inline">
+                            <form action="//<{$MAIN_PAGE}>/search/result" method="get" class="form-inline my-2 my-lg-0 mundb-inline">
                                 <input class="form-control mr-sm-2 atsast-searchBox" name="keywords" type="search" placeholder="搜索" aria-label="搜索">
                             </form>
                         </li>
@@ -221,7 +221,7 @@
                                                 <h6>&nbsp&nbsp&nbsp<{$user_name}></h6>
                                             </div>
                                             </div>
-                                <a class="dropdown-item text-danger" href="http://<{$MAIN_PAGE}>/account/logout">登出</a>
+                                <a class="dropdown-item text-danger" href="//<{$MAIN_PAGE}>/account/logout">登出</a>
                             </div>
                         </li>
                     </ul>
@@ -250,7 +250,7 @@
                 </ul>
                 <ul class="aside">
                     <li class="router-link">
-                        <a class="font" href="http://<{$MAIN_PAGE}>/admin/blog"><i class="material-icons" style="margin-top:10px;">
+                        <a class="font" href="//<{$MAIN_PAGE}>/admin/blog"><i class="material-icons" style="margin-top:10px;">
                                 settings
                                 </i>&nbsp&nbsp博客管理</a>
                     </li>
@@ -265,7 +265,7 @@
                         </div>
                         <div class="other_info">
                             <div class="info_link">
-                                <a class="font" href="http://<{$MAIN_PAGE}>/page/blog?uid=<{$user_info['uid']}>">我的博客</a>
+                                <a class="font" href="//<{$MAIN_PAGE}>/page/blog?uid=<{$user_info['uid']}>">我的博客</a>
                             </div>
                             <div class="info_hot">
                                 <span style="color:#4d4d4d;font-size: 14px;margin-right: 16px;">关注 0</span>
