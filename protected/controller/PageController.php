@@ -14,6 +14,9 @@ class PageController extends BaseController
         $row = getuserinfo(arg("uid"));
         $this->blog_user = $row;
         $this->blog_uid = $row["uid"];
+        $this->gravatar_blog=getgravatar($row["email"]);
+        $this->introduction_blog = $row["introduction"];
+        $this->gender_blog = $row["gender"];
         $category = new model("category");
         $category_thisusr = $category->find(array("uid=:uid",":uid"=>$row["uid"]));
         $this->category_thisusr= $temp = explode(",",$category_thisusr["category"]);
@@ -44,6 +47,7 @@ class PageController extends BaseController
         $this->gravatar_sp=getgravatar($row["email"]);
         $this->blog_user = $row;
         $this->blog_uid = $row["uid"];
+        $this->gender_sp = $row["gender"];
         $articles = new model ("articles");
         $art_s = $articles->query("select * from articles where articles.uid=:uid and articles.isdraft = 0 and articles.aid=:aid order by articles.time desc",array(":uid"=>$row["uid"],":aid"=>arg("aid")));
         $art_s[0]["text"] = Markdown::defaultTransform($art_s[0]["text"]);

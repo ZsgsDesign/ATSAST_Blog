@@ -200,4 +200,14 @@ class AjaxController extends BaseController
             $comments->delete(array("cid=:cid",":cid"=>$change_cid));
         }
     }
+    public function actionProfileEdit()
+    {
+        if(!$this->islogin){
+            $this->jump("{$this->MAIN_PAGE}/account/");
+        }
+        $users = new model ("users");
+        $gender = arg("gender");
+        $introduction = arg("introduction");
+        $users->update(array("uid=:uid",":uid"=>$_SESSION["UID"]),array("gender"=>$gender,"introduction"=>$introduction));
+    }
 }
