@@ -216,11 +216,11 @@
             .ccontainer .main_box .article_box .box_function .function{
                 float: right;
                 margin-left: 5px;
-                padding: 10px 10px;
                 border: 1px solid rgba(251, 114, 153, 0.9);
                 box-shadow: 0px 2px 2px 0 rgba(251, 114, 153, 0.9),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
             }
             .ccontainer .main_box .article_box .box_function .function label{
+                padding: 10px 10px;
                 width: 100%;
                 cursor: pointer;
             }
@@ -297,10 +297,94 @@
             .ccontainer .main_box .comment_box{
                 margin-top: 20px;
                 padding: 20px 32px 30px;
+                overflow: hidden;
                 width: 800px;
                 background-color: #fff;
+                float: left;
                 border: 1px solid rgba(0, 0, 0, 0.15);
                 box-shadow: -1px 4px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+            }
+            .ccontainer .main_box .comment_box .box_comment{
+                overflow: hidden;
+            }
+            .ccontainer .main_box .comment_box .box_comment .box_cauthor{
+                padding-bottom: 5px;
+                line-height: 20px;
+            }
+            .ccontainer .main_box .comment_box .box_comment .box_ctext{
+                line-height: 15px;
+            }
+            .ccontainer .main_box .comment_box .box_comment .box_function .function{
+                float: right;
+                margin-left: 5px;
+                padding: 0px 10px;
+            }
+            .ccontainer .main_box .comment_box .box_comment .box_function .function input[type='radio'] {
+                display: none;
+            }
+            .ccontainer .main_box .comment_box .box_comment .box_function .function:hover{
+                color: rgba(251, 114, 153, 0.9);
+            }
+            .ccontainer .main_box .comment_box .box_comment .box_function .function .font{
+                font-weight: 200;
+            }
+            .ccontainer .main_box .comment_box .box_comment .huifu_box{
+                opacity: 0;
+                max-height: 0;
+                margin-top: 20px;
+                -webkit-transition: all 0.4s;
+                -moz-transition: all 0.4s;
+                -ms-transition: all 0.4s;
+                transition: all 0.4s;
+            }
+            .ccontainer .main_box .comment_box .box_comment .huifu_box .box_input{
+                max-height: 0px;
+            }
+            .ccontainer .main_box .comment_box .box_comment .huifu_box textarea{
+                display: none;
+            }
+            .ccontainer .main_box .comment_box .box_comment .huifu_box .box_function .function{
+                max-height: 0px;
+                
+            }
+            .ccontainer .main_box .comment_box .box_comment .huifu_box_{
+                opacity: 1;
+                max-height: 300px;
+                -webkit-transition: all 0.4s;
+                -moz-transition: all 0.4s;
+                -ms-transition: all 0.4s;
+                transition: all 0.4s;
+                padding: 5px 5px 5px;
+                width: 100%;
+                overflow: hidden;
+                background-color: rgba(230, 230, 230, 0.53);
+                border: 1px solid rgba(0, 0, 0, 0.15);
+            }
+            .ccontainer .main_box .comment_box .box_comment .huifu_box_ .box_function{
+                float: left;
+            }
+            .ccontainer .main_box .comment_box .box_comment .huifu_box_ .box_function .function{
+                float: right;
+                margin-left: 5px;
+                padding: 10px 10px;
+                border: 1px solid rgba(251, 114, 153, 0.9);
+                box-shadow: 0px 2px 2px 0 rgba(251, 114, 153, 0.9);
+            }
+            .ccontainer .main_box .comment_box .box_comment .huifu_box_ .box_function .function input[type='radio'] {
+                display: none;
+            }
+            .ccontainer .main_box .comment_box .box_comment .huifu_box_ .box_function .function:hover{
+                background: rgba(251, 114, 153, 0.9);
+                border: 1px solid rgba(0, 0, 0, 0.15);
+                color: #fff;
+            }
+            .ccontainer .main_box .comment_box .box_comment .huifu_box_ .box_function .function .font{
+                font-weight: 200;
+            }
+            .ccontainer .main_box .comment_box .box_comment .huifu_box_ .box_input{
+                width: 90%;
+                float: left;
+                border: 1px solid rgba(0, 0, 0, 0.15);
             }
             .ccontainer .right_box{
                 min-height: 95%;
@@ -373,16 +457,16 @@
                         </div>
                         <div class="box_function" id="aid" value="<{$art_sp['aid']}>">
                             <div class="function" id="fun_p">
-                                <input type="radio" id="pinglun">
-                                <label for="pinglun" class="font" id="pl" value="0" onclick="pinglun()"><span>评论</span></label>
+                                <input type="radio" id="pinglun" onclick="pinglun()">
+                                <label for="pinglun" class="font" id="pl" value="0"><span>评论</span></label>
                             </div>
                             <div class="function">
-                                <input type="radio" id="shoucang"/>
-                                <label for="shouchang" class="font" id="shc" onclick="shoucang()"><span>收藏</span></label>
+                                <input type="radio" id="shoucang" onclick="shoucang()"/>
+                                <label for="shouchang" class="font" id="shc"><span>收藏</span></label>
                             </div>
                             <div class="function" id="fun_d">
-                                <input type="radio" id="dianzan" value="<{$art_sp['rate_up']}>"/>
-                                <label for="dianzan" class="font" id="dz" value="0" onclick="dianzan()"><span>点赞 <{$art_sp['rate_up']}></span></label>
+                                <input type="radio" id="dianzan" value="<{$art_sp['rate_up']}>" onclick="dianzan()"/>
+                                <label for="dianzan" class="font" id="dz" value="0"><span>点赞 <{$art_sp['rate_up']}></span></label>
                             </div>
                         </div>
 
@@ -402,6 +486,40 @@
                         <{if count($com_sp)==0}>
                         <h3>来发表第一篇评论吧！</h3>
                         <{else}>
+                            <{foreach $com_sp as $com}>
+                                <div class="box_comment" id="cid" value="<{$com['cid']}>">
+                                    <div class="box_cauthor">
+                                        <a class="font"><{$com['author']}>:</a>
+                                    </div>
+                                    <div class="box_ctext">
+                                        <a class="font"><{$com['text']}></a>
+                                    </div>
+                                    <div class="box_function">
+                                        <div class="function" id="fun_h_<{$com['cid']}>">
+                                            <input type="radio" id="huifu_<{$com['cid']}>">
+                                            <label for="huifu_<{$com['cid']}>" class="font" id="hf_<{$com['cid']}>" value="0" onclick="huifu(<{$com['cid']}>)"><span>回复</span></label>
+                                        </div>
+                                        <div class="function" id="fun_d_c_<{$com['cid']}>">
+                                            <input type="radio" id="dianzan_c_<{$com['cid']}>" value="<{$art_sp['rate_up']}>"/>
+                                            <label for="dianzan_c_<{$com['cid']}>" class="font" id="dz_c_<{$com['cid']}>" value="0" onclick="dianzan_c(<{$com['cid']}>)"><span>点赞 <{$com['rate_up']}></span></label>
+                                        </div>
+                                        <a class="font_ss"><{$art_sp['time']}></a>
+                                    </div>
+                                    <div class="huifu_box_" id="huifu_b_<{$com['cid']}>">
+                                        <textarea class="box_input" id="input_p_<{$com['cid']}>"></textarea>
+                                        <div class="box_function">
+                                            <div class="function" id="fun_f_art_<{$com['cid']}>">
+                                                <input type="radio" id="fabu_art_<{$com['cid']}>" onclick="fabu_c(<{$com['cid']}>)"/>
+                                                <label for="fabu_art_<{$com['cid']}>" class="font" id="fb_art_<{$com['cid']}>" value="<{$art_sp['uid']}>"><span>发射</span></label>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="line"></div>
+                                
+                            <{/foreach}>
                         <{/if}>
                         
                     </div>
@@ -481,17 +599,35 @@
                 document.getElementById("fun_d").style="background: rgba(251, 114, 153, 0.9);color: #fff;border: 1px solid rgba(0, 0, 0, 0.15);";
             });
         }
+        function dianzan_c(ccid){
+            $.post("http://<{$MAIN_PAGE}>/ajax/RateUpComment",{
+                cid:$("#cid").attr("value"),
+            },function(data) {
+                if (data) {
+                    $("#failrate").modal("show");
+                    return;
+                }
+                dianzan=Number($("#dianzan_c_"+ccid).attr("value"))+1;
+                document.getElementById("dz_c_"+ccid).innerHTML="点赞 "+String(dianzan);
+                document.getElementById("fun_d_c_"+ccid).style="color: rgba(251, 114, 153, 0.9);";
+            });
+        }
         function refresh() {
             location.reload();
         }
-        function huifu(){
-            $.post("//<$MAIN_PAGE}>/ajax/AddComment",{
-                CID:0,
-                AID:$("#aid").val(),
+        function huifu(ccid){
+            if(Number($("#hf_"+ccid).attr("value"))){
                 
-            },function(reslut){
+                $("#fun_h_"+ccid).attr("style","color: auto;");
+                $("#huifu_b_"+ccid).attr("class","huifu_box");
+                $("#hf_"+ccid).attr("value","0");
+            }else{
                 
-            });
+                $("#fun_h_"+ccid).attr("style","color: rgba(251, 114, 153, 0.9);");
+                $("#huifu_b_"+ccid).attr("class","huifu_box_");
+                $("#hf_"+ccid).attr("value","1");
+            }
+            
         }
         function pinglun(){
             if(Number($("#pl").attr("value"))){
@@ -513,6 +649,17 @@
                 uid:$("#fb_art").attr("value"),
                 text:$("#input_p").val(),
                 reply:0,
+            },function(data){
+                $("#postcomment").modal("show");
+                location.reload();
+            });
+        }
+        function fabu_c(ccid){
+            $.post("//<{$MAIN_PAGE}>/ajax/CommentAdd",{
+                aid:$("#aid_"+ccid).attr("value"),
+                uid:$("#fb_art_"+ccid).attr("value"),
+                text:$("#input_p_"+ccid).val(),
+                reply:ccid,
             },function(data){
                 $("#postcomment").modal("show");
                 location.reload();
