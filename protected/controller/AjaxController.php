@@ -79,7 +79,7 @@ class AjaxController extends BaseController
         $row = $comments->find(array("cid=:cid",":cid"=>arg("cid")));
         $this->now_rate = $row["rate_up"];
         $com_up = new model ("com_up");
-        $ret = $com_up->query("select * from com_up where cid=:cid and uid=:uid",array(":cid"=>arg("cid")),array(":uid"=>$_SESSION["UID"]));
+        $ret = $com_up->query("select * from com_up where cid=:cid and uid=:uid",array(":cid"=>arg("cid"),":uid"=>$_SESSION["UID"]));
         if(count($ret) != 0){
             $output = [
                 "ret" => 200,
