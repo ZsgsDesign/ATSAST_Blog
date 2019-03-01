@@ -25,7 +25,7 @@ class AccountController extends BaseController
                     }
                     else{
                         $_SESSION['UID']=$row['uid'];
-                        echo "<script>alert('登录成功');location='//{$this->MAIN_PAGE}/'</script>";
+                        echo "<script>location='//{$this->MAIN_PAGE}/'</script>";
                     }
                 }else{
                     echo "<script>alert('您输入的用户名不存在');location='//{$this->MAIN_PAGE}/account/'</script>";
@@ -72,7 +72,7 @@ class AccountController extends BaseController
                     $category->create($cate);
                     $users->create($new_usr);
                     $_SESSION["UID"] = $nowuid[0]['max(uid)']+1;
-                    echo "<script>alert('您已注册成功');location='//{$this->MAIN_PAGE}/'</script>";
+                    echo "<script>alert('注册成功！');location='//{$this->MAIN_PAGE}/'</script>";
                     exit;
                 }
             }

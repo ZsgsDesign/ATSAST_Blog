@@ -10,6 +10,8 @@ class AdminController extends BaseController
         }else {
             $this->jump("{$this->MAIN_PAGE}/account/");
         }
+        $this->gender = $usr_info['gender']==1?'♂':'♀';
+        $this->introduction = $usr_info['introduction'];
     }
     public function actionBlog() {
         if($this->islogin){

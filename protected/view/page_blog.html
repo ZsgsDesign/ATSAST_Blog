@@ -73,12 +73,13 @@
         <div class="col-md-12">
             <div class="card" id="blog-nav">
                 <a class="navbar-brand" href="//<{$MAIN_PAGE}>" style="margin-left:16px;margin-top:16px;color:#fff;"><h1>ATSAST BLOG</h1></a>
-                <div>
+                <div><img src="<{$gravatar_blog}>" width="40px"style="float:left;opacity:0.9;margin-bottom:10px;margin-left:10px;">
                 <h5 style="margin-left:16px;margin-bottom: 16px;margin-top:6px;float:left;color:#fff;"><{$blog_user["username"]}>的博客</h5>
                 <{if $blog_user["uid"]!=$_SESSION["UID"]}>
                 <button class="btn btn-outline-secondary" style="float:right;margin-right: 16px;margin-bottom:16px;">关注</button>
-                </div>
+                
                 <{/if}>
+            </div>
             </div>
         </div>
         <div class="container">
@@ -148,6 +149,12 @@
                                     <{/if}>
                                 </div>
                                 <div class="tab-pane" id="introduction" role="tabpanel" aria-labelledby="introduction-tab">
+                                    <h4 style="color:rgba(251, 114, 153,1);margin-top: 20px;margin-left: 30px;"><{$blog_user["username"]}>是个<{if $gender_blog == 1}>可爱的男孩子♂<{else}>可爱的女孩子♀<{/if}></h4>
+                                    <{if $introduction_blog == ""}>
+                                    <h2 class="text-center" style="color:grey;margin-top:20px;">这位用户很懒，不想写什么……</h2>
+                                    <{else}>
+                                    <p class="text-left" style="margin-top:20px;margin-left:30px;white-space: pre-line;color:darkgrey;"><{$introduction_blog}></p>
+                                    <{/if}>
                                 </div>
                         </div>
                 </div>

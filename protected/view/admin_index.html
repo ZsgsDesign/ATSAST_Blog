@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <title>个人资料</title>
         <style type="text/css"></style>
         <style>
@@ -136,14 +137,12 @@
             }
             .container .main_box .user_info .other_info .info_link{
                 margin-top: 16px;
-                overflow: hidden;
+                
                 height: 20px;
                 line-height: 20px;
+                
             }
-            .container .main_box .user_info .other_info .info_link{
-                height: 20px;
-                line-height: 20px;
-            }
+            
             .container .main_box .user_info .other_info .info_link .font{
                 float: right;
                 font-size: 14px;
@@ -160,7 +159,6 @@
             .container .main_box .user_info .other_info .info_nick{
                 height: 32px;
                 line-height: 32px;
-                overflow: hidden;
             }
             .container .main_box .user_info .other_info .info_self .common{
                 height: 32px;
@@ -172,9 +170,8 @@
                 margin-bottom: 8px;
             }
             .container .main_box .user_info .other_info .info_self .intro{
+                margin-top:9px;
                 font-size: 14px;
-                color: #4d4d4d;
-                overflow: hidden;
             }
             #gravatar-nav{
                 width:60px;
@@ -266,24 +263,52 @@
                         </div>
                         <div class="other_info">
                             <div class="info_link">
-                                <a class="font" href="//<{$MAIN_PAGE}>/page/blog?uid=<{$user_info['uid']}>">我的博客</a>
+                                <a class="font btn btn-primary" href="//<{$MAIN_PAGE}>/page/blog?uid=<{$user_info['uid']}>">我的博客</a>
                             </div>
                             <div class="info_hot">
-                                <span style="color:#4d4d4d;font-size: 14px;margin-right: 16px;">关注 0</span>
+                                <span style="color:rgb(251, 114, 153);font-size: 14px;margin-right: 16px;">关注 0</span>
                                 <span style="color:#ccc;margin-right: 16px;"></span>
-                                <span style="color:#4d4d4d;font-size: 14px;margin-right: 8px;">zl币 0</span>
+                                <span style="color:rgb(251, 114, 153);font-size: 14px;margin-right: 8px;">ZL币 0</span>
                                 <span style="color:#27bcf7;font-size: 14px;margin: 0;cursor: pointer;">充值</span>
+                                
                             </div>
                             <div class="line"></div>
                             <div class="info_nick">
-                                <span style="color:#4d4d4d;font-size: 14px;float:left;">昵称： <{$user_info["username"]}></span>
-                                <span style="color:#27bcf7;font-size: 14px;float:right;">修改</span>
+                                <span style="color:rgb(251, 114, 153);font-size: 14px;float:left;">昵称:&nbsp&nbsp&nbsp&nbsp</span><p><{$user_info["username"]}></p>
+                                <button class="btn btn-primary"style="color:#27bcf7;font-size: 14px;float:right;" id="edit" data-toggle="modal" data-target="#editinput">修改</button>
                             </div>
+                            <div class="modal fade" id="editinput" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="edit">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="gender" class="bmd-label-floating">性别</label>
+                                                <select class="form-control" id="gender" style="width:75%;">
+                                                  <option active>可爱的男孩子♂</option>
+                                                  <option>可爱的女孩子♀</option>
+                                                  <option disabled>女装大佬（？？？</option>
+                                                </select>
+                                              </div>  
+                                              <div class="form-group">
+                                                <label for="introduction" class="bmd-label-floating">简介</label><br>
+                                                <label style="font-size: 10px;color:rgb(251, 114, 153)" class="bmd-label-floating">这将被用在你的博客个人简介中。</label>
+                                                <textarea class="form-control" id="introduction" rows="3"><{$introduction}></textarea>
+                                              </div>                                          
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                                      <button type="button" class="btn btn-primary" id="postprofile" onclick="profile()">保存</button>
+                                    </div>
+                                  </div>
+                                </div>
+                        </div>
                             <ul class="info_self">
-                                <li class="common last">性别：</li>
+                                <span style="color:rgb(251, 114, 153);font-size: 14px;">性别:&nbsp&nbsp&nbsp&nbsp</span><{$gender}>
                                 <li class="intro">
-                                    <span style="float:left;">简介：</span>
-                                    <span style="float:left;width: 70%"></span>
+                                    <h3 class="text-left" style="color:rgb(251, 114, 153);">简介:</h3>
+                                    <p id="text-left" style="margin-top:16px;white-space: pre-line;color:darkgray;"><{$introduction}></p>
                                 </li>
                             </ul>
                         </div>
@@ -295,9 +320,17 @@
             </div>
         </div>
         
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
     </body>
-
+<script>
+    function profile(){
+        $.post("//<{$MAIN_PAGE}>/ajax/profileedit",{
+            gender:$("#gender").val()=="可爱的男孩子♂"?1:0,
+            introduction:$("#introduction").val(),
+        },function(data){
+            location.reload();
+        });
+    } 
+</script>
 </html>
