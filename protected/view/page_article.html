@@ -601,7 +601,7 @@
             });
         }*/
         function dianzan(){
-            $.post("http://<{$MAIN_PAGE}>/ajax/RateUpArticle",{
+            $.post("//<{$MAIN_PAGE}>/ajax/RateUpArticle",{
                 aid:$("#aid").attr("value"),
             },function(data) {
                 if (data) {
@@ -614,7 +614,7 @@
             });
         }
         function dianzan_c(ccid){
-            $.post("http://<{$MAIN_PAGE}>/ajax/RateUpComment",{
+            $.post("//<{$MAIN_PAGE}>/ajax/RateUpComment",{
                 cid:ccid,
             },function(data) {
                 if (data) {
