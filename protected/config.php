@@ -46,7 +46,7 @@ $domain = array(
         ),
     ),
     "blog.winter.mundb.xyz" => array( // 生产配置(暂时还不是)
-        'debug' => 1,
+        'debug' => 0,
         'maintain' => 0,
         'mysql' => array(
             'MYSQL_HOST' => "localhost",
