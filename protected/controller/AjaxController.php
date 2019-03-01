@@ -76,20 +76,23 @@ class AjaxController extends BaseController
     }
     public function actionRateUpComment(){
         $comments = new model ("comments");
-        $row = $comments->find(array("cid=:cid",":cid"=>arg("CID")));
+        $row = $comments->find(array("cid=:cid",":cid"=>arg("cid")));
         $this->now_rate = $row["rate_up"];
         $com_up = new model ("com_up");
-        $ret = $com_up->query("select * from com_up where cid=:cid and uid=:uid",array(":cid"=>arg("CID")),array(":uid"=>arg("UID")));
-        if($ret){
-            ERR::Catcher(9102);
-            exit;
+        $ret = $com_up->query("select * from com_up where cid=:cid and uid=:uid",array(":cid"=>arg("cid")),array(":uid"=>$_SESSION["UID"]));
+        if(count($ret) != 0){
+            $output = [
+                "ret" => 200,
+                "des" => "你已经点过赞了",
+            ];
+            exit("1");
         }else{
-            $new_rate_up = array(
-                "cid"=>arg("CID"),
-                "uid"=>arg("UID")
-            );
+            $new_rate_up = [
+                "cid"=>arg("cid"),
+                "uid"=>$_SESSION["UID"]
+            ];
             $com_up->create($new_rate_up);
-            $comments->update(array("cid=:cid",":cid"=>arg("CID")),array("rate_up"=>$this->now_rate+1));
+            $comments->update(array("cid=:cid",":cid"=>arg("cid")),array("rate_up" => $this->now_rate+1));
         }
     }
     public function actionPostart(){
