@@ -475,14 +475,14 @@
             document.getElementById("pinglun_b").className="pinglun_box_";
         }
         function fabu_art(){
-            $.post("//<{$MAIN_PAGE}>/ajax/commentadd",{
+            $.post("//<{$MAIN_PAGE}>/ajax/CommentAdd",{
                 aid:$("#aid").attr("value"),
                 uid:$("#fb_art").attr("value"),
-                text:document.getElementById("input_p").innerHTML,
+                text:$("#input_p").val(),
                 reply:0,
-            },function(reslut){
+            },function(data){
                 alert("发布成功");
-                document.getElementById("input_p").innerHTML="";
+                location.reload();
             });
         }
     </script>
