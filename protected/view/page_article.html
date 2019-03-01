@@ -220,6 +220,10 @@
                 border: 1px solid rgba(251, 114, 153, 0.9);
                 box-shadow: 0px 2px 2px 0 rgba(251, 114, 153, 0.9),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
             }
+            .ccontainer .main_box .article_box .box_function .function label{
+                width: 100%;
+                cursor: pointer;
+            }
             .ccontainer .main_box .article_box .box_function .function input[type='radio'] {
                 display: none;
             }
@@ -234,6 +238,10 @@
             .ccontainer .main_box .pinglun_box{
                 opacity: 0;
                 max-height: 0;
+                -webkit-transition: all 0.4s;
+                -moz-transition: all 0.4s;
+                -ms-transition: all 0.4s;
+                transition: all 0.4s;
                 width: 800px;
                 background-color: #fff;
                 border: 1px solid rgba(0, 0, 0, 0.15);
@@ -365,16 +373,16 @@
                         </div>
                         <div class="box_function" id="aid" value="<{$art_sp['aid']}>">
                             <div class="function" id="fun_p">
-                                <input type="radio" id="pinglun" onclick="pinglun()">
-                                <label for="pinglun" class="font" id="pl" value="0"><span>评论</span></label>
+                                <input type="radio" id="pinglun">
+                                <label for="pinglun" class="font" id="pl" value="0" onclick="pinglun()"><span>评论</span></label>
                             </div>
                             <div class="function">
-                                <input type="radio" id="shoucang" onclick="shoucang()"/>
-                                <label for="shouchang" class="font" id="shc"><span>收藏</span></label>
+                                <input type="radio" id="shoucang"/>
+                                <label for="shouchang" class="font" id="shc" onclick="shoucang()"><span>收藏</span></label>
                             </div>
                             <div class="function" id="fun_d">
-                                <input type="radio" id="dianzan" onclick="dianzan()" value="<{$art_sp['rate_up']}>"/>
-                                <label for="dianzan" class="font" id="dz" value="0"><span>点赞 <{$art_sp['rate_up']}></span></label>
+                                <input type="radio" id="dianzan" value="<{$art_sp['rate_up']}>"/>
+                                <label for="dianzan" class="font" id="dz" value="0" onclick="dianzan()"><span>点赞 <{$art_sp['rate_up']}></span></label>
                             </div>
                         </div>
 
@@ -385,7 +393,7 @@
                         <div class="box_function">
                             <div class="function" id="fun_f_art">
                                 <input type="radio" id="fabu_art" onclick="fabu_art()"/>
-                                <label for="fabu_art" class="font" id="fb_art" value="<{$art_sp['uid']}>"><span>发布</span></label>
+                                <label for="fabu_art" class="font" id="fb_art" value="<{$art_sp['uid']}>"><span>发射</span></label>
                             </div>
                         </div>
                         
@@ -416,6 +424,21 @@
                     </div>
                     <div class="modal-body">
                         你已经点过赞了！
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="refresh()">确定</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="postcomment" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">提示</h5>
+                    </div>
+                    <div class="modal-body">
+                        发射成功！
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="refresh()">确定</button>
@@ -468,11 +491,21 @@
                 
             },function(reslut){
                 
-            })
+            });
         }
         function pinglun(){
-            document.getElementById("fun_p").style="background: rgba(251, 114, 153, 0.9);color: #fff;border: 1px solid rgba(0, 0, 0, 0.15);";
-            document.getElementById("pinglun_b").className="pinglun_box_";
+            if(Number($("#pl").attr("value"))){
+                
+                $("#fun_p").attr("style","background: auto;color: auto;border: 1px solid rgba(251, 114, 153, 0.9);");
+                $("#pinglun_b").attr("class","pinglun_box");
+                $("#pl").attr("value","0");
+            }else{
+                
+                $("#fun_p").attr("style","background: rgba(251, 114, 153, 0.9);color: #fff;border: 1px solid rgba(0, 0, 0, 0.15);");
+                $("#pinglun_b").attr("class","pinglun_box_");
+                $("#pl").attr("value","1");
+            }
+            
         }
         function fabu_art(){
             $.post("//<{$MAIN_PAGE}>/ajax/CommentAdd",{
@@ -481,7 +514,7 @@
                 text:$("#input_p").val(),
                 reply:0,
             },function(data){
-                alert("发布成功");
+                $("#postcomment").modal("show");
                 location.reload();
             });
         }

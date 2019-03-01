@@ -188,6 +188,16 @@ class AjaxController extends BaseController
     }
     public function actionCommentEdit()
     {
-        
+        if(!$this->islogin){
+            $this->jump("{$this->MAIN_PAGE}/account/");
+        }
+        $comments= new model("comments");
+        $action = arg("action");
+        $change_cid = arg("cid");
+        if ($action == "post") {
+            $comments->update(array("cid=:cid",":cid"=>$change_cid),array("status"=>1));
+        }else{
+            $comments->delete(array("cid=:cid",":cid"=>$change_cid));
+        }
     }
 }
