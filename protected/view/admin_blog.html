@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
-        <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <title>个人资料</title>
-        <style type="text/css"></style>
-        <style>
-            #scroll::-webkit-scrollbar { width: 0 !important }
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+        integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <title>个人资料</title>
+    <style type="text/css"></style>
+    <style>
+        #scroll::-webkit-scrollbar { width: 0 !important }
             #scroll-small::-webkit-scrollbar { width: 0 !important }
             article, aside, audio, body, canvas, caption, details, div, figure, footer, header, hgroup, html, iframe, img, mark, menu, nav, object, section, span, summary, table, tbody, td, tfoot, thead, tr, video{
                 border: 0;
@@ -157,359 +159,507 @@
                 align-items:initial;
             }
         </style>
-    </head>
-    <body>
-        <div style="background-color: black; color:white;">
-            <nav class="navbar navbar-expand-lg bg-dark navbar-dark" style="background-color:black;opacity: 0.6;">
-                <i class="material-icons">account_balance</i>
-                <a class="navbar-brand" href="//<{$MAIN_PAGE}>">&nbspATSAST BLOG</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+</head>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto"></ul>
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <form action="//<{$MAIN_PAGE}>/search/result" method="get" class="form-inline my-2 my-lg-0 mundb-inline">
-                                <input class="form-control mr-sm-2 atsast-searchBox" name="keywords" type="search" placeholder="搜索" aria-label="搜索">
-                            </form>
-                        </li>
-                    
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><{$greeting}>！<{$user_name}></a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                    <div class="dropdown-header">
-                                            <div class="row" id="row-nav">
-                                                <img src="<{$gravatar}>" class="img-thumbnail" id="gravatar-nav" />
-                                                <h6>&nbsp&nbsp&nbsp<{$user_name}></h6>
-                                            </div>
-                                            </div>
-                                <a class="dropdown-item text-danger" href="//<{$MAIN_PAGE}>/account/logout">登出</a>
+<body>
+    <div style="background-color: black; color:white;">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark" style="background-color:black;opacity: 0.6;">
+            <i class="material-icons">account_balance</i>
+            <a class="navbar-brand" href="//<{$MAIN_PAGE}>">&nbspATSAST BLOG</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto"></ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <form action="//<{$MAIN_PAGE}>/search/result" method="get" class="form-inline my-2 my-lg-0 mundb-inline">
+                            <input class="form-control mr-sm-2 atsast-searchBox" name="keywords" type="search"
+                                placeholder="搜索" aria-label="搜索">
+                        </form>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                            aria-expanded="false">
+                            < {$greeting}>！< {$user_name}>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <div class="dropdown-header">
+                                <div class="row" id="row-nav">
+                                    <img src="<{$gravatar}>" class="img-thumbnail" id="gravatar-nav" />
+                                    <h6>&nbsp&nbsp&nbsp< {$user_name}>
+                                    </h6>
+                                </div>
                             </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>            
-        </div>
-        <div class="container" id="mainbox">
-            <div class="left_box">
-                <ul class="aside"id="nav-info">
-                    <li class="router-link"><i class="material-icons" style="margin-top:10px;">
-                            person
-                            </i>&nbsp&nbsp
-                        <a class="font" href="//<{$MAIN_PAGE}>/admin/">
-                                    个人资料</a>
-                    </li>
-                    <li class="router-link">
-                            <i class="material-icons" style="margin-top:10px;">
-                                    group
-                                    </i>&nbsp&nbsp
-                        <a class="font">关注</a>
-                    </li>
-                    <li class="router-link">
-                            <i class="material-icons" style="margin-top:10px;">
-                                    star
-                                    </i>&nbsp&nbsp
-                        <a class="font">收藏</a>
-                    </li>
-                    <li class="router-link-active">
-                            <i class="material-icons" style="margin-top:10px;">
-                                    settings
-                                    </i>&nbsp&nbsp
-                            <a class="font" href="//<{$MAIN_PAGE}>/admin/blog">博客管理</a>
+                            <a class="dropdown-item text-danger" href="//<{$MAIN_PAGE}>/account/logout">登出</a>
+                        </div>
                     </li>
                 </ul>
             </div>
-            <div class="card" id="show-info">
-                    <div class="card-header">
-                        <ul class="nav nav-tabs card-header-tabs nav-justified nav-tabs-material" id="actTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="article-tab" data-toggle="tab" href="#article" role="tab" aria-controls="article" aria-selected="true">文章&nbsp&nbsp<span class="badge badge-secondary badge-pill"><{if count($art_this_blog)!=0}><{count($art_this_blog)}><{/if}></span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="category-tab" data-toggle="tab" href="#category" role="tab" aria-controls="category" aria-selected="false">分类&nbsp&nbsp<span class="badge badge-secondary badge-pill"><{if count($cate_this_usr)!=0}><{count($cate_this_usr)}><{/if}></span></a>
-                        </li>
-                        <li class="nav-item">
-                                <a class="nav-link" id="comment-tab" data-toggle="tab" href="#comment" role="tab" aria-controls="comment" aria-selected="false">评论&nbsp&nbsp<span class="badge badge-primary badge-pill"><{if count($com_this_user)!=0}><{count($com_this_user)}><{/if}></span></a>
-                        </li>
-                        </ul>
-                    </div>
-                    <div class = "card-body">
-                            <div class="tab-content" id="actTabContent">
-                                    <div class="tab-pane active" id="article" role="tabpanel" aria-labelledby="article-tab">
-                                        <{if count($art_this_blog)==0}>
-                                        <h3><br>您还没有写过一篇文章哦</h3>
-                                        <{else}>
-                                        <div class="container" id="scroll">
-                                            <{foreach $art_this_blog as $art}>
-                                            <div style="margin-left:10px;margin-top: 16px;">
-                                                <h3 class="text-left"><a href='//<{$MAIN_PAGE}>/page/article?aid=<{$art["aid"]}>&uid=<{$user_info["uid"]}>' style="color:#FB7299;"><{$art["title"]}></a></h3>
-                                                <p class="text-long"><{$art["text"]}></p>
-                                                <p class="text-right"><small>修改于<{$art["time"]}> / <{if $art["isdraft"] == 0}> 已发表 <{else}> 草稿 <{/if}></small></p>
-                                                <div class="row" id="edit-row">
-                                                <a class="btn btn-primary" href='//<{$MAIN_PAGE}>/admin/edit?aid=<{$art["aid"]}>'>修改</a>
-                                                <button class="btn btn-danger" type="button" id="deleteart" data-toggle="modal" data-target="#deletewarn">删除</button>
-                                                <div class="modal fade" id="deletewarn" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="deleteart">
-                                                    <div class="modal-dialog" role="document">
-                                                      <div class="modal-content">
-                                                        <div class="modal-header">
-                                                          <h5 class="modal-title" id="exampleModalLabel">警告</h5>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            你确定要删除这篇文章？该操作不可逆！
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                                                          <button type="button" value="<{$art['aid']}>" class="btn btn-danger" onclick="delart()" id="delartcon">确定</button>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                            </div>
-                                                <{if $art["isdraft"]==1}>
-                                                <button class="btn btn-secondary" onclick="posart()" id="pst" value="<{$art['aid']}>">发布</button>
-                                                <{/if}>
-                                            </div>
-                                        </div>
-                                            <{/foreach}>
-                                        </div>
-                                        <{/if}>
-                                        <a class="btn btn-outline-primary" href='//<{$MAIN_PAGE}>/admin/edit?aid=0' id="new-button">撰写新文章</a>
-                                    </div>
-                                    <div class="tab-pane" id="category" role="tabpanel" aria-labelledby="category-tab">
-                                        <h3 class="text-right" style="color:gray;"><strong>你已添加的类别</strong></h3>
-                                        <div id="scroll">
-                                        <{foreach $cate_this_usr as $cate}>
-                                        <button class="btn btn-primary" for="category" data-toggle="collapse" data-target="#collapse-category<{$cate}>" aria-expanded="false" aria-controls="collapse-search" style="color:#FB7299"><{$cate}>(<{$article_count[$cate]}>)</button>
-                                        <span id="collapse-category<{$cate}>" class="collapse">
-                                            <{if $article_count[$cate] == 0}>
-                                            <div class="card" style="height:3rem;width:40rem;margin-top:10px;margin-bottom:10px;"><p class="text-center" style="color:gray;margin-top:1rem;">该分类还没有文章</p></div>
-                                            <{else}>
-                                                <div class="card" id="scroll" style="width:40rem;height:20rem;">
-                                                    <{foreach $article_incate[$cate] as $atc}>
-                                                    <div style="margin-left:10px;margin-top: 16px;margin-right:16px;" id="atc" value="<{$atc['aid']}>" >
-                                                            <h3 class="text-left"><a href='//<{$MAIN_PAGE}>/page/article?aid=<{$atc["aid"]}>&?uid=<{$user_info["uid"]}>' style="color:#FB7299;"><{$atc["title"]}></a></h3>
-                                                            <p class="text-long"><{$atc["text"]}></p>
-                                                            <p class="text-right"><small>修改于<{$atc["time"]}> / <{if $atc["isdraft"] == 0}> 已发表 <{else}> 草稿 <{/if}></small></p>
-                                                            <button class="btn btn-primary dropdown-toggle" id="drop" style="float:right;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">更改分类</button>
-                                                            <div class="dropdown-menu" aria-labelledby="drop">
-                                                                <{foreach $cate_this_usr as $ccc}> 
-                                                                <button id="cc" class="dropdown-item" type="button" onclick="changecate()" value="<{$ccc}>"><{$ccc}></button>
-                                                                <{/foreach}>
-                                                            </div>
-                                                        </div>
-                                                        <{/foreach}>
-                                                    </div>
-                                                    <{/if}>
-                                        </span>
-                                        <{/foreach}></div>
-                                        <div class="button-group" role="group">
-                                                <button class="btn btn-outline-danger" for="del" data-toggle="collapse" data-target="#input-del" style="float:left;margin-bottom:10px;" aria-expanded="false">删除分类</button>
-                                                <span id="input-del" class="collapse">
-                                                    <div class="form-inline" method="post" >
-                                                        <label for="catedel" >输入分类：</label>
-                                                        <input class="form-control" id="catedel" name="catedel" style="width:18rem;">
-                                                        <button type="submit" cllass="form-control" onclick="delcate()" class="btn btn-primary">提交</button>
-                                                    </div>
-                                                </span>
-                                        <button class="btn btn-outline-primary" for="new" data-toggle="collapse" data-target="#input-cate" id="new-button" aria-expanded="false">添加新分类</button>
-                                        <span id="input-cate" class="collapse">
-                                            <div class="form-inline" method="post">
-                                                <input class="form-control" id="catenew" name="catenew" style="width:18rem;">
-                                                <button type="submit" class="form-control" onclick="neocate()" class="btn btn-primary">提交</button>
-                                            </div>
-                                        </span>
-                                    </div>
-                                    </div>
-                                    <div class="tab-pane" id="comment" role="tabpanel" aria-labelledby="comment-tab">
-                                            <h3 class="text-right"><strong>待审核评论</strong></h3>
-                                            <{if count($com_this_user)==0}>
-                                            <p class="text-center"><br>很棒！你已经处理完所有评论了。</p>
-                                            <{else}>
-                                            <div class="container" id="scroll-small">
-                                                <{foreach $com_this_user as $com}>
-                                                <div style="margin-left:10px;margin-top:16px;">
-                                                    <a class="text-left" href='//<{$MAIN_PAGE}>/page/article?aid=<{$com["ret_article"]}>&uid=<{$user_info["uid"]}>'><strong><{$com["author"]}></strong></a>
-                                                    <p class="list-group-item-text"><{$com["text"]}></p>
-                                                    <p class="text-right"><small>评论于<{$com["time"]}></small></p>
-                                                    <div class="row" id="editRow" value="<{$com['cid']}>">
-                                                    <button class="btn btn-primary" id="agree" value="post" onclick="commentagree()">通过</button>
-                                                    <button class="btn btn-danger" id="dismiss" value="delete" onclick="commentdelete()">删除</button>
-                                                </div>
-                                            </div>
-                                                <{/foreach}>
-                                        </div>
-                                            <{/if}>
-                                            <h3 class="text-right"><strong>已通过评论</strong></h3>
-                                            <{if count($com_user_added)==0}>
-                                            <p class="text-center"><br>啊哦，似乎还没有人给你留言呢……</p>
-                                            <{else}>
-                                            <div class="container" id="scroll-small">
-                                                <{foreach $com_user_added as $coma}>
-                                                    <div style="margin-left:10px;margin-top:16px;">
-                                                    <a class="text-left" href='//<{$MAIN_PAGE}>/page/article?aid=<{$coma["ret_article"]}>&uid=<{$user_info["uid"]}>'><strong><{$coma["author"]}></strong></a>
-                                                    <p class="list-group-item-text"><{$coma["text"]}></p>
-                                                    <p class="text-right"><small>评论于<{$coma["time"]}></small></p>
-                                                    </div>
-                                                <{/foreach}>
-                                            </ul>
-                                            <{/if}>
-                                    </div>
-                            </div>   
-                    </div>
+        </nav>
+    </div>
+    <div class="container" id="mainbox">
+        <div class="left_box">
+            <ul class="aside" id="nav-info">
+                <li class="router-link"><i class="material-icons" style="margin-top:10px;">
+                        person
+                    </i>&nbsp&nbsp
+                    <a class="font" href="//<{$MAIN_PAGE}>/admin/">
+                        个人资料</a>
+                </li>
+                <li class="router-link">
+                    <i class="material-icons" style="margin-top:10px;">
+                        group
+                    </i>&nbsp&nbsp
+                    <a class="font">关注</a>
+                </li>
+                <li class="router-link">
+                    <i class="material-icons" style="margin-top:10px;">
+                        star
+                    </i>&nbsp&nbsp
+                    <a class="font">收藏</a>
+                </li>
+                <li class="router-link-active">
+                    <i class="material-icons" style="margin-top:10px;">
+                        settings
+                    </i>&nbsp&nbsp
+                    <a class="font" href="//<{$MAIN_PAGE}>/admin/blog">博客管理</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card" id="show-info">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs nav-justified nav-tabs-material" id="actTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="article-tab" data-toggle="tab" href="#article" role="tab"
+                            aria-controls="article" aria-selected="true">文章&nbsp&nbsp<span class="badge badge-secondary badge-pill">
+                                < {if count($art_this_blog)!=0}>
+                                    < {count($art_this_blog)}>
+                                        < {/if}> </span> </a> </li> <li class="nav-item">
+                                            <a class="nav-link" id="category-tab" data-toggle="tab" href="#category"
+                                                role="tab" aria-controls="category" aria-selected="false">分类&nbsp&nbsp<span
+                                                    class="badge badge-secondary badge-pill">
+                                                    < {if count($cate_this_usr)!=0}>
+                                                        < {count($cate_this_usr)}>
+                                                            < {/if}> </span> </a> </li> <li class="nav-item">
+                                                                <a class="nav-link" id="comment-tab" data-toggle="tab"
+                                                                    href="#comment" role="tab" aria-controls="comment"
+                                                                    aria-selected="false">评论&nbsp&nbsp<span class="badge badge-primary badge-pill">
+                                                                        < {if count($com_this_user)!=0}>
+                                                                            < {count($com_this_user)}>
+                                                                                < {/if}> </span> </a> </li> </ul> </div>
+                                                                                    <div class="card-body">
+                                                                                    <div class="tab-content" id="actTabContent">
+                                                                                        <div class="tab-pane active" id="article"
+                                                                                            role="tabpanel"
+                                                                                            aria-labelledby="article-tab">
+                                                                                            < {if count($art_this_blog)==0}>
+                                                                                                <h3><br>您还没有写过一篇文章哦</h3>
+                                                                                                < {else}>
+                                                                                                    <div class="container"
+                                                                                                        id="scroll">
+                                                                                                        < {foreach
+                                                                                                            $art_this_blog
+                                                                                                            as $art}>
+                                                                                                            <div style="margin-left:10px;margin-top: 16px;">
+                                                                                                                <h3
+                                                                                                                    class="text-left"><a
+                                                                                                                        href='//<{$MAIN_PAGE}>/page/article?aid=<{$art["aid"]}>&uid=<{$user_info["uid"]}>'
+                                                                                                                        style="color:#FB7299;">
+                                                                                                                        <
+                                                                                                                            {$art["title"]}>
+                                                                                                                    </a></h3>
+                                                                                                                <p
+                                                                                                                    class="text-long">
+                                                                                                                    <
+                                                                                                                        {$art["text"]}>
+                                                                                                                </p>
+                                                                                                                <p
+                                                                                                                    class="text-right"><small>修改于<
+                                                                                                                            {$art["time"]}>
+                                                                                                                            /
+                                                                                                                            <
+                                                                                                                                {if
+                                                                                                                                $art["isdraft"]==0}>
+                                                                                                                                已发表
+                                                                                                                                <
+                                                                                                                                    {else}>
+                                                                                                                                    草稿
+                                                                                                                                    <
+                                                                                                                                        {/if}>
+                                                                                                                                        </small>
+                                                                                                                                        </p>
+                                                                                                                                        <div
+                                                                                                                                        class="row"
+                                                                                                                                        id="edit-row">
+                                                                                                                                        <a
+                                                                                                                                            class="btn btn-primary"
+                                                                                                                                            href='//<{$MAIN_PAGE}>/admin/edit?aid=<{$art["aid"]}>'>修改</a>
+                                                                                                                                        <button
+                                                                                                                                            class="btn btn-danger"
+                                                                                                                                            type="button"
+                                                                                                                                            id="deleteart"
+                                                                                                                                            data-toggle="modal"
+                                                                                                                                            data-target="#deletewarn">删除</button>
+                                                                                                                                        <div
+                                                                                                                                            class="modal fade"
+                                                                                                                                            id="deletewarn"
+                                                                                                                                            tabindex="-1"
+                                                                                                                                            role="dialog"
+                                                                                                                                            aria-hidden="true"
+                                                                                                                                            aria-labelledby="deleteart">
+                                                                                                                                            <div
+                                                                                                                                                class="modal-dialog"
+                                                                                                                                                role="document">
+                                                                                                                                                <div
+                                                                                                                                                    class="modal-content">
+                                                                                                                                                    <div
+                                                                                                                                                        class="modal-header">
+                                                                                                                                                        <h5
+                                                                                                                                                            class="modal-title"
+                                                                                                                                                            id="exampleModalLabel">警告</h5>
+                                                                                                                                                    </div>
+                                                                                                                                                    <div
+                                                                                                                                                        class="modal-body">
+                                                                                                                                                        你确定要删除这篇文章？该操作不可逆！
+                                                                                                                                                    </div>
+                                                                                                                                                    <div
+                                                                                                                                                        class="modal-footer">
+                                                                                                                                                        <button
+                                                                                                                                                            type="button"
+                                                                                                                                                            class="btn btn-secondary"
+                                                                                                                                                            data-dismiss="modal">取消</button>
+                                                                                                                                                        <button
+                                                                                                                                                            type="button"
+                                                                                                                                                            value="<{$art['aid']}>"
+                                                                                                                                                            class="btn btn-danger"
+                                                                                                                                                            onclick="delart()"
+                                                                                                                                                            id="delartcon">确定</button>
+                                                                                                                                                    </div>
+                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                        <
+                                                                                                                                            {if
+                                                                                                                                            $art["isdraft"]==1}>
+                                                                                                                                            <button
+                                                                                                                                                class="btn btn-secondary"
+                                                                                                                                                onclick="posart()"
+                                                                                                                                                id="pst"
+                                                                                                                                                value="<{$art['aid']}>">发布</button>
+                                                                                                                                            <
+                                                                                                                                                {/if}>
+                                                                                                                                                </div>
+                                                                                                                                                </div>
+                                                                                                                                                <{/foreach}>
+                                                                                                                                                </div>
+                                                                                                                                                <{/if}>
+                                                                                                                                                <a
+                                                                                                                                                class="btn btn-outline-primary"
+                                                                                                                                                href='//<{$MAIN_PAGE}>/admin/edit?aid=0'
+                                                                                                                                                id="new-button">撰写新文章</a>
             </div>
-            <div class="modal fade" id="successpost" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-sm" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">提示</h5>
-                    </div>
-                    <div class="modal-body">
-                      发布成功！
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="refresh()">确定</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="modal fade" id="successadd" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-sm" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">提示</h5>
-                    </div>
-                    <div class="modal-body">
-                      添加成功！
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="refresh()">确定</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="modal fade" id="successdel" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-sm" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">提示</h5>
-                        </div>
-                        <div class="modal-body">
-                            删除成功！
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="refresh()">确定</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal fade" id="successcatec" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-sm" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">提示</h5>
-                        </div>
-                        <div class="modal-body">
-                            更改成功！
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="refresh()">确定</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal fade" id="commentagree" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-sm" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">提示</h5>
-                        </div>
-                        <div class="modal-body">
-                            已通过！
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="refresh()">确定</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal fade" id="commentdelete" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-sm" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">提示</h5>
-                        </div>
-                        <div class="modal-body">
-                            已删除！
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="refresh()">确定</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-        <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
-        <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
-    </body>
-    <script type="text/javascript">
-        function commentagree(){
-            $.post("//<{$MAIN_PAGE}>/ajax/commentedit",{
-                cid:$("#editRow").attr("value"),
-                action:$("#agree").attr("value"),
-            },function(data){
-                $("#commentagree").modal("show");
-            });
-        }
-        function commentdelete(){
-            $.post("//<{$MAIN_PAGE}>/ajax/commentedit",{
-                cid:$("#editRow").attr("value"),
-                action:$("#delete").attr("value"),
-            },function(data){
-                $("#commentdelete").modal("show");
-            });
-        }
-        function delart(){
-            $.post("//<{$MAIN_PAGE}>/ajax/deletearticle",{
-                aid:$("#delartcon").val()
-            },function(result){
-                location.reload();
-            });
-        }
-        function posart(){
-            $.post("//<{$MAIN_PAGE}>/ajax/postart",{
-                aid:$("#pst").val()
-            },function(result){
-                $('#successpost').modal('show');
-            })
-        }
-        function neocate(){
-            $.post("//<{$MAIN_PAGE}>/ajax/NeoCate",{
-                cate:$("#catenew").val()
-            },function(result){
-                result = JSON.parse(JSON.stringify(result));
-                $('#successadd').modal('show');
-            });
-        }
-        function changecate(){
-            alert(document.getElementById("cc").value);
-            $.post("//<{$MAIN_PAGE}>/ajax/changecate",{
-                aid:$("#atc").attr("value"),
-                changecate:$("#cc").attr("value"),
-            },function(result){
-                $("#successcatec").modal("show");
-            });
-        }
-        function delcate(){
-            $.post("//<{$MAIN_PAGE}>/ajax/DelCate",{
-                cate:$('#catedel').val()
-            },function(result){
-                result = JSON.parse(JSON.stringify(result));
-                $('#successdel').modal('show');
-            });
-        }
-        function refresh(){
+            <div class="tab-pane" id="category" role="tabpanel" aria-labelledby="category-tab">
+                <h3 class="text-right" style="color:gray;"><strong>你已添加的类别</strong></h3>
+                <div id="scroll">
+                    < {foreach $cate_this_usr as $cate}>
+                        <button class="btn btn-primary" for="category" data-toggle="collapse" data-target="#collapse-category<{$cate}>"
+                            aria-expanded="false" aria-controls="collapse-search" style="color:#FB7299">
+                            < {$cate}>(< {$article_count[$cate]}>)
+                        </button>
+                        <span id="collapse-category<{$cate}>" class="collapse">
+                            < {if $article_count[$cate]==0}>
+                                <div class="card" style="height:3rem;width:40rem;margin-top:10px;margin-bottom:10px;">
+                                    <p class="text-center" style="color:gray;margin-top:1rem;">该分类还没有文章</p>
+                                </div>
+                                < {else}>
+                                    <div class="card" id="scroll" style="width:40rem;height:20rem;">
+                                        < {foreach $article_incate[$cate] as $atc}>
+                                            <div style="margin-left:10px;margin-top: 16px;margin-right:16px;" id="atc"
+                                                value="<{$atc['aid']}>">
+                                                <h3 class="text-left"><a href='//<{$MAIN_PAGE}>/page/article?aid=<{$atc["aid"]}>&?uid=<{$user_info["uid"]}>'
+                                                        style="color:#FB7299;">
+                                                        < {$atc["title"]}>
+                                                    </a></h3>
+                                                <p class="text-long">
+                                                    < {$atc["text"]}>
+                                                </p>
+                                                <p class="text-right"><small>修改于< {$atc["time"]}> / < {if
+                                                                $atc["isdraft"]==0}> 已发表 < {else}> 草稿 < {/if}> </small>
+                                                                        </p> <button class="btn btn-primary dropdown-toggle"
+                                                                        id="drop" style="float:right;" data-toggle="dropdown"
+                                                                        aria-haspopup="true" aria-expanded="false">更改分类</button>
+                                                                        <div class="dropdown-menu" aria-labelledby="drop">
+                                                                            < {foreach $cate_this_usr as $ccc}>
+                                                                                <button id="cc" class="dropdown-item"
+                                                                                    type="button" onclick="changecate()"
+                                                                                    value="<{$ccc}>">
+                                                                                    < {$ccc}>
+                                                                                </button>
+                                                                                < {/foreach}> </div> </div> <{/foreach}>
+                                                                                    </div> <{/if}> </span> <{/foreach}>
+                                                                                    </div> <div class="button-group"
+                                                                                    role="group">
+                                                                                    <button class="btn btn-outline-danger"
+                                                                                        for="del" data-toggle="collapse"
+                                                                                        data-target="#input-del" style="float:left;margin-bottom:10px;"
+                                                                                        aria-expanded="false">删除分类</button>
+                                                                                    <span id="input-del" class="collapse">
+                                                                                        <div class="form-inline" method="post">
+                                                                                            <label for="catedel">输入分类：</label>
+                                                                                            <input class="form-control"
+                                                                                                id="catedel" name="catedel"
+                                                                                                style="width:18rem;">
+                                                                                            <button type="submit"
+                                                                                                cllass="form-control"
+                                                                                                onclick="delcate()"
+                                                                                                class="btn btn-primary">提交</button>
+                                                                                        </div>
+                                                                                    </span>
+                                                                                    <button class="btn btn-outline-primary"
+                                                                                        for="new" data-toggle="collapse"
+                                                                                        data-target="#input-cate" id="new-button"
+                                                                                        aria-expanded="false">添加新分类</button>
+                                                                                    <span id="input-cate" class="collapse">
+                                                                                        <div class="form-inline" method="post">
+                                                                                            <input class="form-control"
+                                                                                                id="catenew" name="catenew"
+                                                                                                style="width:18rem;">
+                                                                                            <button type="submit" class="form-control"
+                                                                                                onclick="neocate()"
+                                                                                                class="btn btn-primary">提交</button>
+                                                                                        </div>
+                                                                                    </span>
+                                                                        </div>
+                                            </div>
+                                            <div class="tab-pane" id="comment" role="tabpanel" aria-labelledby="comment-tab">
+                                                <h3 class="text-right"><strong>待审核评论</strong></h3>
+                                                < {if count($com_this_user)==0}>
+                                                    <p class="text-center"><br>很棒！你已经处理完所有评论了。</p>
+                                                    < {else}>
+                                                        <div class="container" id="scroll-small">
+                                                            < {foreach $com_this_user as $com}>
+                                                                <div style="margin-left:10px;margin-top:16px;">
+                                                                    <a class="text-left" href='//<{$MAIN_PAGE}>/page/article?aid=<{$com["ret_article"]}>&uid=<{$user_info["uid"]}>'><strong>
+                                                                            < {$com["author"]}>
+                                                                        </strong></a>
+                                                                    <p class="list-group-item-text">
+                                                                        < {$com["text"]}>
+                                                                    </p>
+                                                                    <p class="text-right"><small>评论于< {$com["time"]}></small></p>
+                                                                    <div class="row" id="editRow" value="<{$com['cid']}>">
+                                                                        <button class="btn btn-primary" id="agree"
+                                                                            value="post" onclick="commentagree()">通过</button>
+                                                                        <button class="btn btn-danger" id="dismiss"
+                                                                            value="delete" onclick="commentdelete()">删除</button>
+                                                                    </div>
+                                                                </div>
+                                                                < {/foreach}> </div> <{/if}> <h3 class="text-right"><strong>已通过评论</strong></h3>
+                                                                    < {if count($com_user_added)==0}>
+                                                                        <p class="text-center"><br>啊哦，似乎还没有人给你留言呢……</p>
+                                                                        < {else}>
+                                                                            <div class="container" id="scroll-small">
+                                                                                < {foreach $com_user_added as $coma}>
+                                                                                    <div style="margin-left:10px;margin-top:16px;">
+                                                                                        <a class="text-left" href='//<{$MAIN_PAGE}>/page/article?aid=<{$coma["ret_article"]}>&uid=<{$user_info["uid"]}>'><strong>
+                                                                                                < {$coma["author"]}>
+                                                                                            </strong></a>
+                                                                                        <p class="list-group-item-text">
+                                                                                            < {$coma["text"]}>
+                                                                                        </p>
+                                                                                        <p class="text-right"><small>评论于<
+                                                                                                    {$coma["time"]}></small></p>
+                                                                                    </div>
+                                                                                    < {/foreach}> </ul> <{/if}> </div>
+                                                                                        </div> </div> </div> <div class="modal fade"
+                                                                                        id="successpost" tabindex="-1"
+                                                                                        role="dialog" aria-hidden="true">
+                                                                                        <div class="modal-dialog modal-sm"
+                                                                                            role="document">
+                                                                                            <div class="modal-content">
+                                                                                                <div class="modal-header">
+                                                                                                    <h5 class="modal-title"
+                                                                                                        id="exampleModalLabel">提示</h5>
+                                                                                                </div>
+                                                                                                <div class="modal-body">
+                                                                                                    发布成功！
+                                                                                                </div>
+                                                                                                <div class="modal-footer">
+                                                                                                    <button type="button"
+                                                                                                        class="btn btn-secondary"
+                                                                                                        data-dismiss="modal"
+                                                                                                        onclick="refresh()">确定</button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                            </div>
+                                                                            <div class="modal fade" id="successadd"
+                                                                                tabindex="-1" role="dialog" aria-hidden="true">
+                                                                                <div class="modal-dialog modal-sm" role="document">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h5 class="modal-title" id="exampleModalLabel">提示</h5>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            添加成功！
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <button type="button" class="btn btn-secondary"
+                                                                                                data-dismiss="modal"
+                                                                                                onclick="refresh()">确定</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal fade" id="successdel"
+                                                                                tabindex="-1" role="dialog" aria-hidden="true">
+                                                                                <div class="modal-dialog modal-sm" role="document">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h5 class="modal-title" id="exampleModalLabel">提示</h5>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            删除成功！
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <button type="button" class="btn btn-secondary"
+                                                                                                data-dismiss="modal"
+                                                                                                onclick="refresh()">确定</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal fade" id="successcatec"
+                                                                                tabindex="-1" role="dialog" aria-hidden="true">
+                                                                                <div class="modal-dialog modal-sm" role="document">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h5 class="modal-title" id="exampleModalLabel">提示</h5>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            更改成功！
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <button type="button" class="btn btn-secondary"
+                                                                                                data-dismiss="modal"
+                                                                                                onclick="refresh()">确定</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal fade" id="commentagree"
+                                                                                tabindex="-1" role="dialog" aria-hidden="true">
+                                                                                <div class="modal-dialog modal-sm" role="document">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h5 class="modal-title" id="exampleModalLabel">提示</h5>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            已通过！
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <button type="button" class="btn btn-secondary"
+                                                                                                data-dismiss="modal"
+                                                                                                onclick="refresh()">确定</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal fade" id="commentdelete"
+                                                                                tabindex="-1" role="dialog" aria-hidden="true">
+                                                                                <div class="modal-dialog modal-sm" role="document">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h5 class="modal-title" id="exampleModalLabel">提示</h5>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            已删除！
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <button type="button" class="btn btn-secondary"
+                                                                                                data-dismiss="modal"
+                                                                                                onclick="refresh()">确定</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                        </div>
+                                                        <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"
+                                                            integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
+                                                            crossorigin="anonymous"></script>
+                                                        <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"
+                                                            integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
+                                                            crossorigin="anonymous"></script>
+</body>
+<script type="text/javascript">
+    function commentagree() {
+        $.post("//<{$MAIN_PAGE}>/ajax/commentedit", {
+            cid: $("#editRow").attr("value"),
+            action: $("#agree").attr("value"),
+        }, function (data) {
+            $("#commentagree").modal("show");
+        });
+    }
+
+    function commentdelete() {
+        $.post("//<{$MAIN_PAGE}>/ajax/commentedit", {
+            cid: $("#editRow").attr("value"),
+            action: $("#delete").attr("value"),
+        }, function (data) {
+            $("#commentdelete").modal("show");
+        });
+    }
+
+    function delart() {
+        $.post("//<{$MAIN_PAGE}>/ajax/deletearticle", {
+            aid: $("#delartcon").val()
+        }, function (result) {
             location.reload();
-        }
-    </script>
+        });
+    }
+
+    function posart() {
+        $.post("//<{$MAIN_PAGE}>/ajax/postart", {
+            aid: $("#pst").val()
+        }, function (result) {
+            $('#successpost').modal('show');
+        })
+    }
+
+    function neocate() {
+        $.post("//<{$MAIN_PAGE}>/ajax/NeoCate", {
+            cate: $("#catenew").val()
+        }, function (result) {
+            result = JSON.parse(JSON.stringify(result));
+            $('#successadd').modal('show');
+        });
+    }
+
+    function changecate() {
+        alert(document.getElementById("cc").value);
+        $.post("//<{$MAIN_PAGE}>/ajax/changecate", {
+            aid: $("#atc").attr("value"),
+            changecate: $("#cc").attr("value"),
+        }, function (result) {
+            $("#successcatec").modal("show");
+        });
+    }
+
+    function delcate() {
+        $.post("//<{$MAIN_PAGE}>/ajax/DelCate", {
+            cate: $('#catedel').val()
+        }, function (result) {
+            result = JSON.parse(JSON.stringify(result));
+            $('#successdel').modal('show');
+        });
+    }
+
+    function refresh() {
+        location.reload();
+    }
+</script>
+
 </html>

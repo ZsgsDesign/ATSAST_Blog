@@ -668,8 +668,9 @@
             });
         }
         function fabu_c(ccid){
+            alert($("#aid_"+ccid).attr("value"));
             $.post("//<{$MAIN_PAGE}>/ajax/CommentAdd",{
-                aid:$("#aid_"+ccid).attr("value"),
+                aid:,
                 uid:$("#fb_art_"+ccid).attr("value"),
                 text:$("#input_p_"+ccid).val(),
                 reply:ccid,
