@@ -45,8 +45,8 @@ $domain = array(
             'MYSQL_CHARSET' => 'utf8',
         ),
     ),
-    "blog.winter.mundb.xyz" => array( // 生产配置(暂时还不是)
-        'debug' => 0,
+    "blog.winter.mundb.xyz" => array( // 生产配置
+        'debug' => 1,
         'maintain' => 0,
         'mysql' => array(
             'MYSQL_HOST' => "localhost",
